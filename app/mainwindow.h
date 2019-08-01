@@ -14,11 +14,18 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+public slots:
+    void getCoordinates(QString lon,QString lat);
 
 private:
     Ui::MainWindow *ui;
+<<<<<<< HEAD
+=======
+    QWebChannel *channel;
+>>>>>>> 9eedb056dd29505a69eb03951bbaa5cf8dbfe995
 //    QWebEngineView *map_view;
 };
 
