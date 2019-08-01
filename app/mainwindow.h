@@ -22,10 +22,9 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-<<<<<<< HEAD
-=======
+
     QWebChannel *channel;
->>>>>>> 9eedb056dd29505a69eb03951bbaa5cf8dbfe995
+
 //    QWebEngineView *map_view;
 };
 

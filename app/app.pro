@@ -4,11 +4,8 @@
 #
 #-------------------------------------------------
 
-<<<<<<< HEAD
-QT       += core gui webenginewidgets
-=======
+
 QT       += core gui webenginewidgets webchannel
->>>>>>> 9eedb056dd29505a69eb03951bbaa5cf8dbfe995
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
