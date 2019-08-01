@@ -43,7 +43,7 @@
     var satelliteLayer = new AMap.TileLayer.Satellite();
     // 加入卫星图层
     map.add(satelliteLayer);
-    // 绑定鼠标点击事件
+    // 绑定鼠标单机事件到onClick
     map.on('click', onClick);
     //添加 marker
     function addMarker(lng,lat) {
@@ -62,7 +62,7 @@
             window.foo = channel.objects.webobj;
         }
     );
-    //点击事件 
+    //鼠标单击事件 
 	function onClick(e) {
         var my_coordinate = [e.lnglat.Q , e.lnglat.P];//获取经纬度
         path.push(my_coordinate);//加入path数组
