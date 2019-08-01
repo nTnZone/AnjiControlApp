@@ -27,7 +27,7 @@
     var marker,map = new AMap.Map('container', {
         resizeEnable: true, //是否监控地图容器尺寸变化
         zoom:13 //初始化地图层级
-    });//地图
+    });//构造map,marker
     var polyl = new AMap.Polyline({
             // path: path,
             isOutline: true,
@@ -38,15 +38,13 @@
             lineJoin: 'round',
             lineCap: 'round',
             strokeWeight: 2,
-        });//折线
+        });//构造折线
     // 构造官方卫星图层
     var satelliteLayer = new AMap.TileLayer.Satellite();
     // 加入卫星图层
     map.add(satelliteLayer);
-    //绑定鼠标点击事件
+    // 绑定鼠标点击事件
     map.on('click', onClick);
-    //点击事件
-
     //添加 marker
     function addMarker(lng,lat) {
         marker = new AMap.Marker({
@@ -58,16 +56,17 @@
     function clearAll() {
         map.clearMap();
     }
-    //注册QWebChannel
+    //注册QWebChannel，可以通过windows.foo.XXX调用qt中的XXX函数
     new QWebChannel(qt.webChannelTransport,
         function (channel) {
             window.foo = channel.objects.webobj;
         }
     );
-    function onClick(e) {
-        var my_coordinate = [e.lnglat.Q , e.lnglat.P];
-        path.push(my_coordinate);
-        polyl.setPath(path);
+    //点击事件 
+	function onClick(e) {
+        var my_coordinate = [e.lnglat.Q , e.lnglat.P];//获取经纬度
+        path.push(my_coordinate);//加入path数组
+        polyl.setPath(path);//设置折线的path
         polyl.setMap(map);
         addMarker(e.lnglat.getLng(),e.lnglat.getLat());
         // JS调用QT
