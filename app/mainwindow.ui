@@ -36,32 +36,6 @@
      <attribute name="title">
       <string>主控界面</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>自动航行</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>20</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>手动航行</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_4">
       <property name="geometry">
        <rect>
@@ -168,7 +142,7 @@
      <attribute name="title">
       <string>地图</string>
      </attribute>
-     <widget class="QWebEngineView" name="webView">
+     <widget class="QWebEngineView" name="webView" native="true">
       <property name="geometry">
        <rect>
         <x>320</x>
@@ -177,10 +151,49 @@
         <height>641</height>
        </rect>
       </property>
-      <property name="url">
+      <property name="url" stdset="0">
        <url>
         <string>about:blank</string>
        </url>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="autoButton">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>40</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>自动航行</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="manualButton">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>100</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>手动航行</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="showDataButton">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>160</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>显示数据</string>
       </property>
      </widget>
     </widget>
