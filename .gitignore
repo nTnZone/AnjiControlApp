@@ -1,7 +1,5 @@
 *.bak
-<<<<<<< HEAD
 build-app-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug/
-TestApp/
-=======
 /build-app-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug
->>>>>>> 9eedb056dd29505a69eb03951bbaa5cf8dbfe995
+/app/app.pro.user
+
