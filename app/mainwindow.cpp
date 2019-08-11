@@ -42,13 +42,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)//, map_view(new QWebEngineView(this))
 {
     ui->setupUi(this);
-
-    //channel = new QWebChannel();//QwebChannel
-    //channel->registerObject(QString("webobj"),this);
-    //ui->webView->page()->setWebChannel(channel);//将webchannel连接到webview
-
-//    ui->webView->page()->runJavaScript("clearAll()");//QT调用JS
-
     QStringList rspeedList={"1","2","3"};
     QStringList fspeedList={"1","2","3","4","5"};
     ui->rspeedBox->addItems(rspeedList);
@@ -67,12 +60,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete channel;
-}
-
-void MainWindow::getCoordinates(QString lon,QString lat)
-{
-    qDebug() << lon <<','<<lat << endl ;
-//    ui->webView->page()->runJavaScript("clearAll()");
 }
 
 void MainWindow::on_showDataButton_clicked()
@@ -106,4 +93,11 @@ void MainWindow::on_rspeedBox_currentTextChanged(const QString &rspeed)
 {
 
     this->boatspeed->setRspeed(rspeed.toInt());//ui->rspeedBox->currentText().toInt()
+}
+
+void MainWindow::on_remark_clicked()
+{
+    ui->webView->page()->runJavaScript("clearAll()");//调用JS函数清除所有标记
+    pointxy->map_latitude.clear();
+    pointxy->map_longtitude.clear();
 }
