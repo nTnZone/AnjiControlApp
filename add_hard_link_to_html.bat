@@ -1,0 +1,1 @@
+mklink /H "build-app-Desktop_Qt_5_12_4_MSVC2017_64bit-Debug/gaode.html" "gaode.html"
