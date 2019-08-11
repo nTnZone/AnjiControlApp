@@ -6,7 +6,6 @@
 //这个方法供js调用，发送一个““的信号
 void PointXY::saveMapPoint(QString longti, QString lati)
 {
-    //emit recvdMsg(msg);
     qDebug() << longti <<','<<lati << endl ;
     map_longtitude.push_back(longti.toDouble());
     map_latitude.push_back(lati.toDouble());
@@ -50,6 +49,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 //    ui->webView->page()->runJavaScript("clearAll()");//QT调用JS
 
+    QStringList rspeedList={"1","2","3"};
+    QStringList fspeedList={"1","2","3","4","5"};
+    ui->rspeedBox->addItems(rspeedList);
+    ui->fspeedBox->addItems(fspeedList);
     QWebChannel *webchannel=new QWebChannel();
 
     webchannel->registerObject("pointxy", pointxy);//注册对象
@@ -91,4 +94,16 @@ void MainWindow::on_autoButton_clicked()
             QCoreApplication::processEvents();   //处理事件
         this->pointxy->setMapCenter(longi[i],lati[i]);
     }
+}
+
+void MainWindow::on_fspeedBox_currentIndexChanged(int index)
+{
+
+    this->boatspeed->setFspeed(ui->fspeedBox->currentText().toInt());
+}
+
+void MainWindow::on_rspeedBox_currentTextChanged(const QString &rspeed)
+{
+
+    this->boatspeed->setRspeed(rspeed.toInt());//ui->rspeedBox->currentText().toInt()
 }

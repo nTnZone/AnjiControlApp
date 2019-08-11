@@ -160,7 +160,7 @@
      <widget class="QPushButton" name="autoButton">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>10</x>
         <y>40</y>
         <width>101</width>
         <height>31</height>
@@ -173,8 +173,8 @@
      <widget class="QPushButton" name="manualButton">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>100</y>
+        <x>140</x>
+        <y>40</y>
         <width>101</width>
         <height>31</height>
        </rect>
@@ -186,14 +186,73 @@
      <widget class="QPushButton" name="showDataButton">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>160</y>
+        <x>10</x>
+        <y>90</y>
         <width>101</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>显示数据</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="stopButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>停止航行</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="fspeedBox">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>220</y>
+        <width>87</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>220</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>前行速度</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>270</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>转向速度</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="rspeedBox">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>270</y>
+        <width>87</width>
+        <height>22</height>
+       </rect>
       </property>
      </widget>
     </widget>

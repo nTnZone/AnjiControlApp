@@ -5,11 +5,45 @@
 #include <QtWebEngineWidgets>
 #include <QWebEngineView> // HTML页面
 #include <QWebChannel>    // C++和JS/HTML双向通信，代替了已淘汰的QtWebFrame的功能
+#include <QStringList>
 #define size 100
 #define accuracy 6
 namespace Ui {
 class MainWindow;
 }
+
+//包含船的转向速度和前行速度设置
+class BoatSpeed : public QObject
+{
+private:
+    //前行速度
+    int fspeed;
+    //转向速度
+    int rspeed;
+public:
+    void setFspeed(int speed)
+    {
+        this->fspeed=speed;
+    }
+    void setRspeed(int speed)
+    {
+        this->rspeed=speed;
+    }
+    int  getFspeed()
+    {
+        return  this->fspeed;
+    }
+    int getRspeed()
+    {
+        return this->rspeed;
+    }
+
+    BoatSpeed()
+    {
+        this->fspeed=1;
+        this->rspeed=1;
+    }
+};
 
 //WebClass 供JS调用的类，c与js沟通交互的基础
 //PointXY存储船的坐标经纬度
@@ -26,8 +60,6 @@ public:
     std::vector<double> map_longtitude;
     std::vector<double> map_latitude;
 public:
-    //向网页发送消息
-    void sendMsg(QWebEnginePage* page,const QString& msg);
     //显示地图传来的坐标点
     void showMapPoint();
 
@@ -49,6 +81,8 @@ public:
 
 public:
     PointXY *pointxy=new PointXY();
+    BoatSpeed *boatspeed=new BoatSpeed();
+
 public slots:
     void getCoordinates(QString lon,QString lat);
 
@@ -56,6 +90,10 @@ private slots:
     void on_showDataButton_clicked();
 
     void on_autoButton_clicked();
+
+    void on_fspeedBox_currentIndexChanged(int index);
+
+    void on_rspeedBox_currentTextChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
