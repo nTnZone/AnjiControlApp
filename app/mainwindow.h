@@ -12,9 +12,13 @@ namespace Ui {
 class MainWindow;
 }
 
+
+
+
 //包含船的转向速度和前行速度设置
 class BoatSpeed : public QObject
 {
+    Q_OBJECT
 private:
     //前行速度
     int fspeed;
