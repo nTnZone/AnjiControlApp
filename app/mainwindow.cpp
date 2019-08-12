@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <qdebug.h>
 #include <iostream>
@@ -55,6 +55,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
 
+
+    udpcomm = new UdpComm(QHostAddress("192.168.1.213"),3456);
+
+
     //qInstallMessageHandler(outputMessage);
     outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
 }
@@ -86,11 +90,11 @@ void MainWindow::on_autoButton_clicked()
     }
 }
 
-void MainWindow::on_fspeedBox_currentIndexChanged(int index)
+void MainWindow::on_fspeedBox_currentTextChanged(const QString &fspeed)
 {
-
-    this->boatspeed->setFspeed(ui->fspeedBox->currentText().toInt());
+    this->boatspeed->setFspeed(fspeed.toInt());
 }
+
 
 void MainWindow::on_rspeedBox_currentTextChanged(const QString &rspeed)
 {
@@ -103,4 +107,21 @@ void MainWindow::on_remark_clicked()
     ui->webView->page()->runJavaScript("clearAll()");//调用JS函数清除所有标记
     pointxy->map_latitude.clear();
     pointxy->map_longtitude.clear();
+//    udpcomm->SendMsg(QByteArray("1234"),QHostAddress("192.168.1.226"),3456);//测试udp
+//    qDebug()<<QByteArray("1234");
+
+}
+
+void UdpComm::SendMsg(QByteArray msg, QHostAddress addr, quint16 port)
+{
+    mSocket->writeDatagram(msg,addr,port);
+}
+
+void UdpComm::RecvMsg()
+{
+    QHostAddress address;
+    quint16 port;
+    msg.resize(mSocket->bytesAvailable());//根据可读数据来设置空间大小
+    mSocket->readDatagram(msg.data(),msg.size(),&address,&port); //读取数据
+//    qDebug() << msg <<endl;
 }
