@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <qdebug.h>
 #include <iostream>
+#include <mtool.h>
 
 //这个方法供js调用，发送一个““的信号
 void PointXY::saveMapPoint(QString longti, QString lati)
@@ -54,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
 
+    //qInstallMessageHandler(outputMessage);
+    outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
 }
 
 MainWindow::~MainWindow()
