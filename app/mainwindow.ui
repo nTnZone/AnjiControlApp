@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1020</width>
-    <height>760</height>
+    <width>1048</width>
+    <height>770</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -23,8 +23,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>20</x>
+      <y>10</y>
       <width>1011</width>
       <height>711</height>
      </rect>
@@ -145,8 +145,8 @@
      <widget class="QWebEngineView" name="webView" native="true">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>10</y>
+        <x>280</x>
+        <y>0</y>
         <width>681</width>
         <height>641</height>
        </rect>
@@ -155,58 +155,6 @@
        <url>
         <string>about:blank</string>
        </url>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="autoButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>自动航行</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="manualButton">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>40</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>手动航行</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="showDataButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>90</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>显示数据</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="stopButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>150</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>停止航行</string>
       </property>
      </widget>
      <widget class="QComboBox" name="fspeedBox">
@@ -255,6 +203,59 @@
        </rect>
       </property>
      </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>40</y>
+        <width>218</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="horizontalSpacing">
+        <number>30</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>20</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="autoButton">
+         <property name="text">
+          <string>自动航行</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="remark">
+         <property name="text">
+          <string>重新规划</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="stopButton">
+         <property name="text">
+          <string>停止航行</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="manualButton">
+         <property name="text">
+          <string>手动航行</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="showDataButton">
+         <property name="text">
+          <string>显示数据</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -263,7 +264,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1020</width>
+     <width>1048</width>
      <height>26</height>
     </rect>
    </property>

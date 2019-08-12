@@ -79,13 +79,6 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-public:
-    PointXY *pointxy=new PointXY();
-    BoatSpeed *boatspeed=new BoatSpeed();
-
-public slots:
-    void getCoordinates(QString lon,QString lat);
-
 private slots:
     void on_showDataButton_clicked();
 
@@ -95,9 +88,14 @@ private slots:
 
     void on_rspeedBox_currentTextChanged(const QString &arg1);
 
+    void on_remark_clicked();
+
+public:
+    PointXY *pointxy=new PointXY();
+    BoatSpeed *boatspeed=new BoatSpeed();
+
 private:
     Ui::MainWindow *ui;
-
     QWebChannel *channel;
 
 //    QWebEngineView *map_view;
