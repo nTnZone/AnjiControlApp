@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <vector>
 #include <QMainWindow>
@@ -6,15 +6,55 @@
 #include <QWebEngineView> // HTML页面
 #include <QWebChannel>    // C++和JS/HTML双向通信，代替了已淘汰的QtWebFrame的功能
 #include <QStringList>
-#define size 100
+#include <QUdpSocket>
+#define mysize 100
 #define accuracy 6
+
 namespace Ui {
 class MainWindow;
 }
 
+
+
+class UdpComm : public QObject
+{
+    Q_OBJECT
+public:
+    UdpComm()
+    {
+        mSocket = new QUdpSocket();
+        mSocket->bind(QHostAddress::LocalHost,3456);//127.0.0.1:3456
+        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
+    }
+
+    UdpComm(QHostAddress addr,quint16 port)
+    {
+        mSocket = new QUdpSocket();
+        mSocket->bind(addr,port);
+        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
+    }
+
+    virtual ~UdpComm() {}
+
+    void SendMsg(QByteArray msg,QHostAddress addr,quint16 port);
+    void Getmsg(QByteArray &msg)
+    {
+        msg = this->msg;
+    }
+
+public slots:
+    void RecvMsg();
+
+public:
+    QByteArray msg;
+    QUdpSocket *mSocket;
+};
+
+
 //包含船的转向速度和前行速度设置
 class BoatSpeed : public QObject
 {
+    Q_OBJECT
 private:
     //前行速度
     int fspeed;
@@ -84,20 +124,20 @@ private slots:
 
     void on_autoButton_clicked();
 
-    void on_fspeedBox_currentIndexChanged(int index);
-
     void on_rspeedBox_currentTextChanged(const QString &arg1);
 
     void on_remark_clicked();
 
+    void on_fspeedBox_currentTextChanged(const QString &arg1);
+
 public:
     PointXY *pointxy=new PointXY();
     BoatSpeed *boatspeed=new BoatSpeed();
+    UdpComm *udpcomm;
 
 private:
     Ui::MainWindow *ui;
     QWebChannel *channel;
-
 //    QWebEngineView *map_view;
 };
 
