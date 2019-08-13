@@ -76,18 +76,32 @@ void MainWindow::on_showDataButton_clicked()
 
 void MainWindow::on_autoButton_clicked()
 {
-    QTime time;
-    double longi[5]={108.959096,108.973344,108.970082,108.953775,108.918241};
-    double lati[5]={34.25855,34.287205,34.304506,34.322371,34.348595};
-    for(int i=0;i<5;i++)
-    {
+//    QTime time;
+//    double longi[5]={108.959096,108.973344,108.970082,108.953775,108.918241};
+//    double lati[5]={34.25855,34.287205,34.304506,34.322371,34.348595};
+//    for(int i=0;i<5;i++)
+//    {
 
 
-        time.start();
-        while(time.elapsed() < 5000)             //等待时间流逝5秒钟
-            QCoreApplication::processEvents();   //处理事件
-        this->pointxy->setMapCenter(longi[i],lati[i]);
+//        time.start();
+//        while(time.elapsed() < 5000)             //等待时间流逝5秒钟
+//            QCoreApplication::processEvents();   //处理事件
+//        this->pointxy->setMapCenter(longi[i],lati[i]);
+//    }
+    for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
+        QByteArray msg("#RPC");//协议头
+        QString str_lon = QString("%1").arg(pointxy->map_latitude.at(i),14,10,9,'0');//按要求填充经度
+        msg.append(str_lon);
+        msg.append(";");
+        QString str_lat = QString("%1").arg(pointxy->map_longtitude.at(i),13,10,9,'0');//按要求填充纬度
+        msg.append(str_lat);
+        msg.append(QByteArray::fromHex("0d0a"));//协议尾
+        //发送
+//        udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
+//        qDebug() << msg <<endl;
+//        qDebug() << msg.toHex() <<endl;
     }
+
 }
 
 void MainWindow::on_fspeedBox_currentTextChanged(const QString &fspeed)

@@ -57,7 +57,8 @@
     }
     //清除所有标记
     function clearAll() {
-        map.clearMap();
+        map.clearMap();//清空地图标记
+        path = [];//清空路径信息
     }
     //新建QWebChannel对象实例，使之能与c++函数通信
     new QWebChannel(qt.webChannelTransport,
