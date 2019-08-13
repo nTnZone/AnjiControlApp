@@ -226,20 +226,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="remark">
-         <property name="text">
-          <string>重新规划</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="stopButton">
-         <property name="text">
-          <string>停止航行</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="manualButton">
          <property name="text">
@@ -251,6 +237,27 @@
         <widget class="QPushButton" name="showDataButton">
          <property name="text">
           <string>显示数据</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="remark">
+         <property name="text">
+          <string>重新规划</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="disuButton">
+         <property name="text">
+          <string>低速模式</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="stableButton">
+         <property name="text">
+          <string>稳定模式</string>
          </property>
         </widget>
        </item>

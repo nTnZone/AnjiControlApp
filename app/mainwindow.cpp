@@ -136,8 +136,11 @@ void MainWindow::on_remark_clicked()
     ui->webView->page()->runJavaScript("clearAll()");//调用JS函数清除所有标记
     pointxy->map_latitude.clear();
     pointxy->map_longtitude.clear();
-//    udpcomm->SendMsg(QByteArray("1234"),QHostAddress("192.168.1.226"),3456);//测试udp
+    QByteArray *msg=new QByteArray("1234");
+     //msg.append(QByteArray::fromHex("0d0a"));//协议尾
+//    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
 //    qDebug()<<QByteArray("1234");
+
 
 }
 
