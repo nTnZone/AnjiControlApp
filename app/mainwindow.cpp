@@ -3,7 +3,7 @@
 #include <qdebug.h>
 #include <iostream>
 #include <mtool.h>
-
+#include <QPainter>
 //这个方法供js调用，发送一个““的信号
 void PointXY::saveMapPoint(QString longti, QString lati)
 {
@@ -52,6 +52,21 @@ MainWindow::MainWindow(QWidget *parent) :
     webchannel->registerObject("pointxy", pointxy);//注册对象
     ui->webView->page()->setWebChannel(webchannel);
 
+    QIcon *icon=new QIcon("down.png");
+    ui->downButton->setIcon(*icon);
+    ui->downButton->setIconSize(QSize(50,50));
+    QIcon *icon2=new QIcon("up.png");
+    ui->upButton->setIcon(*icon2);
+    ui->upButton->setIconSize(QSize(50,50));
+    QIcon *icon3=new QIcon("right.png");
+    ui->rightButton->setIcon(*icon3);
+    ui->rightButton->setIconSize(QSize(50,50));
+    QIcon *icon4=new QIcon("left.png");
+    ui->leftButton->setIcon(*icon4);
+    ui->leftButton->setIconSize(QSize(50,50));
+    QIcon *starticon=new QIcon("start.png");
+    ui->startButton->setIcon(*starticon);
+    ui->startButton->setIconSize(QSize(50,50));
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
 

@@ -37,3 +37,6 @@ FORMS += \
 
 DISTFILES += \
     C:/Users/DELL/Desktop/UAVproject/gaode.html
+
+RESOURCES += \
+    resource.qrc
