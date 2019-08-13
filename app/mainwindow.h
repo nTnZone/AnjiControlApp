@@ -34,7 +34,7 @@ public:
         connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
     }
 
-    virtual ~UdpComm() {}
+    virtual ~UdpComm() {delete mSocket;}
 
     void SendMsg(QByteArray msg,QHostAddress addr,quint16 port);
     void Getmsg(QByteArray &msg)
@@ -134,11 +134,11 @@ public:
     PointXY *pointxy=new PointXY();
     BoatSpeed *boatspeed=new BoatSpeed();
     UdpComm *udpcomm;
+    QWebChannel *webchannel=new QWebChannel();
 
 private:
     Ui::MainWindow *ui;
-    QWebChannel *channel;
-//    QWebEngineView *map_view;
+
 };
 
 

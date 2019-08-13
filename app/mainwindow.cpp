@@ -47,7 +47,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QStringList fspeedList={"1","2","3","4","5"};
     ui->rspeedBox->addItems(rspeedList);
     ui->fspeedBox->addItems(fspeedList);
-    QWebChannel *webchannel=new QWebChannel();
 
     webchannel->registerObject("pointxy", pointxy);//注册对象
     ui->webView->page()->setWebChannel(webchannel);
@@ -70,9 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
 
-
-    udpcomm = new UdpComm(QHostAddress("192.168.1.213"),3456);
-
+    udpcomm = new UdpComm(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
 
     //qInstallMessageHandler(outputMessage);
     outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
@@ -81,7 +78,10 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete channel;
+    delete webchannel;
+    delete pointxy;
+    delete boatspeed;
+    delete udpcomm;
 }
 
 void MainWindow::on_showDataButton_clicked()
