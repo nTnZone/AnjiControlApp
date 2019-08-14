@@ -26,10 +26,12 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        mode.cpp
 
 HEADERS += \
         mainwindow.h \
+        mode.h \
         mtool.h
 
 FORMS += \

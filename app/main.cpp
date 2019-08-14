@@ -4,10 +4,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    MainWindow m;
     //init
 
-    w.show();
+    m.show();
 
     return a.exec();
 }

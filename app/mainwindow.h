@@ -7,6 +7,7 @@
 #include <QWebChannel>    // C++和JS/HTML双向通信，代替了已淘汰的QtWebFrame的功能
 #include <QStringList>
 #include <QUdpSocket>
+#include <mode.h>
 #define mysize 100
 #define accuracy 6
 
@@ -130,15 +131,29 @@ private slots:
 
     void on_fspeedBox_currentTextChanged(const QString &arg1);
 
-public:
+    void on_manualButton_clicked();
+
+    void on_rightButton_clicked();
+
+
+    void on_disuButton_clicked();
+
+    void on_stableButton_clicked();
+
+    void on_upButton_clicked();
+
+    void on_startButton_clicked();
+
+signals:
+
+private:
+    Ui::MainWindow *ui;
+    int modeFlag=0;
+    Mode *mode;
     PointXY *pointxy=new PointXY();
     BoatSpeed *boatspeed=new BoatSpeed();
     UdpComm *udpcomm;
     QWebChannel *webchannel=new QWebChannel();
-
-private:
-    Ui::MainWindow *ui;
-
 };
 
 

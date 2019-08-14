@@ -64,11 +64,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->leftButton->setIcon(*icon4);
     ui->leftButton->setIconSize(QSize(50,50));
     QIcon *starticon=new QIcon("start.png");
-    ui->startButton->setIcon(*starticon);
-    ui->startButton->setIconSize(QSize(50,50));
+    ui->switchButton->setIcon(*starticon);
+    ui->switchButton->setIconSize(QSize(50,50));
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
+    mode=new Mode(this);
 
+
+    connect(mode,&Mode::modeChange,mode,&Mode::setMode);
     udpcomm = new UdpComm(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
 
     //qInstallMessageHandler(outputMessage);
@@ -89,8 +92,19 @@ void MainWindow::on_showDataButton_clicked()
     this->pointxy->showMapPoint();
 }
 
+void MainWindow::on_manualButton_clicked()
+{
+    QByteArray *msg=new QByteArray("#MOD01");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    emit mode->modeChange(ManualMode);
+    //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
+}
+
 void MainWindow::on_autoButton_clicked()
 {
+    QByteArray *msg=new QByteArray("#MOD03");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    emit mode->modeChange(AutoMode);
 //    QTime time;
 //    double longi[5]={108.959096,108.973344,108.970082,108.953775,108.918241};
 //    double lati[5]={34.25855,34.287205,34.304506,34.322371,34.348595};
@@ -103,20 +117,34 @@ void MainWindow::on_autoButton_clicked()
 //            QCoreApplication::processEvents();   //处理事件
 //        this->pointxy->setMapCenter(longi[i],lati[i]);
 //    }
-    for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
-        QByteArray msg("#RPC");//协议头
-        QString str_lon = QString("%1").arg(pointxy->map_latitude.at(i),14,10,9,'0');//按要求填充经度
-        msg.append(str_lon);
-        msg.append(";");
-        QString str_lat = QString("%1").arg(pointxy->map_longtitude.at(i),13,10,9,'0');//按要求填充纬度
-        msg.append(str_lat);
-        msg.append(QByteArray::fromHex("0d0a"));//协议尾
+//    for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
+//        QByteArray msg("#RPC");//协议头
+//        QString str_lon = QString("%1").arg(pointxy->map_latitude.at(i),14,10,9,'0');//按要求填充经度
+//        msg.append(str_lon);
+//        msg.append(";");
+//        QString str_lat = QString("%1").arg(pointxy->map_longtitude.at(i),13,10,9,'0');//按要求填充纬度
+//        msg.append(str_lat);
+//        msg.append(QByteArray::fromHex("0d0a"));//协议尾
         //发送
 //        udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
 //        qDebug() << msg <<endl;
 //        qDebug() << msg.toHex() <<endl;
-    }
+//}
 
+}
+
+void MainWindow::on_disuButton_clicked()
+{
+    QByteArray *msg=new QByteArray("#MOD04");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    emit mode->modeChange(LowSpeedMode);
+}
+
+void MainWindow::on_stableButton_clicked()
+{
+    QByteArray *msg=new QByteArray("#MOD04");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    emit mode->modeChange(StableMode);
 }
 
 void MainWindow::on_fspeedBox_currentTextChanged(const QString &fspeed)
@@ -136,7 +164,7 @@ void MainWindow::on_remark_clicked()
     ui->webView->page()->runJavaScript("clearAll()");//调用JS函数清除所有标记
     pointxy->map_latitude.clear();
     pointxy->map_longtitude.clear();
-    QByteArray *msg=new QByteArray("1234");
+
      //msg.append(QByteArray::fromHex("0d0a"));//协议尾
 //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
 //    qDebug()<<QByteArray("1234");
@@ -156,4 +184,44 @@ void UdpComm::RecvMsg()
     msg.resize(mSocket->bytesAvailable());//根据可读数据来设置空间大小
     mSocket->readDatagram(msg.data(),msg.size(),&address,&port); //读取数据
 //    qDebug() << msg <<endl;
+}
+
+
+
+void MainWindow::on_rightButton_clicked()
+{
+    qDebug()<<"right\n";
+}
+
+
+/*-----------------------方向按钮  目前定义有歧义，没有实现--------------------*/
+
+void MainWindow::on_upButton_clicked()
+{
+    QByteArray *msg=new QByteArray("#RMT04");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    emit mode->modeChange(StableMode);
+}
+
+void MainWindow::on_startButton_clicked()
+{
+    switch (mode->getModeFlag())
+    {
+        case AutoMode:
+        {
+
+        }
+        case ManualMode:
+        {
+
+        }
+        case LowSpeedMode:
+        {
+
+        }
+        case StableMode:
+        {
+
+        }
+    }
 }

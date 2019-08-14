@@ -157,59 +157,13 @@
        </url>
       </property>
      </widget>
-     <widget class="QComboBox" name="fspeedBox">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>220</y>
-        <width>87</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>220</y>
-        <width>72</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>前行速度</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>270</y>
-        <width>72</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>转向速度</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="rspeedBox">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>270</y>
-        <width>87</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>40</y>
+        <x>20</x>
+        <y>30</y>
         <width>218</width>
-        <height>141</height>
+        <height>201</height>
        </rect>
       </property>
       <layout class="QFormLayout" name="formLayout">
@@ -233,115 +187,148 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QPushButton" name="showDataButton">
          <property name="text">
           <string>显示数据</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QPushButton" name="remark">
          <property name="text">
           <string>重新规划</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="1" column="0">
         <widget class="QPushButton" name="disuButton">
          <property name="text">
           <string>低速模式</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="1" column="1">
         <widget class="QPushButton" name="stableButton">
          <property name="text">
           <string>稳定模式</string>
          </property>
         </widget>
        </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="startButton">
+         <property name="text">
+          <string>start</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="downButton">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>430</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(77, 171, 247);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="upButton">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>310</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(77, 171, 247);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="leftButton">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>370</y>
-        <width>50</width>
-        <height>50</height>
+        <y>304</y>
+        <width>151</width>
+        <height>141</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(77, 171, 247);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="leftButton">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(77, 171, 247);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="rightButton">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(77, 171, 247);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="upButton">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(77, 171, 247);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="downButton">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(77, 171, 247);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="switchButton">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(77, 171, 247);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QPushButton" name="rightButton">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>370</y>
-        <width>50</width>
-        <height>50</height>
+        <x>30</x>
+        <y>210</y>
+        <width>179</width>
+        <height>74</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(77, 171, 247);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="startButton">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>370</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(77, 171, 247);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
+      <layout class="QFormLayout" name="formLayout_2">
+       <property name="horizontalSpacing">
+        <number>30</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>20</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>前行速度</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="fspeedBox"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>转向速度</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="rspeedBox"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
