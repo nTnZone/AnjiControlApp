@@ -8,6 +8,7 @@
 #include <QStringList>
 #include <QUdpSocket>
 #include <mode.h>
+#include <stdio.h>
 #define mysize 100
 #define accuracy 6
 
