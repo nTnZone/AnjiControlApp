@@ -81,9 +81,9 @@
         path.push(my_coordinate);
         polyl.setPath(path);
         polyl.setMap(map);
-        addMarker(e.lnglat.getLng(),e.lnglat.getLat());
+        addMarker(e.lnglat.Q,e.lnglat.P);
         // JS调用QT
-        window.foo.saveMapPoint(e.lnglat.getLng(),e.lnglat.getLat());
+        window.foo.saveMapPoint(e.lnglat.Q,e.lnglat.P);
     };
 
 
