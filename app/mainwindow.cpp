@@ -69,10 +69,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
     mode=new Mode(this);
-
-
+    key=new KeyOperator(this);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
+
+    this->installEventFilter(key);
     udpcomm = new UdpComm(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
+
+    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
 
     //qInstallMessageHandler(outputMessage);
     outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
@@ -200,7 +203,7 @@ void MainWindow::on_upButton_clicked()
 {
     QByteArray *msg=new QByteArray("#RMT04");
     msg->append(QByteArray::fromHex("0d0a"));//协议尾
-    emit mode->modeChange(StableMode);
+    //emit mode->modeChange(StableMode);
 }
 
 void MainWindow::on_startButton_clicked()

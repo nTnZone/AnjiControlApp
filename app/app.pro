@@ -25,11 +25,13 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 
 SOURCES += \
+        keyoperator.cpp \
         main.cpp \
         mainwindow.cpp \
         mode.cpp
 
 HEADERS += \
+        keyoperator.h \
         mainwindow.h \
         mode.h \
         mtool.h

@@ -8,6 +8,7 @@
 #include <QStringList>
 #include <QUdpSocket>
 #include <mode.h>
+#include <keyoperator.h>
 #include <stdio.h>
 #define mysize 100
 #define accuracy 6
@@ -21,6 +22,12 @@ class MainWindow;
 class UdpComm : public QObject
 {
     Q_OBJECT
+public slots:
+    void sendDirection(QByteArray qba)
+    {
+        this->SendMsg(qba,QHostAddress("192.168.1.226"),3456);//测试udp
+        qDebug()<<"sending direction through udp";
+    }
 public:
     UdpComm()
     {
@@ -145,6 +152,7 @@ private slots:
 
     void on_startButton_clicked();
 
+
 signals:
 
 private:
@@ -155,6 +163,7 @@ private:
     BoatSpeed *boatspeed=new BoatSpeed();
     UdpComm *udpcomm;
     QWebChannel *webchannel=new QWebChannel();
+    KeyOperator *key;
 };
 
 
