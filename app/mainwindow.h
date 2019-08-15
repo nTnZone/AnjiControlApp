@@ -119,6 +119,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    void AddTextToEditText(QString str);
     ~MainWindow();
 
 private slots:
@@ -144,6 +145,8 @@ private slots:
     void on_upButton_clicked();
 
     void on_startButton_clicked();
+
+    void on_test_clicked();
 
 signals:
 

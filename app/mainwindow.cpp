@@ -76,6 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //qInstallMessageHandler(outputMessage);
     outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
+    AddTextToEditText(QString::fromLocal8Bit("一地在要工"));
 }
 
 MainWindow::~MainWindow()
@@ -85,6 +86,7 @@ MainWindow::~MainWindow()
     delete pointxy;
     delete boatspeed;
     delete udpcomm;
+    delete mode;
 }
 
 void MainWindow::on_showDataButton_clicked()
@@ -224,4 +226,17 @@ void MainWindow::on_startButton_clicked()
 
         }
     }
+}
+
+void MainWindow::on_test_clicked()
+{
+    ui->textEdit->moveCursor(QTextCursor::End);
+    QString str = QString::fromLocal8Bit("123a工");
+    ui->textEdit->append(str);
+}
+
+void MainWindow::AddTextToEditText(QString str)
+{
+    ui->textEdit->moveCursor(QTextCursor::End);
+    ui->textEdit->append(str);
 }
