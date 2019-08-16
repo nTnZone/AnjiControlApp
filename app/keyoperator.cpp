@@ -12,28 +12,54 @@ void KeyOperator::keyPressEvent(QKeyEvent *event)
     //一旦一个释放后，立即释放停止信号
     if(event->key() == Qt::Key_Up)
     {
+        qDebug("keyPressEvent func not eventfilter");
         QByteArray *msg=new QByteArray("#RMT10");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
         emit directChanged(*msg);
     }
 }
 
-bool KeyOperator::eventFilter(QObject *obj, QEvent *event)
+//谁注册的filter谁就是target
+bool KeyOperator::eventFilter(QObject *target, QEvent *event)
 {
+    //QWidget->metaObject()->className()判断获取到的是哪种类型的控件
+    //QTextEdit *textedit=dynamic_cast<QTextEdit*>(target);textedit != NULL判断对象是否有此子类实例
     if (event->type() == QEvent::KeyPress) {
               QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-              if(keyEvent->key()==Qt::Key_Up)
+              //qDebug()<<"current button:"<<target->objectName();
+              if(target->objectName()=="manualButton_2")
               {
-                  qDebug("Ate key press %d", keyEvent->key());
-                  return true;
-              }else
+                  if(keyEvent->key()==Qt::Key_Up)
+                  {
+                      qDebug("Ate key press %d", keyEvent->key());
+                      return true;
+                  }
+                  else if (keyEvent->key()==Qt::Key_Down)
+                  {
+                      qDebug("Ate key press %d", keyEvent->key());
+                      return true;
+                  }
+                  else if (keyEvent->key()==Qt::Key_Right)
+                  {
+                      qDebug("Ate key press %d", keyEvent->key());
+                      return true;
+                  }
+                  else if (keyEvent->key()==Qt::Key_Left)
+                  {
+                      qDebug("Ate key press %d", keyEvent->key());
+                      return true;
+                  }
+
+              }
+              else
               {
                   qDebug("other keyop take it");
                   // standard event processing
-                  return QObject::eventFilter(obj, event);
+                  return QObject::eventFilter(target, event);
               }
-          } else {
+          }
+    else {
               // standard event processing
-              return QObject::eventFilter(obj, event);
+              return QObject::eventFilter(target, event);
           }
 }

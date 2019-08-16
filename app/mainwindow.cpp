@@ -72,13 +72,16 @@ MainWindow::MainWindow(QWidget *parent) :
     key=new KeyOperator(this);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
 
-    this->installEventFilter(key);
+    //不注册是不会交给eventfilter处理的ui->textEdit->installEventFilter(key);
+    ui->manualButton_2->installEventFilter(key);
     udpcomm = new UdpComm(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
 
     connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
-
+    qDebug()<<ui->textEdit->metaObject()->className()<<"!!!";
     //qInstallMessageHandler(outputMessage);
     outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
+    qDebug()<<ui->manualButton->objectName();
+    AddTextToEditText(QString::fromLocal8Bit("hapo"));
 }
 
 MainWindow::~MainWindow()
@@ -88,6 +91,8 @@ MainWindow::~MainWindow()
     delete pointxy;
     delete boatspeed;
     delete udpcomm;
+    delete mode;
+    delete key;
 }
 
 void MainWindow::on_showDataButton_clicked()
@@ -227,4 +232,17 @@ void MainWindow::on_startButton_clicked()
 
         }
     }
+}
+
+void MainWindow::on_test_clicked()
+{
+    ui->textEdit->moveCursor(QTextCursor::End);
+    QString str = QString::fromLocal8Bit("123a工");
+    ui->textEdit->append(str);
+}
+
+void MainWindow::AddTextToEditText(QString str)
+{
+    ui->textEdit->moveCursor(QTextCursor::End);
+    ui->textEdit->append(str);
 }

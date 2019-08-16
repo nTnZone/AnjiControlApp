@@ -1,8 +1,10 @@
 #ifndef KEYOPERATOR_H
 #define KEYOPERATOR_H
-
+//#include <QTextEdit>
 #include <QObject>
 #include <QKeyEvent>
+#include <qdebug.h>
+#define TEXTEDIT_ISFOCUS 0
 class KeyOperator : public QObject
 {
     Q_OBJECT
@@ -13,7 +15,7 @@ protected:
     void keyPressEvent(QKeyEvent *);
     void keyReleasedEvent(QKeyEvent *);
 protected:
-      bool eventFilter(QObject *obj, QEvent *event) override;
+      bool eventFilter(QObject *target, QEvent *event) override;
 private:
 
 signals:
