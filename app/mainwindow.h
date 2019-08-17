@@ -10,6 +10,7 @@
 #include <mode.h>
 #include <keyoperator.h>
 #include <stdio.h>
+#include <gamepadoperator.h>
 #define mysize 100
 #define accuracy 6
 
@@ -29,20 +30,25 @@ public slots:
         qDebug()<<"sending direction through udp";
     }
 public:
-    UdpComm()
+    explicit UdpComm(QObject *parent = nullptr): QObject(parent)
     {
         mSocket = new QUdpSocket();
-        mSocket->bind(QHostAddress::LocalHost,3456);//127.0.0.1:3456
-        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
+//        mSocket->bind(QHostAddress::LocalHost,3456);//127.0.0.1:3456
+//        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
     }
 
-    UdpComm(QHostAddress addr,quint16 port)
+//    UdpComm(QHostAddress addr,quint16 port)
+//    {
+//        mSocket = new QUdpSocket();
+//        mSocket->bind(addr,port);
+//        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
+//    }
+
+    void bind(QHostAddress addr,quint16 port)
     {
-        mSocket = new QUdpSocket();
         mSocket->bind(addr,port);
         connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
     }
-
     virtual ~UdpComm() {delete mSocket;}
 
     void SendMsg(QByteArray msg,QHostAddress addr,quint16 port);
@@ -165,8 +171,9 @@ private:
     PointXY *pointxy=new PointXY();
     BoatSpeed *boatspeed=new BoatSpeed();
     UdpComm *udpcomm;
-    QWebChannel *webchannel=new QWebChannel();
+    QWebChannel *webchannel;
     KeyOperator *key;
+    GamePadOperator *gpo;
 };
 
 

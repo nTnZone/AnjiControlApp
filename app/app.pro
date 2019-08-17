@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 
-QT       += core gui webenginewidgets webchannel network
+QT       += core gui webenginewidgets webchannel network gamepad
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,12 +25,14 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 
 SOURCES += \
+        gamepadoperator.cpp \
         keyoperator.cpp \
         main.cpp \
         mainwindow.cpp \
         mode.cpp
 
 HEADERS += \
+        gamepadoperator.h \
         keyoperator.h \
         mainwindow.h \
         mode.h \

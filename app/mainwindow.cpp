@@ -47,10 +47,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QStringList fspeedList={"1","2","3","4","5"};
     ui->rspeedBox->addItems(rspeedList);
     ui->fspeedBox->addItems(fspeedList);
-
+//实例化
+    mode=new Mode(this);
+    key=new KeyOperator(this);
+    gpo = new GamePadOperator (this);
+    udpcomm = new UdpComm (this);
+    webchannel =  new QWebChannel(this);
+//设置webchannel
     webchannel->registerObject("pointxy", pointxy);//注册对象
     ui->webView->page()->setWebChannel(webchannel);
-
+//设置udp
+    udpcomm->bind(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
+//设置按钮
     QIcon *icon=new QIcon("down.png");
     ui->downButton->setIcon(*icon);
     ui->downButton->setIconSize(QSize(50,50));
@@ -68,31 +76,32 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->switchButton->setIconSize(QSize(50,50));
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
-    mode=new Mode(this);
-    key=new KeyOperator(this);
+//连接信号
+    connect(gpo->gamepad,&QGamepad::buttonUpChanged,this,&MainWindow::on_test_clicked);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
+    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
 
     //不注册是不会交给eventfilter处理的ui->textEdit->installEventFilter(key);
     ui->manualButton_2->installEventFilter(key);
-    udpcomm = new UdpComm(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
 
-    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
-    qDebug()<<ui->textEdit->metaObject()->className()<<"!!!";
+
+
+//    qDebug()<<ui->textEdit->metaObject()->className()<<"!!!";
     //qInstallMessageHandler(outputMessage);
     outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
-    qDebug()<<ui->manualButton->objectName();
-    AddTextToEditText(QString::fromLocal8Bit("hapo"));
+//    qDebug()<<ui->manualButton->objectName();
+//    AddTextToEditText(QString::fromLocal8Bit("hapo"));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete webchannel;
+//    delete webchannel;
     delete pointxy;
     delete boatspeed;
-    delete udpcomm;
-    delete mode;
-    delete key;
+//    delete udpcomm;
+//    delete mode;
+//    delete key;
 }
 
 void MainWindow::on_showDataButton_clicked()
@@ -126,6 +135,7 @@ void MainWindow::on_autoButton_clicked()
 //        this->pointxy->setMapCenter(longi[i],lati[i]);
 //    }
 //    for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
+//      第一种拼接方法
 //        QByteArray msg("#RPC");//协议头
 //        QString str_lon = QString("%1").arg(pointxy->map_latitude.at(i),14,10,9,'0');//按要求填充经度
 //        msg.append(str_lon);
@@ -133,6 +143,10 @@ void MainWindow::on_autoButton_clicked()
 //        QString str_lat = QString("%1").arg(pointxy->map_longtitude.at(i),13,10,9,'0');//按要求填充纬度
 //        msg.append(str_lat);
 //        msg.append(QByteArray::fromHex("0d0a"));//协议尾
+//      第二种拼接方法
+//        char str[100];
+//        sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
+//        QByteArray msg(str);
         //发送
 //        udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
 //        qDebug() << msg <<endl;
@@ -239,6 +253,34 @@ void MainWindow::on_test_clicked()
     ui->textEdit->moveCursor(QTextCursor::End);
     QString str = QString::fromLocal8Bit("123a工");
     ui->textEdit->append(str);
+
+//    //航点模式
+//    for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
+//        char str[100];
+//        sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
+//        QByteArray msg(str);
+//    }
+
+//    QByteArray msg("RPGSTART");msg.append(QByteArray::fromHex("0d0a"));
+
+//    //低速运动模式
+//    char str[100];
+//    double BowDirection = ui->XXX->text().toDouble();//从linedit获取船首向
+//    sprintf_s(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+//    QByteArray msg(str);
+
+//    QByteArray msg("LPGSTART");msg.append(QByteArray::fromHex("0d0a"));
+
+//    //定点模式
+//    char str[100];
+//    double BowDirection = ui->XXX->text().toDouble();//从linedit获取船首向
+//    sprintf_s(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+//    QByteArray msg(str);
+
+//    QByteArray msg("PGSTART");msg.append(QByteArray::fromHex("0d0a"));
+
+//    //发送数据
+//    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
 }
 
 void MainWindow::AddTextToEditText(QString str)
