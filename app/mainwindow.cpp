@@ -76,6 +76,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->switchButton->setIconSize(QSize(50,50));
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
+    m_player = new QMediaPlayer(this);
+    m_videoWidget = new VideoWidget(this);
+    m_player->setVideoOutput(m_videoWidget);
+
+    QBoxLayout *displayLayout = new QHBoxLayout;
+    displayLayout->addWidget(m_videoWidget);
+    QBoxLayout *layout = new QVBoxLayout;
+    layout->addLayout(displayLayout);
+    ui->videowidget_1->setLayout(layout);
+    //player->setVideoOutput(vw);
+
+    QFile file("taeyeon.mp4");
+    if(!file.open(QIODevice::ReadOnly))
+        qDebug() << "Could not open file";
+
+    m_player->setMedia(QUrl::fromLocalFile("taeyeon.mp4"));
+    m_player->play();
+
 //连接信号
     connect(gpo->gamepad,&QGamepad::buttonUpChanged,this,&MainWindow::on_test_clicked);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);

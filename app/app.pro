@@ -5,7 +5,9 @@
 #-------------------------------------------------
 
 
-QT       += core gui webenginewidgets webchannel network gamepad
+QT       += core gui webenginewidgets webchannel network gamepad \
+      multimedia \
+      multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,14 +31,16 @@ SOURCES += \
         keyoperator.cpp \
         main.cpp \
         mainwindow.cpp \
-        mode.cpp
+        mode.cpp \
+        videowidget.cpp
 
 HEADERS += \
         gamepadoperator.h \
         keyoperator.h \
         mainwindow.h \
         mode.h \
-        mtool.h
+        mtool.h \
+        videowidget.h
 
 FORMS += \
         mainwindow.ui

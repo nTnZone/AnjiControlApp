@@ -6,11 +6,14 @@
 #include <QWebEngineView> // HTML页面
 #include <QWebChannel>    // C++和JS/HTML双向通信，代替了已淘汰的QtWebFrame的功能
 #include <QStringList>
+#include <QMediaPlayer>
+#include <QVideoWidget>
 #include <QUdpSocket>
 #include <mode.h>
 #include <keyoperator.h>
 #include <stdio.h>
 #include <gamepadoperator.h>
+#include <videowidget.h>
 #define mysize 100
 #define accuracy 6
 
@@ -174,6 +177,8 @@ private:
     QWebChannel *webchannel;
     KeyOperator *key;
     GamePadOperator *gpo;
+    QMediaPlayer *m_player = nullptr;
+    QVideoWidget *m_videoWidget = nullptr;
 };
 
 

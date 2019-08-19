@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -379,6 +379,21 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="text">
        <string>测试按钮</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>视频</string>
+     </attribute>
+     <widget class="QWidget" name="videowidget_1" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>411</width>
+        <height>321</height>
+       </rect>
       </property>
      </widget>
     </widget>
