@@ -177,8 +177,11 @@ private:
     QWebChannel *webchannel;
     KeyOperator *key;
     GamePadOperator *gpo;
-    QMediaPlayer *m_player = nullptr;
-    QVideoWidget *m_videoWidget = nullptr;
+    QMediaPlayer *m_player;
+    QVideoWidget *m_videoWidget;
+    QVideoWidget *m_videoWidget2;
+    QVideoWidget *m_videoWidget3;
+    QVideoWidget *m_videoWidget4;
 };
 
 
