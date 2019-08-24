@@ -76,16 +76,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->switchButton->setIconSize(QSize(50,50));
     ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
     ui->webView->show();
+
     m_player = new QMediaPlayer(this);
     m_videoWidget = new VideoWidget(this);
+    m_videoWidget2 = new VideoWidget(this);
     m_player->setVideoOutput(m_videoWidget);
 
     QBoxLayout *displayLayout = new QHBoxLayout;
     displayLayout->addWidget(m_videoWidget);
+    displayLayout->addWidget(m_videoWidget2);
     QBoxLayout *layout = new QVBoxLayout;
     layout->addLayout(displayLayout);
     ui->videowidget_1->setLayout(layout);
-    //player->setVideoOutput(vw);
 
     QFile file("taeyeon.mp4");
     if(!file.open(QIODevice::ReadOnly))

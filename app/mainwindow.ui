@@ -389,10 +389,10 @@ p, li { white-space: pre-wrap; }
      <widget class="QWidget" name="videowidget_1" native="true">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>130</y>
-        <width>411</width>
-        <height>321</height>
+        <x>30</x>
+        <y>50</y>
+        <width>1111</width>
+        <height>581</height>
        </rect>
       </property>
      </widget>

@@ -26,8 +26,9 @@
 > * https://blog.csdn.net/zbw1185/article/details/82891023
 >
 > 
->**QtUdp通信**
+>**Qt Socket通信**
 > 
 >* <https://www.cnblogs.com/wurenzhong/p/8030220.html>
+>* https://www.cnblogs.com/wurenzhong/p/8018862.html
 
 ---
