@@ -131,17 +131,39 @@ void MainWindow::on_showDataButton_clicked()
 
 void MainWindow::on_manualButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD01");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    if(isManualMode){
+        isManualMode=false;
+        QByteArray *msg=new QByteArray("#MPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isManualMode=true;
+        QByteArray *msg=new QByteArray("#MPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(ManualMode);
     //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
 }
 
 void MainWindow::on_autoButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD03");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+
+    if(isAutoMode){
+        isAutoMode=false;
+        QByteArray *msg=new QByteArray("#RPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isAutoMode=true;
+        QByteArray *msg=new QByteArray("#RPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(AutoMode);
+
 //    QTime time;
 //    double longi[5]={108.959096,108.973344,108.970082,108.953775,108.918241};
 //    double lati[5]={34.25855,34.287205,34.304506,34.322371,34.348595};
@@ -177,15 +199,35 @@ void MainWindow::on_autoButton_clicked()
 
 void MainWindow::on_disuButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD04");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    if(isLowSpeedMode){
+        isLowSpeedMode=false;
+        QByteArray *msg=new QByteArray("#LPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isLowSpeedMode=true;
+        QByteArray *msg=new QByteArray("#LPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(LowSpeedMode);
 }
 
 void MainWindow::on_stableButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD04");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    if(isStableMode){
+        isStableMode=false;
+        QByteArray *msg=new QByteArray("#SPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isStableMode=true;
+        QByteArray *msg=new QByteArray("#SPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(StableMode);
 }
 

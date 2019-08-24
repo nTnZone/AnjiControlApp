@@ -127,6 +127,10 @@ signals:
 private:
     Ui::MainWindow *ui;
     int modeFlag=0;
+    bool isAutoMode=false;
+    bool isManualMode=false;
+    bool isLowSpeedMode=false;
+    bool isStableMode=false;
     Mode *mode;
     PointXY *pointxy=new PointXY();
     BoatSpeed *boatspeed=new BoatSpeed();
