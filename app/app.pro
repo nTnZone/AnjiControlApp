@@ -32,6 +32,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         mode.cpp \
+        tcpclient.cpp \
+        tcpserver.cpp \
         udpcomm.cpp \
         videowidget.cpp
 
@@ -41,6 +43,8 @@ HEADERS += \
         mainwindow.h \
         mode.h \
         mtool.h \
+        tcpclient.h \
+        tcpserver.h \
         udpcomm.h \
         videowidget.h
 

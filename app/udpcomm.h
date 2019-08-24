@@ -9,6 +9,7 @@ class UdpComm : public QObject
     Q_OBJECT
 public:
     explicit UdpComm(QObject *parent = nullptr);
+    ~UdpComm(){delete mSocket;}
     void bind(QHostAddress addr,quint16 port)
     {
         mSocket->bind(addr,port);
