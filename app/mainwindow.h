@@ -8,7 +8,7 @@
 #include <QStringList>
 #include <QMediaPlayer>
 #include <QVideoWidget>
-#include <QUdpSocket>
+#include <udpcomm.h>
 #include <mode.h>
 #include <keyoperator.h>
 #include <stdio.h>
@@ -23,50 +23,7 @@ class MainWindow;
 
 
 
-class UdpComm : public QObject
-{
-    Q_OBJECT
-public slots:
-    void sendDirection(QByteArray qba)
-    {
-        this->SendMsg(qba,QHostAddress("192.168.1.226"),3456);//测试udp
-        qDebug()<<"sending direction through udp";
-    }
-public:
-    explicit UdpComm(QObject *parent = nullptr): QObject(parent)
-    {
-        mSocket = new QUdpSocket();
-//        mSocket->bind(QHostAddress::LocalHost,3456);//127.0.0.1:3456
-//        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
-    }
 
-//    UdpComm(QHostAddress addr,quint16 port)
-//    {
-//        mSocket = new QUdpSocket();
-//        mSocket->bind(addr,port);
-//        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
-//    }
-
-    void bind(QHostAddress addr,quint16 port)
-    {
-        mSocket->bind(addr,port);
-        connect(mSocket,SIGNAL(readyRead()),this,SLOT(RecvMsg()));
-    }
-    virtual ~UdpComm() {delete mSocket;}
-
-    void SendMsg(QByteArray msg,QHostAddress addr,quint16 port);
-    void Getmsg(QByteArray &msg)
-    {
-        msg = this->msg;
-    }
-
-public slots:
-    void RecvMsg();
-
-public:
-    QByteArray msg;
-    QUdpSocket *mSocket;
-};
 
 
 //包含船的转向速度和前行速度设置

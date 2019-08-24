@@ -32,6 +32,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         mode.cpp \
+        udpcomm.cpp \
         videowidget.cpp
 
 HEADERS += \
@@ -40,6 +41,7 @@ HEADERS += \
         mainwindow.h \
         mode.h \
         mtool.h \
+        udpcomm.h \
         videowidget.h
 
 FORMS += \
