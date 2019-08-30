@@ -17,9 +17,9 @@ void TcpServer::listen(quint16 port)
     m_server->listen(QHostAddress::Any,port);
 }
 
-void TcpServer::setFileName(QString filename)
+void TcpServer::setprefix(QByteArray prefix)
 {
-    this->filename = filename;
+    this->prefix = prefix;
 }
 
 void TcpServer::NewClient()
@@ -40,11 +40,12 @@ void TcpServer::readFilm()
 //    qDebug() << barray.size();
     if(flag)
     {
+        qDebug() <<QDateTime::currentDateTime().toMSecsSinceEpoch();
         QByteArray sizestr = barray.mid(4,4);//端序不对
         total_size = *(int*)(sizestr.data());//读取文件大小
         total_size = total_size + 8;//补齐文件大小
 //        qDebug() << this->total_size;
-//        qDebug() << barray.left(12).toHex();
+        qDebug() << barray.left(12).toHex();
 //        qDebug() <<sizestr.toHex();
         flag = false;
     }
@@ -60,16 +61,15 @@ void TcpServer::readFilm()
         pkg_size = 0;
         total_size = 0;
         //存储视频
-//        qDebug() << "test " << server->vdata->size() << endl ;
         QFile *file;
-        QString str = QString("%1%2").arg(index).arg(".avi");
+        QString str = QString("%1%2%3%4").arg("G:\\QT\\video\\").arg(prefix.data()).arg(index).arg(".avi");
         file=new QFile(str);
         file->open(QIODevice::WriteOnly);
         file->write(vdata->data(),vdata->size());
         file->close();
         vdata->clear();
         //发射信号，标志一段视频传输完成
-        emit TransCompleted(filename+QString(index),index);
+        emit TransCompleted(prefix.data(),index);
         index++;
     }
 

@@ -53,15 +53,17 @@ MainWindow::MainWindow(QWidget *parent) :
     gpo = new GamePadOperator (this);
     udpcomm = new UdpComm (this);
     webchannel =  new QWebChannel(this);
-    server1 = new TcpServer (this);
+//    server1 = new TcpServer (this);
+    server = new TcpServer (this);
+    mfplayer = new FilmPlayer(this);
 //设置webchannel
     webchannel->registerObject("pointxy", pointxy);//注册对象
     ui->webView->page()->setWebChannel(webchannel);
 //设置udp
     udpcomm->bind(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
 //设置视频传输
-    server1->setFileName("a");
-    server1->listen(4567);
+    server->listen(4567);
+    server->setprefix(QByteArray("f1"));
 //设置按钮
     QIcon *icon=new QIcon("down.png");
     ui->downButton->setIcon(*icon);
@@ -115,6 +117,15 @@ MainWindow::MainWindow(QWidget *parent) :
     outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
 //    qDebug()<<ui->manualButton->objectName();
 //    AddTextToEditText(QString::fromLocal8Bit("hapo"));
+
+
+
+
+
+
+    mfplayer->setWindowName("F1");
+
+    connect(server,&TcpServer::TransCompleted,mfplayer,&FilmPlayer::nextFile);
 }
 
 MainWindow::~MainWindow()
@@ -128,7 +139,7 @@ MainWindow::~MainWindow()
     delete mode;
     delete key;
     delete m_player;
-    delete server1;
+//    delete server1;
     delete gpo;
     delete m_videoWidget;
     delete m_videoWidget2;

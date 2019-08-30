@@ -27,6 +27,7 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 
 SOURCES += \
+        filmplayer.cpp \
         gamepadoperator.cpp \
         keyoperator.cpp \
         main.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
         videowidget.cpp
 
 HEADERS += \
+        filmplayer.h \
         gamepadoperator.h \
         keyoperator.h \
         mainwindow.h \
@@ -56,3 +58,19 @@ DISTFILES += \
 
 RESOURCES += \
     resource.qrc
+
+INCLUDEPATH += \
+               E:\opencv\build\include \
+               E:\opencv\build\include\opencv \
+               E:\opencv\build\include\opencv2
+#LIBS += E:\opencv\build\x64\vc15\lib\opencv_world411d.lib
+
+CONFIG(debug, debug|release): {
+LIBS += -LE:\opencv\build\x64\vc14\bin \
+#-lopencv_world411
+-lopencv_world411d
+} else:CONFIG(release, debug|release): {
+LIBS += -LE:\opencv\build\x64\vc14\bin \
+#-lopencv_world411
+-lopencv_world411d
+}
