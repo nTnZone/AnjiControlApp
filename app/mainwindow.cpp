@@ -53,14 +53,12 @@ MainWindow::MainWindow(QWidget *parent) :
     gpo = new GamePadOperator (this);
     udpcomm = new UdpComm (this);
     webchannel =  new QWebChannel(this);
-//    server1 = new TcpServer (this);
     server = new TcpServer (this);
     mfplayer = new FilmPlayer(this);
-//设置webchannel
-    webchannel->registerObject("pointxy", pointxy);//注册对象
-    ui->webView->page()->setWebChannel(webchannel);
-//设置udp
-    udpcomm->bind(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
+
+//设置udpGPS
+    //udpcomm->bind(QHostAddress("192.168.1.213"),1111);//绑定自己的IP和端口
+    //udp
 //设置视频传输
     server->listen(4567);
     server->setprefix(QByteArray("f1"));
@@ -80,9 +78,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QIcon *starticon=new QIcon("start.png");
     ui->switchButton->setIcon(*starticon);
     ui->switchButton->setIconSize(QSize(50,50));
-    ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
-    ui->webView->show();
-
+    //ui->widget->setStyleSheet("background-image: url(:/direct/bg1.png)");
     m_player = new QMediaPlayer(this);
     m_videoWidget = new VideoWidget(this);
     m_videoWidget2 = new VideoWidget(this);
@@ -99,12 +95,21 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!file.open(QIODevice::ReadOnly))
         qDebug() << "Could not open file";
 
-    m_player->setMedia(QUrl::fromLocalFile("taeyeon.mp4"));
-    m_player->play();
+    infoset = new InfoSets(this);
+    //设置webchannel
+    webchannel->registerObject("pointxy", pointxy);//注册对象
+    webchannel->registerObject("infoset", infoset);
+    ui->webView->page()->setWebChannel(webchannel);
+    ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
+    qDebug()<<QDir::currentPath();
+    ui->webView->show();
+    //m_player->setMedia(QUrl::fromLocalFile("taeyeon.mp4"));
+    //m_player->play();
 
 //连接信号
     connect(gpo->gamepad,&QGamepad::buttonUpChanged,this,&MainWindow::on_test_clicked);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
+    connect(infoset,&InfoSets::uavGps,this,&MainWindow::uav_gps_show);
 //    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
 
     //不注册是不会交给eventfilter处理的ui->textEdit->installEventFilter(key);
@@ -154,17 +159,39 @@ void MainWindow::on_showDataButton_clicked()
 
 void MainWindow::on_manualButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD01");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    if(isManualMode){
+        isManualMode=false;
+        QByteArray *msg=new QByteArray("#MPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isManualMode=true;
+        QByteArray *msg=new QByteArray("#MPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(ManualMode);
     //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
 }
 
 void MainWindow::on_autoButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD03");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+
+    if(isAutoMode){
+        isAutoMode=false;
+        QByteArray *msg=new QByteArray("#RPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isAutoMode=true;
+        QByteArray *msg=new QByteArray("#RPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(AutoMode);
+
 //    QTime time;
 //    double longi[5]={108.959096,108.973344,108.970082,108.953775,108.918241};
 //    double lati[5]={34.25855,34.287205,34.304506,34.322371,34.348595};
@@ -200,15 +227,35 @@ void MainWindow::on_autoButton_clicked()
 
 void MainWindow::on_disuButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD04");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    if(isLowSpeedMode){
+        isLowSpeedMode=false;
+        QByteArray *msg=new QByteArray("#LPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isLowSpeedMode=true;
+        QByteArray *msg=new QByteArray("#LPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(LowSpeedMode);
 }
 
 void MainWindow::on_stableButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#MOD04");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    if(isStableMode){
+        isStableMode=false;
+        QByteArray *msg=new QByteArray("#SPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
+    else {
+        isStableMode=true;
+        QByteArray *msg=new QByteArray("#SPGSTART");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        //to-do send
+    }
     emit mode->modeChange(StableMode);
 }
 
@@ -311,7 +358,15 @@ void MainWindow::on_test_clicked()
 //    QByteArray msg("PGSTART");msg.append(QByteArray::fromHex("0d0a"));
 
 //    //发送数据
-//    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
+    //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
+}
+
+void MainWindow::uav_gps_show(double x,double y)
+{
+    QString str,str2;
+    str = QString::number(x,'g',9);
+    str2 = QString::number(y,'g',9);
+    ui->labelUAV_xy->setText(str+','+str2);
 }
 
 void MainWindow::AddTextToEditText(QString str)

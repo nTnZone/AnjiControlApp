@@ -15,6 +15,7 @@
 #include <gamepadoperator.h>
 #include <videowidget.h>
 #include <tcpclient.h>
+#include <infosets.h>
 #include <tcpserver.h>
 #include <filmplayer.h>
 #include <opencv2/opencv.hpp>
@@ -125,12 +126,18 @@ private slots:
 
     void on_test_clicked();
 
+    void uav_gps_show(double x,double y);
+
 
 signals:
 
 private:
     Ui::MainWindow *ui;
     int modeFlag=0;
+    bool isAutoMode=false;
+    bool isManualMode=false;
+    bool isLowSpeedMode=false;
+    bool isStableMode=false;
     Mode *mode;
     PointXY *pointxy=new PointXY();
     BoatSpeed *boatspeed=new BoatSpeed();
@@ -140,6 +147,7 @@ private:
     GamePadOperator *gpo;
     QMediaPlayer *m_player;
 //    TcpServer *server1;
+    InfoSets *infoset;
     QVideoWidget *m_videoWidget;
     QVideoWidget *m_videoWidget2;
     QVideoWidget *m_videoWidget3;

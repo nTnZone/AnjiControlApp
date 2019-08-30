@@ -5,8 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+	<script type="text/javascript" src="./qwebchannel.js"></script>
+	<script src="https://webapi.amap.com/maps?v=1.4.15&key=e37dd1e906472f9150542c9ccc7724ae"></script>
     <title>地图显示</title>
-    
+    <script type="text/javascript" src="./qwebchannel.js"></script>
+	<script src="https://webapi.amap.com/maps?v=1.4.15&key=e37dd1e906472f9150542c9ccc7724ae"></script>
     <style>
         html,
         body,
@@ -18,10 +21,24 @@
 </head>
 <body>
 <div id="container"></div>
+<div class="input-card" style="width:24rem;">
+    <h4>添加、删除覆盖物</h4>
+    <div class="input-item">
+      <label>Marker：</label>
+      <button class="btn" id="add-marker" style="margin-right:1rem;">添加Marker</button>
+      <button class="btn" id="remove-marker">删除Marker</button>
+    </div>
+    <div class="input-item">
+      <label>Circle：</label>
+      <button class="btn" id="add-circle" style="margin-right:1rem;">添加Circle</button>
+      <button class="btn" id="remove-circle">删除Circle</button>
+    </div>
+  </div>
 <!-- 加载地图JSAPI脚本 -->
 <!-- 加载qwebchannel -->
-<script type="text/javascript" src="./qwebchannel.js"></script>
-<script src="https://webapi.amap.com/maps?v=1.4.15&key=e37dd1e906472f9150542c9ccc7724ae"></script>
+
+</body>
+
 <script>
     // var mapOpts = {
     //   showIndoorMap: false, // 是否在有矢量底图的时候自动展示室内地图，PC默认true,移动端默认false
@@ -98,5 +115,4 @@
 
 
 </script>
-</body>
 </html>

@@ -29,6 +29,7 @@ DEFINES += QT_MESSAGELOGCONTEXT
 SOURCES += \
         filmplayer.cpp \
         gamepadoperator.cpp \
+        infosets.cpp \
         keyoperator.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -41,6 +42,7 @@ SOURCES += \
 HEADERS += \
         filmplayer.h \
         gamepadoperator.h \
+        infosets.h \
         keyoperator.h \
         mainwindow.h \
         mode.h \
