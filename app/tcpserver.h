@@ -5,6 +5,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QFile>
+#include <QDateTime>
 
 class TcpServer : public QObject
 {
@@ -12,11 +13,10 @@ class TcpServer : public QObject
 public:
     explicit TcpServer(QObject *parent = nullptr);
     void listen(quint16 port);
-    void setFileName(QString filename);
-    ~TcpServer(){delete m_server;delete m_client;delete vdata;}
+    void setprefix(QByteArray prefix);
 
 signals:
-    void TransCompleted(QString str,int index);
+    void TransCompleted(char *str,int index);
 
 public slots:
     void readFilm();
@@ -29,7 +29,7 @@ public:
     bool flag;
     int pkg_size;//已经接收的大小
     int total_size;//文件表明的大小
-    QString filename;
+    QByteArray prefix;
     int index;
 };
 

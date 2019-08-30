@@ -17,6 +17,8 @@
 #include <tcpclient.h>
 #include <infosets.h>
 #include <tcpserver.h>
+#include <filmplayer.h>
+#include <opencv2/opencv.hpp>
 #define mysize 100
 #define accuracy 6
 
@@ -144,12 +146,19 @@ private:
     KeyOperator *key;
     GamePadOperator *gpo;
     QMediaPlayer *m_player;
-    TcpServer *server1;
+//    TcpServer *server1;
     InfoSets *infoset;
     QVideoWidget *m_videoWidget;
     QVideoWidget *m_videoWidget2;
     QVideoWidget *m_videoWidget3;
     QVideoWidget *m_videoWidget4;
+    TcpServer *server;
+    QTimer *timer;
+    cv::VideoCapture capture;
+    cv::Mat frame;
+    FilmPlayer *mfplayer;
+//    int index;
+
 };
 
 
