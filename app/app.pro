@@ -28,6 +28,7 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 SOURCES += \
         gamepadoperator.cpp \
+        infosets.cpp \
         keyoperator.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
 
 HEADERS += \
         gamepadoperator.h \
+        infosets.h \
         keyoperator.h \
         mainwindow.h \
         mode.h \

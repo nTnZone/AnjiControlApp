@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1452</width>
-    <height>770</height>
+    <width>1679</width>
+    <height>918</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1452</width>
-    <height>770</height>
+    <width>1679</width>
+    <height>918</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -25,12 +25,12 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1441</width>
-      <height>751</height>
+      <width>1661</width>
+      <height>871</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -39,10 +39,10 @@
      <widget class="QWebEngineView" name="webView" native="true">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>300</x>
         <y>0</y>
-        <width>681</width>
-        <height>641</height>
+        <width>851</width>
+        <height>681</height>
        </rect>
       </property>
       <property name="url" stdset="0">
@@ -234,11 +234,14 @@
      <widget class="QWidget" name="widget" native="true">
       <property name="geometry">
        <rect>
-        <x>960</x>
-        <y>0</y>
-        <width>491</width>
-        <height>291</height>
+        <x>1160</x>
+        <y>20</y>
+        <width>481</width>
+        <height>281</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/direct/bg2.png);</string>
       </property>
       <widget class="QLabel" name="label">
        <property name="geometry">
@@ -258,12 +261,12 @@
         <rect>
          <x>50</x>
          <y>70</y>
-         <width>72</width>
-         <height>15</height>
+         <width>81</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>无人机</string>
+        <string>无人机坐标</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_3">
@@ -297,12 +300,12 @@
         <rect>
          <x>50</x>
          <y>190</y>
-         <width>72</width>
-         <height>15</height>
+         <width>121</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>ROV坐标</string>
+        <string>ROV坐标（不需要）</string>
        </property>
       </widget>
       <widget class="QLabel" name="labelUAV_xy">
@@ -348,10 +351,10 @@
      <widget class="QTextEdit" name="textEdit">
       <property name="geometry">
        <rect>
-        <x>980</x>
-        <y>310</y>
+        <x>1170</x>
+        <y>410</y>
         <width>461</width>
-        <height>341</height>
+        <height>241</height>
        </rect>
       </property>
       <property name="readOnly">
@@ -404,7 +407,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1452</width>
+     <width>1679</width>
      <height>26</height>
     </rect>
    </property>

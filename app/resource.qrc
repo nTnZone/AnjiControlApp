@@ -4,5 +4,7 @@
         <file>Image/left.png</file>
         <file>Image/right.png</file>
         <file>Image/up.png</file>
+        <file>bg1.png</file>
+        <file>bg2.png</file>
     </qresource>
 </RCC>

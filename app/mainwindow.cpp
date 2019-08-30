@@ -54,11 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
     udpcomm = new UdpComm (this);
     webchannel =  new QWebChannel(this);
     server1 = new TcpServer (this);
-//设置webchannel
-    webchannel->registerObject("pointxy", pointxy);//注册对象
-    ui->webView->page()->setWebChannel(webchannel);
-//设置udp
-    udpcomm->bind(QHostAddress("192.168.1.213"),3456);//绑定自己的IP和端口
+
+//设置udpGPS
+    //udpcomm->bind(QHostAddress("192.168.1.213"),1111);//绑定自己的IP和端口
+    //udp
 //设置视频传输
     server1->setFileName("a");
     server1->listen(4567);
@@ -78,9 +77,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QIcon *starticon=new QIcon("start.png");
     ui->switchButton->setIcon(*starticon);
     ui->switchButton->setIconSize(QSize(50,50));
-    ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
-    ui->webView->show();
-
+    //ui->widget->setStyleSheet("background-image: url(:/direct/bg1.png)");
     m_player = new QMediaPlayer(this);
     m_videoWidget = new VideoWidget(this);
     m_videoWidget2 = new VideoWidget(this);
@@ -97,12 +94,21 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!file.open(QIODevice::ReadOnly))
         qDebug() << "Could not open file";
 
-    m_player->setMedia(QUrl::fromLocalFile("taeyeon.mp4"));
-    m_player->play();
+    infoset = new InfoSets(this);
+    //设置webchannel
+    webchannel->registerObject("pointxy", pointxy);//注册对象
+    webchannel->registerObject("infoset", infoset);
+    ui->webView->page()->setWebChannel(webchannel);
+    ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
+    qDebug()<<QDir::currentPath();
+    ui->webView->show();
+    //m_player->setMedia(QUrl::fromLocalFile("taeyeon.mp4"));
+    //m_player->play();
 
 //连接信号
     connect(gpo->gamepad,&QGamepad::buttonUpChanged,this,&MainWindow::on_test_clicked);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
+    connect(infoset,&InfoSets::uavGps,this,&MainWindow::uav_gps_show);
 //    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
 
     //不注册是不会交给eventfilter处理的ui->textEdit->installEventFilter(key);
@@ -342,7 +348,15 @@ void MainWindow::on_test_clicked()
 //    QByteArray msg("PGSTART");msg.append(QByteArray::fromHex("0d0a"));
 
 //    //发送数据
-//    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
+    //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
+}
+
+void MainWindow::uav_gps_show(double x,double y)
+{
+    QString str,str2;
+    str = QString::number(x,'g',9);
+    str2 = QString::number(y,'g',9);
+    ui->labelUAV_xy->setText(str+','+str2);
 }
 
 void MainWindow::AddTextToEditText(QString str)

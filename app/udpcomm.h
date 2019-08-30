@@ -21,7 +21,7 @@ public:
         msg = this->msg;
     }
 signals:
-
+    void Roger();
 public slots:
     void RecvMsg();
 public:
