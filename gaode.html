@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
-	<script type="text/javascript" src="./qwebchannel.js"></script>
-	<script src="https://webapi.amap.com/maps?v=1.4.15&key=e37dd1e906472f9150542c9ccc7724ae"></script>
+		
     <title>地图显示</title>
-    <script type="text/javascript" src="./qwebchannel.js"></script>
+    <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
 	<script src="https://webapi.amap.com/maps?v=1.4.15&key=e37dd1e906472f9150542c9ccc7724ae"></script>
+	
     <style>
         html,
         body,
@@ -22,23 +22,21 @@
 <body>
 <div id="container"></div>
 <div class="input-card" style="width:24rem;">
-    <h4>添加、删除覆盖物</h4>
+    <h4>Status Info</h4>
     <div class="input-item">
-      <label>Marker：</label>
-      <button class="btn" id="add-marker" style="margin-right:1rem;">添加Marker</button>
-      <button class="btn" id="remove-marker">删除Marker</button>
+      <label>速度：</label>
+      <label  id="boat-speed" style="margin-right:1rem;" ></label>
+      
     </div>
     <div class="input-item">
-      <label>Circle：</label>
-      <button class="btn" id="add-circle" style="margin-right:1rem;">添加Circle</button>
-      <button class="btn" id="remove-circle">删除Circle</button>
+      <label>GPS：</label>
+      <label  id="gps_x" style="margin-right:1rem;" ></label>
+	  <label  id="gps_y" style="margin-right:1rem;" ></label>
     </div>
   </div>
 <!-- 加载地图JSAPI脚本 -->
 <!-- 加载qwebchannel -->
-
-</body>
-
+<script type="text/javascript" src="./qwebchannel.js"></script>
 <script>
     // var mapOpts = {
     //   showIndoorMap: false, // 是否在有矢量底图的时候自动展示室内地图，PC默认true,移动端默认false
@@ -48,7 +46,8 @@
     //   doubleClickZoom: false, // 地图是否可通过双击鼠标放大地图，默认为true
     //   zoomEnable: false, //地图是否可缩放，默认值为true
     //   rotateEnable: false, // 地图是否可旋转，3D视图默认为true，2D视图默认false
-    // }    
+    // }
+	   
     var path=[];//存储目标点的数组
     var marker,map = new AMap.Map('container', {
         keyboardEnable: false, //地图是否可通过键盘控制，默认为true
@@ -91,9 +90,12 @@
     new QWebChannel(qt.webChannelTransport,
         function (channel) {
 		var pointxy = channel.objects.pointxy;
-        window.foo = pointxy; 
+		var infoset = channel.objects.infoset;
+        window.foo = infoset; 
 		//相当于监听这个信号，一有对应的信号收到，调用函数处理
 		pointxy.mapCenterChanged.connect(setmapcenter);
+		infoset.boatGps.connect(setboatgps)
+		infoset.boatSpeed.connect(setboatspeed)
         }
     );
 	var setmapcenter=function(data1,data2)
@@ -102,7 +104,15 @@
 		var Lat=data2;
 		map.setCenter([Lng,Lat]);
 	}
-	
+	var setboatgps=function(data1,data2)
+	{
+		document.getElementById("gps_x").innerHTML=data1;
+		document.getElementById("gps_y").innerHTML=data2;
+	}
+	var setboatspeed=function(data1)
+	{
+		document.getElementById("boat-speed").innerHTML=data1;
+	}
     function onClick(e) {
         var my_coordinate = [e.lnglat.Q , e.lnglat.P];
         path.push(my_coordinate);
@@ -115,4 +125,9 @@
 
 
 </script>
+
+
+</body>
+
+
 </html>
