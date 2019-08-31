@@ -159,25 +159,22 @@ void MainWindow::on_showDataButton_clicked()
 
 void MainWindow::on_manualButton_clicked()
 {
-    if(isManualMode){
-        isManualMode=false;
-        QByteArray *msg=new QByteArray("#MPGSTOP");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        //to-do send
-    }
-    else {
         isManualMode=true;
-        QByteArray *msg=new QByteArray("#MPGSTART");
+        QByteArray *msg=new QByteArray("#MOD01");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
         //to-do send
-    }
+        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
     emit mode->modeChange(ManualMode);
     //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
 }
 
 void MainWindow::on_autoButton_clicked()
 {
+    //航点
     emit mode->modeChange(AutoMode);
+    QByteArray *msg=new QByteArray("#MOD03");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
 //    if(isAutoMode){
 //        isAutoMode=false;
 //        QByteArray *msg=new QByteArray("#RPGSTOP");
@@ -227,35 +224,41 @@ void MainWindow::on_autoButton_clicked()
 
 void MainWindow::on_disuButton_clicked()
 {
-    if(isLowSpeedMode){
-        isLowSpeedMode=false;
-        QByteArray *msg=new QByteArray("#LPGSTOP");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        //to-do send
-    }
-    else {
-        isLowSpeedMode=true;
-        QByteArray *msg=new QByteArray("#LPGSTART");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        //to-do send
-    }
+//    if(isLowSpeedMode){
+//        isLowSpeedMode=false;
+//        QByteArray *msg=new QByteArray("#LPGSTOP");
+//        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//        //to-do send
+//    }
+//    else {
+//        isLowSpeedMode=true;
+//        QByteArray *msg=new QByteArray("#LPGSTART");
+//        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//        //to-do send
+//    }
+    QByteArray *msg=new QByteArray("#MOD04");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
     emit mode->modeChange(LowSpeedMode);
 }
 
 void MainWindow::on_stableButton_clicked()
 {
-    if(isStableMode){
-        isStableMode=false;
-        QByteArray *msg=new QByteArray("#SPGSTOP");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        //to-do send
-    }
-    else {
-        isStableMode=true;
-        QByteArray *msg=new QByteArray("#SPGSTART");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        //to-do send
-    }
+//    if(isStableMode){
+//        isStableMode=false;
+//        QByteArray *msg=new QByteArray("#SPGSTOP");
+//        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//        //to-do send
+//    }
+//    else {
+//        isStableMode=true;
+//        QByteArray *msg=new QByteArray("#SPGSTART");
+//        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//        //to-do send
+//    }
+    QByteArray *msg=new QByteArray("#MOD02");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
     emit mode->modeChange(StableMode);
 }
 
@@ -389,4 +392,11 @@ void MainWindow::on_confirm_1_clicked()
 {
     rongIp = ui->rongIp->text();
     rongPort = ui->rongPort->text().toUInt();
+}
+
+void MainWindow::on_stopButton_clicked()
+{
+    QByteArray *msg=new QByteArray("#RPGSTOP");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
 }

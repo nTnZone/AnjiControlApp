@@ -132,6 +132,8 @@ private slots:
 
     void on_confirm_1_clicked();
 
+    void on_stopButton_clicked();
+
 signals:
 
 private:
