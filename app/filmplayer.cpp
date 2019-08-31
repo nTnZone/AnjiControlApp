@@ -36,6 +36,6 @@ void FilmPlayer::nextFrame()
     }
     else
     {
-        qDebug() << "fail" << windowname;
+//        qDebug() << "fail" << windowname;
     }
 }

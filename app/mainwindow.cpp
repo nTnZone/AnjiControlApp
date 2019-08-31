@@ -312,6 +312,7 @@ void MainWindow::on_startButton_clicked()
     {
         case AutoMode:
         {
+
             //航点模式
             for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
                 char str[100];
@@ -320,6 +321,7 @@ void MainWindow::on_startButton_clicked()
                 udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
                 sleep(50);
             }
+            QByteArray msg("#RPGSTART");msg.append(QByteArray::fromHex("0d0a"));
             break;
 
         }
@@ -404,7 +406,38 @@ void MainWindow::on_confirm_1_clicked()
 
 void MainWindow::on_stopButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#RPGSTOP");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
-    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+    switch (mode->getModeFlag())
+    {
+        case AutoMode:
+        {
+        QByteArray *msg=new QByteArray("#RPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+
+
+        break;
+
+    }
+    case ManualMode:
+    {
+
+        break;
+    }
+    case LowSpeedMode:
+    {
+        QByteArray *msg=new QByteArray("#LPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+
+        break;
+    }
+    case StableMode:
+    {
+        QByteArray *msg=new QByteArray("#SPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+        break;
+    }
+    }
+
 }
