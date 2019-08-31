@@ -404,7 +404,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="boatDir">
       <property name="geometry">
        <rect>
         <x>1460</x>
