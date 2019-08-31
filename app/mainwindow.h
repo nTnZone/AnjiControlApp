@@ -98,6 +98,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     void AddTextToEditText(QString str);
+    void sleep(int n);
     ~MainWindow();
 
 private slots:
@@ -129,6 +130,8 @@ private slots:
     void uav_gps_show(double x,double y);
 
 
+    void on_confirm_1_clicked();
+
 signals:
 
 private:
@@ -157,6 +160,9 @@ private:
     cv::VideoCapture capture;
     cv::Mat frame;
     FilmPlayer *mfplayer;
+    //主控ip端口
+    QString rongIp;
+    quint16 rongPort;
 //    int index;
 
 };

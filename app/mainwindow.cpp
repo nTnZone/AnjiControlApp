@@ -177,20 +177,20 @@ void MainWindow::on_manualButton_clicked()
 
 void MainWindow::on_autoButton_clicked()
 {
-
-    if(isAutoMode){
-        isAutoMode=false;
-        QByteArray *msg=new QByteArray("#RPGSTOP");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        //to-do send
-    }
-    else {
-        isAutoMode=true;
-        QByteArray *msg=new QByteArray("#RPGSTART");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        //to-do send
-    }
     emit mode->modeChange(AutoMode);
+//    if(isAutoMode){
+//        isAutoMode=false;
+//        QByteArray *msg=new QByteArray("#RPGSTOP");
+//        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//        //to-do send
+//    }
+//    else {
+//        isAutoMode=true;
+//        QByteArray *msg=new QByteArray("#RPGSTART");
+//        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//        //to-do send
+//    }
+
 
 //    QTime time;
 //    double longi[5]={108.959096,108.973344,108.970082,108.953775,108.918241};
@@ -307,10 +307,19 @@ void MainWindow::on_startButton_clicked()
 {
     switch (mode->getModeFlag())
     {
-        case AutoMode:
-        {
+    case AutoMode:
+    {
+        //航点模式
 
+        for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
+            char str[100];
+            sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
+            QByteArray msg(str);
+            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+            sleep(50);
         }
+
+    }
         case ManualMode:
         {
 
@@ -325,7 +334,12 @@ void MainWindow::on_startButton_clicked()
         }
     }
 }
-
+void MainWindow::sleep(int msec)
+{
+    QTime dieTime = QTime::currentTime().addMSecs(msec);
+    while( QTime::currentTime() < dieTime )
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
 void MainWindow::on_test_clicked()
 {
     ui->textEdit->moveCursor(QTextCursor::End);
@@ -333,11 +347,7 @@ void MainWindow::on_test_clicked()
     ui->textEdit->append(str);
 
 //    //航点模式
-//    for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
-//        char str[100];
-//        sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
-//        QByteArray msg(str);
-//    }
+
 
 //    QByteArray msg("RPGSTART");msg.append(QByteArray::fromHex("0d0a"));
 
@@ -373,4 +383,10 @@ void MainWindow::AddTextToEditText(QString str)
 {
     ui->textEdit->moveCursor(QTextCursor::End);
     ui->textEdit->append(str);
+}
+
+void MainWindow::on_confirm_1_clicked()
+{
+    rongIp = ui->rongIp->text();
+    rongPort = ui->rongPort->text().toUInt();
 }
