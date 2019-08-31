@@ -310,30 +310,42 @@ void MainWindow::on_startButton_clicked()
 {
     switch (mode->getModeFlag())
     {
-    case AutoMode:
-    {
-        //航点模式
+        case AutoMode:
+        {
+            //航点模式
+            for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
+                char str[100];
+                sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
+                QByteArray msg(str);
+                udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+                sleep(50);
+            }
+            break;
 
-        for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
-            char str[100];
-            sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
-            QByteArray msg(str);
-            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
-            sleep(50);
         }
-
-    }
         case ManualMode:
         {
-
+        break;
         }
         case LowSpeedMode:
         {
-
+            //低速运动模式
+            char str[100];
+            double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
+            sprintf_s(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+            QByteArray msg(str);
+            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+            break;
         }
         case StableMode:
         {
-
+        //定点模式
+            char str[100];
+            double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
+            sprintf_s(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+            QByteArray msg(str);
+            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+            break;
         }
     }
 }
@@ -354,11 +366,7 @@ void MainWindow::on_test_clicked()
 
 //    QByteArray msg("RPGSTART");msg.append(QByteArray::fromHex("0d0a"));
 
-//    //低速运动模式
-//    char str[100];
-//    double BowDirection = ui->XXX->text().toDouble();//从linedit获取船首向
-//    sprintf_s(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
-//    QByteArray msg(str);
+
 
 //    QByteArray msg("LPGSTART");msg.append(QByteArray::fromHex("0d0a"));
 
