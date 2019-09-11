@@ -21,6 +21,7 @@ signals:
     void uavGps(double gps_x,double gps_y);
     void boatGps(double gps_x,double gps_y);
     void boatSpeed(double s);
+    void modeChangeForMap(int mode);
 public slots:
     //一旦udp收到会发送roger信号，然后把新的gps通过槽函数发到webchannel
     void sendGps();

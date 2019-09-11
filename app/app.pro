@@ -55,24 +55,17 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-DISTFILES += \
-    C:/Users/DELL/Desktop/UAVproject/gaode.html
 
 RESOURCES += \
     resource.qrc
 
-INCLUDEPATH += \
-               E:\opencv\build\include \
-               E:\opencv\build\include\opencv \
-               E:\opencv\build\include\opencv2
-#LIBS += E:\opencv\build\x64\vc15\lib\opencv_world411d.lib
+INCLUDEPATH += /usr/local/include \
+               /usr/local/include/opencv \
+               /usr/local/include/opencv2
 
-CONFIG(debug, debug|release): {
-LIBS += -LE:\opencv\build\x64\vc14\bin \
-#-lopencv_world411
--lopencv_world411d
-} else:CONFIG(release, debug|release): {
-LIBS += -LE:\opencv\build\x64\vc14\bin \
-#-lopencv_world411
--lopencv_world411d
-}
+LIBS += /usr/local/lib/libopencv_highgui.so \
+        /usr/local/lib/libopencv_core.so    \
+        /usr/local/lib/libopencv_imgproc.so \
+        /usr/local/lib/libopencv_imgcodecs.so\
+        /usr/local/lib/libopencv_videoio.so
+

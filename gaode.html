@@ -22,7 +22,7 @@
 <body>
 <div id="container"></div>
 <div class="input-card" style="width:24rem;">
-    <h4>Status Info</h4>
+    <label>Status Info</label><label id="boat-mode"></label>
     <div class="input-item">
       <label>速度：</label>
       <label  id="boat-speed" style="margin-right:1rem;" ></label>
@@ -91,11 +91,13 @@
         function (channel) {
 		var pointxy = channel.objects.pointxy;
 		var infoset = channel.objects.infoset;
+		var mode = channel.objects.mode;
         window.foo = infoset; 
 		//相当于监听这个信号，一有对应的信号收到，调用函数处理
 		pointxy.mapCenterChanged.connect(setmapcenter);
-		infoset.boatGps.connect(setboatgps)
-		infoset.boatSpeed.connect(setboatspeed)
+		infoset.boatGps.connect(setboatgps);
+		infoset.boatSpeed.connect(setboatspeed);
+		infoset.modeChangeForMap.connect(setboatmode);
         }
     );
 	var setmapcenter=function(data1,data2)
@@ -112,6 +114,26 @@
 	var setboatspeed=function(data1)
 	{
 		document.getElementById("boat-speed").innerHTML=data1;
+	}
+	var setboatmode=function(data1)
+	{
+		if (data1==200)
+		{
+			document.getElementById("boat-mode").innerHTML="手动模式";       
+		}
+		else if(data1==201)
+		{
+			document.getElementById("boat-mode").innerHTML="自动模式";
+        
+		}
+		else if (data1==202) {
+			document.getElementById("boat-mode").innerHTML="低速模式";
+		}
+		else if ((data1==203)){
+		document.getElementById("boat-mode").innerHTML="稳定模式";
+     
+		}
+		
 	}
     function onClick(e) {
         var my_coordinate = [e.lnglat.Q , e.lnglat.P];

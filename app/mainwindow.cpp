@@ -91,18 +91,29 @@ MainWindow::MainWindow(QWidget *parent) :
     layout->addLayout(displayLayout);
     ui->videowidget_1->setLayout(layout);
 
-    QFile file("taeyeon.mp4");
-    if(!file.open(QIODevice::ReadOnly))
-        qDebug() << "Could not open file";
-
     infoset = new InfoSets(this);
     //设置webchannel
     webchannel->registerObject("pointxy", pointxy);//注册对象
     webchannel->registerObject("infoset", infoset);
+    //webchannel->registerObject("mode", mode);
     ui->webView->page()->setWebChannel(webchannel);
-    ui->webView->load(QUrl(QDir::currentPath() + "/gaode.html"));//加载地图
+    QFile htmlf(QDir::currentPath() + "//gaode.html");
+    if (!htmlf.exists())
+    {
+        qDebug("not exist");
+    }
+    qDebug() << QString("file:///"+htmlf.fileName());//the path of gaode.html
+//    ui->webView->load(QUrl(htmlf.fileName()));//加载地图
+    ui->webView->load(QUrl(QString("file:///"+htmlf.fileName())));//加载地图
+//    ui->webView->load(QUrl("/home/angle/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/gaode.html"));//加载地图
+//    ui->webView->load(QUrl("http://www.amap.com"));//加载地图
     qDebug()<<QDir::currentPath();
     ui->webView->show();
+
+//    web111 = new QWebEngineView();
+//    web111->page()->load(QUrl("http://www.google.com"));
+//    web111->page()->load(QUrl(QDir::currentPath() + "//gaode.html"));
+//    web111->show();
     //m_player->setMedia(QUrl::fromLocalFile("taeyeon.mp4"));
     //m_player->play();
 
@@ -164,7 +175,8 @@ void MainWindow::on_manualButton_clicked()
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
         //to-do send
         udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
-    emit mode->modeChange(ManualMode);
+        emit mode->modeChange(ManualMode);
+        emit infoset->modeChangeForMap(200);
     //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
 }
 
@@ -172,6 +184,7 @@ void MainWindow::on_autoButton_clicked()
 {
     //航点
     emit mode->modeChange(AutoMode);
+    emit infoset->modeChangeForMap(201);
     QByteArray *msg=new QByteArray("#MOD03");
     msg->append(QByteArray::fromHex("0d0a"));//协议尾
     udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
@@ -212,7 +225,7 @@ void MainWindow::on_autoButton_clicked()
 //        msg.append(QByteArray::fromHex("0d0a"));//协议尾
 //      第二种拼接方法
 //        char str[100];
-//        sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
+//        sprintf(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
 //        QByteArray msg(str);
         //发送
 //        udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);
@@ -240,6 +253,7 @@ void MainWindow::on_disuButton_clicked()
     msg->append(QByteArray::fromHex("0d0a"));//协议尾
     udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
     emit mode->modeChange(LowSpeedMode);
+    emit infoset->modeChangeForMap(202);
 }
 
 void MainWindow::on_stableButton_clicked()
@@ -260,6 +274,7 @@ void MainWindow::on_stableButton_clicked()
     msg->append(QByteArray::fromHex("0d0a"));//协议尾
     udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
     emit mode->modeChange(StableMode);
+    emit infoset->modeChangeForMap(203);
 }
 
 void MainWindow::on_fspeedBox_currentTextChanged(const QString &fspeed)
@@ -316,7 +331,7 @@ void MainWindow::on_startButton_clicked()
             //航点模式
             for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
                 char str[100];
-                sprintf_s(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
+                sprintf(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
                 QByteArray msg(str);
                 udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
                 sleep(50);
@@ -334,7 +349,7 @@ void MainWindow::on_startButton_clicked()
             //低速运动模式
             char str[100];
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
-            sprintf_s(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+            sprintf(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
             QByteArray msg(str);
             udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
             break;
@@ -344,7 +359,7 @@ void MainWindow::on_startButton_clicked()
         //定点模式
             char str[100];
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
-            sprintf_s(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+            sprintf(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
             QByteArray msg(str);
             udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
             break;
@@ -375,7 +390,7 @@ void MainWindow::on_test_clicked()
 //    //定点模式
 //    char str[100];
 //    double BowDirection = ui->XXX->text().toDouble();//从linedit获取船首向
-//    sprintf_s(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+//    sprintf(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
 //    QByteArray msg(str);
 
 //    QByteArray msg("PGSTART");msg.append(QByteArray::fromHex("0d0a"));

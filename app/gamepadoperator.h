@@ -3,6 +3,7 @@
 #include <udpcomm.h>
 #include <QtGamepad>
 #include <QObject>
+#include <stdio.h>
 
 class GamePadOperator : public QObject
 {

@@ -148,6 +148,8 @@ private:
     BoatSpeed *boatspeed=new BoatSpeed();
     UdpComm *udpcomm;
     QWebChannel *webchannel;
+//    QWebEnginePage *web111;
+    QWebEngineView *web111;
     KeyOperator *key;
     GamePadOperator *gpo;
     QMediaPlayer *m_player;
