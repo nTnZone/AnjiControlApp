@@ -69,3 +69,6 @@ LIBS += /usr/local/lib/libopencv_highgui.so \
         /usr/local/lib/libopencv_imgcodecs.so\
         /usr/local/lib/libopencv_videoio.so
 
+INCLUDEPATH += /opt/ros/kinetic/include
+
+LIBS += -L/opt/ros/kinetic/lib -lroscpp -lroslib -lrosconsole -lroscpp_serialization -lrostime

@@ -92,7 +92,7 @@
 		var pointxy = channel.objects.pointxy;
 		var infoset = channel.objects.infoset;
 		var mode = channel.objects.mode;
-        window.foo = infoset; 
+        window.foo = pointxy; 
 		//相当于监听这个信号，一有对应的信号收到，调用函数处理
 		pointxy.mapCenterChanged.connect(setmapcenter);
 		infoset.boatGps.connect(setboatgps);
