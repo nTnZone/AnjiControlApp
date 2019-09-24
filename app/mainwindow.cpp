@@ -59,6 +59,10 @@ MainWindow::MainWindow(QWidget *parent) :
 //设置udpGPS
     //udpcomm->bind(QHostAddress("192.168.1.213"),1111);//绑定自己的IP和端口
     //udp
+//serial port
+    serial = new SerialComm ();
+    serial->connectPort(0);
+
 //设置视频传输
     server->listen(4567);
     server->setprefix(QByteArray("f1"));

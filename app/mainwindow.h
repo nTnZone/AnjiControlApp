@@ -18,6 +18,7 @@
 #include <infosets.h>
 #include <tcpserver.h>
 #include <filmplayer.h>
+#include <serialcomm.h>
 #include <opencv2/opencv.hpp>
 #define mysize 100
 #define accuracy 6
@@ -148,12 +149,10 @@ private:
     BoatSpeed *boatspeed=new BoatSpeed();
     UdpComm *udpcomm;
     QWebChannel *webchannel;
-//    QWebEnginePage *web111;
     QWebEngineView *web111;
     KeyOperator *key;
     GamePadOperator *gpo;
     QMediaPlayer *m_player;
-//    TcpServer *server1;
     InfoSets *infoset;
     QVideoWidget *m_videoWidget;
     QVideoWidget *m_videoWidget2;
@@ -167,6 +166,8 @@ private:
     //主控ip端口
     QString rongIp;
     quint16 rongPort;
+    //serial port
+    SerialComm *serial;
 //    int index;
 
 };

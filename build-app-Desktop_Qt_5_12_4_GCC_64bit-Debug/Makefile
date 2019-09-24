@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_MESSAGELOGCONTEXT -DQT_QML_DEBUG -DQT_WEBENGINEWIDGETS_LIB -DQT_WEBENGINECORE_LIB -DQT_QUICK_LIB -DQT_PRINTSUPPORT_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_GAMEPAD_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_WEBCHANNEL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_MESSAGELOGCONTEXT -DQT_QML_DEBUG -DQT_WEBENGINEWIDGETS_LIB -DQT_WEBENGINECORE_LIB -DQT_QUICK_LIB -DQT_PRINTSUPPORT_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_GAMEPAD_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_WEBCHANNEL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_SERIALPORT_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../app -I. -isystem /usr/local/include -isystem /usr/local/include/opencv -isystem /usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../app -I. -isystem /usr/local/include -isystem /usr/local/include/opencv -isystem /usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++
 QMAKE         = /opt/Qt5.12.4/5.12.4/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = app1.0.0
 DISTDIR = /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/.tmp/app1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/opt/Qt5.12.4/5.12.4/gcc_64/lib -Wl,-rpath-link,/opt/Qt5.12.4/5.12.4/gcc_64/lib
-LIBS          = $(SUBLIBS) /usr/local/lib/libopencv_highgui.so /usr/local/lib/libopencv_core.so /usr/local/lib/libopencv_imgproc.so /usr/local/lib/libopencv_imgcodecs.so /usr/local/lib/libopencv_videoio.so -L/opt/ros/kinetic/lib -lroscpp -lroslib -lrosconsole -lroscpp_serialization -lrostime /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5WebEngineWidgets.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5WebEngineCore.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Quick.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5PrintSupport.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5MultimediaWidgets.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Widgets.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Gamepad.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Multimedia.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Gui.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5WebChannel.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Qml.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Network.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Positioning.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /usr/local/lib/libopencv_highgui.so /usr/local/lib/libopencv_core.so /usr/local/lib/libopencv_imgproc.so /usr/local/lib/libopencv_imgcodecs.so /usr/local/lib/libopencv_videoio.so -L/opt/ros/kinetic/lib -lroscpp -lroslib -lrosconsole -lroscpp_serialization -lrostime /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5WebEngineWidgets.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5WebEngineCore.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Quick.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5PrintSupport.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5MultimediaWidgets.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Widgets.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Gamepad.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Multimedia.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Gui.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5WebChannel.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Qml.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Network.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Positioning.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5SerialPort.so /opt/Qt5.12.4/5.12.4/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -59,6 +59,7 @@ SOURCES       = ../app/filmplayer.cpp \
 		../app/main.cpp \
 		../app/mainwindow.cpp \
 		../app/mode.cpp \
+		../app/serialcomm.cpp \
 		../app/tcpclient.cpp \
 		../app/tcpserver.cpp \
 		../app/udpcomm.cpp \
@@ -69,6 +70,7 @@ SOURCES       = ../app/filmplayer.cpp \
 		moc_keyoperator.cpp \
 		moc_mainwindow.cpp \
 		moc_mode.cpp \
+		moc_serialcomm.cpp \
 		moc_tcpclient.cpp \
 		moc_tcpserver.cpp \
 		moc_udpcomm.cpp \
@@ -80,6 +82,7 @@ OBJECTS       = filmplayer.o \
 		main.o \
 		mainwindow.o \
 		mode.o \
+		serialcomm.o \
 		tcpclient.o \
 		tcpserver.o \
 		udpcomm.o \
@@ -91,6 +94,7 @@ OBJECTS       = filmplayer.o \
 		moc_keyoperator.o \
 		moc_mainwindow.o \
 		moc_mode.o \
+		moc_serialcomm.o \
 		moc_tcpclient.o \
 		moc_tcpserver.o \
 		moc_udpcomm.o \
@@ -286,6 +290,7 @@ DIST          = /opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../app/mainwindow.h \
 		../app/mode.h \
 		../app/mtool.h \
+		../app/serialcomm.h \
 		../app/tcpclient.h \
 		../app/tcpserver.h \
 		../app/udpcomm.h \
@@ -296,6 +301,7 @@ DIST          = /opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../app/main.cpp \
 		../app/mainwindow.cpp \
 		../app/mode.cpp \
+		../app/serialcomm.cpp \
 		../app/tcpclient.cpp \
 		../app/tcpserver.cpp \
 		../app/udpcomm.cpp \
@@ -700,8 +706,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../app/resource.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../app/filmplayer.h ../app/gamepadoperator.h ../app/infosets.h ../app/keyoperator.h ../app/mainwindow.h ../app/mode.h ../app/mtool.h ../app/tcpclient.h ../app/tcpserver.h ../app/udpcomm.h ../app/videowidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../app/filmplayer.cpp ../app/gamepadoperator.cpp ../app/infosets.cpp ../app/keyoperator.cpp ../app/main.cpp ../app/mainwindow.cpp ../app/mode.cpp ../app/tcpclient.cpp ../app/tcpserver.cpp ../app/udpcomm.cpp ../app/videowidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../app/filmplayer.h ../app/gamepadoperator.h ../app/infosets.h ../app/keyoperator.h ../app/mainwindow.h ../app/mode.h ../app/mtool.h ../app/serialcomm.h ../app/tcpclient.h ../app/tcpserver.h ../app/udpcomm.h ../app/videowidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../app/filmplayer.cpp ../app/gamepadoperator.cpp ../app/infosets.cpp ../app/keyoperator.cpp ../app/main.cpp ../app/mainwindow.cpp ../app/mode.cpp ../app/serialcomm.cpp ../app/tcpclient.cpp ../app/tcpserver.cpp ../app/udpcomm.cpp ../app/videowidget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../app/mainwindow.ui $(DISTDIR)/
 
 
@@ -745,9 +751,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_filmplayer.cpp moc_gamepadoperator.cpp moc_infosets.cpp moc_keyoperator.cpp moc_mainwindow.cpp moc_mode.cpp moc_tcpclient.cpp moc_tcpserver.cpp moc_udpcomm.cpp moc_videowidget.cpp
+compiler_moc_header_make_all: moc_filmplayer.cpp moc_gamepadoperator.cpp moc_infosets.cpp moc_keyoperator.cpp moc_mainwindow.cpp moc_mode.cpp moc_serialcomm.cpp moc_tcpclient.cpp moc_tcpserver.cpp moc_udpcomm.cpp moc_videowidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_filmplayer.cpp moc_gamepadoperator.cpp moc_infosets.cpp moc_keyoperator.cpp moc_mainwindow.cpp moc_mode.cpp moc_tcpclient.cpp moc_tcpserver.cpp moc_udpcomm.cpp moc_videowidget.cpp
+	-$(DEL_FILE) moc_filmplayer.cpp moc_gamepadoperator.cpp moc_infosets.cpp moc_keyoperator.cpp moc_mainwindow.cpp moc_mode.cpp moc_serialcomm.cpp moc_tcpclient.cpp moc_tcpserver.cpp moc_udpcomm.cpp moc_videowidget.cpp
 moc_filmplayer.cpp: ../app/filmplayer.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobject.h \
@@ -819,7 +825,7 @@ moc_filmplayer.cpp: ../app/filmplayer.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/filmplayer.h -o moc_filmplayer.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/filmplayer.h -o moc_filmplayer.cpp
 
 moc_gamepadoperator.cpp: ../app/gamepadoperator.h \
 		../app/udpcomm.h \
@@ -1160,7 +1166,7 @@ moc_gamepadoperator.cpp: ../app/gamepadoperator.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad/qtgamepadversion.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/gamepadoperator.h -o moc_gamepadoperator.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/gamepadoperator.h -o moc_gamepadoperator.cpp
 
 moc_infosets.cpp: ../app/infosets.h \
 		../app/udpcomm.h \
@@ -1236,7 +1242,7 @@ moc_infosets.cpp: ../app/infosets.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork/qhostaddress.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/infosets.h -o moc_infosets.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/infosets.h -o moc_infosets.cpp
 
 moc_keyoperator.cpp: ../app/keyoperator.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
@@ -1323,7 +1329,7 @@ moc_keyoperator.cpp: ../app/keyoperator.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui/qtouchdevice.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/keyoperator.h -o moc_keyoperator.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/keyoperator.h -o moc_keyoperator.cpp
 
 moc_mainwindow.cpp: ../app/mainwindow.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets/QMainWindow \
@@ -2038,9 +2044,15 @@ moc_mainwindow.cpp: ../app/mainwindow.h \
 		../app/filmplayer.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QTimer \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QDebug \
+		../app/serialcomm.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPort \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialport.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportinfo.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/mainwindow.h -o moc_mainwindow.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/mainwindow.h -o moc_mainwindow.cpp
 
 moc_mode.cpp: ../app/mode.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
@@ -2095,7 +2107,82 @@ moc_mode.cpp: ../app/mode.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobject_impl.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/mode.h -o moc_mode.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/mode.h -o moc_mode.cpp
+
+moc_serialcomm.cpp: ../app/serialcomm.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobject.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobjectdefs.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qnamespace.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qglobal.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qconfig.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qtcore-config.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qlogging.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qflags.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qmutex.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qnumeric.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qversiontagging.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstring.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qchar.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qbytearray.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qrefcount.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qarraydata.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringliteral.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringalgorithms.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringview.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringbuilder.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qlist.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qalgorithms.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qiterator.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qhashfunctions.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qpair.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qbytearraylist.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringlist.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qregexp.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringmatcher.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcoreevent.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qscopedpointer.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qmetatype.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobject_impl.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPort \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialport.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qiodevice.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportinfo.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QDebug \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qdebug.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qhash.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qmap.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qtextstream.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qlocale.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qvariant.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qshareddata.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qvector.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qpoint.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qset.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsharedpointer.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		moc_predefs.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/serialcomm.h -o moc_serialcomm.cpp
 
 moc_tcpclient.cpp: ../app/tcpclient.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
@@ -2172,7 +2259,7 @@ moc_tcpclient.cpp: ../app/tcpclient.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork/qhostaddress.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/tcpclient.h -o moc_tcpclient.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/tcpclient.h -o moc_tcpclient.cpp
 
 moc_tcpserver.cpp: ../app/tcpserver.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
@@ -2254,7 +2341,7 @@ moc_tcpserver.cpp: ../app/tcpserver.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qdatetime.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/tcpserver.h -o moc_tcpserver.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/tcpserver.h -o moc_tcpserver.cpp
 
 moc_udpcomm.cpp: ../app/udpcomm.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
@@ -2329,7 +2416,7 @@ moc_udpcomm.cpp: ../app/udpcomm.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork/qhostaddress.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/udpcomm.h -o moc_udpcomm.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/udpcomm.h -o moc_udpcomm.cpp
 
 moc_videowidget.cpp: ../app/videowidget.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets/QVideoWidget \
@@ -2444,7 +2531,7 @@ moc_videowidget.cpp: ../app/videowidget.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia/qmultimedia.h \
 		moc_predefs.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc
-	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/videowidget.h -o moc_videowidget.cpp
+	/opt/Qt5.12.4/5.12.4/gcc_64/bin/moc $(DEFINES) --include /home/totoro/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt5.12.4/5.12.4/gcc_64/mkspecs/linux-g++ -I/home/totoro/AnjiControlApp/app -I/usr/local/include -I/usr/local/include/opencv -I/usr/local/include/opencv2 -I/opt/ros/kinetic/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebEngineCore -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQuick -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPrintSupport -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimediaWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGamepad -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtMultimedia -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtGui -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWebChannel -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtQml -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtNetwork -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtPositioning -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort -I/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/videowidget.h -o moc_videowidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -3750,6 +3837,12 @@ main.o: ../app/main.cpp ../app/mainwindow.h \
 		../app/filmplayer.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QTimer \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QDebug \
+		../app/serialcomm.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPort \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialport.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportinfo.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets/QApplication
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../app/main.cpp
 
@@ -4466,6 +4559,12 @@ mainwindow.o: ../app/mainwindow.cpp ../app/mainwindow.h \
 		../app/filmplayer.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QTimer \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QDebug \
+		../app/serialcomm.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPort \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialport.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportinfo.h \
 		ui_mainwindow.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets/QApplication \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtWidgets/QComboBox \
@@ -4551,6 +4650,79 @@ mode.o: ../app/mode.cpp ../app/mode.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsharedpointer.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mode.o ../app/mode.cpp
+
+serialcomm.o: ../app/serialcomm.cpp ../app/serialcomm.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobject.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobjectdefs.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qnamespace.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qglobal.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qconfig.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qtcore-config.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qlogging.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qflags.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qmutex.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qnumeric.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qversiontagging.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstring.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qchar.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qbytearray.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qrefcount.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qarraydata.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringliteral.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringalgorithms.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringview.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringbuilder.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qlist.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qalgorithms.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qiterator.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qhashfunctions.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qpair.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qbytearraylist.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringlist.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qregexp.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qstringmatcher.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcoreevent.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qscopedpointer.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qmetatype.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qobject_impl.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPort \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialport.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qiodevice.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtSerialPort/qserialportinfo.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QDebug \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qdebug.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qhash.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qmap.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qtextstream.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qlocale.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qvariant.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qshareddata.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qvector.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qpoint.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qset.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsharedpointer.h \
+		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/qsharedpointer_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o serialcomm.o ../app/serialcomm.cpp
 
 tcpclient.o: ../app/tcpclient.cpp ../app/tcpclient.h \
 		/opt/Qt5.12.4/5.12.4/gcc_64/include/QtCore/QObject \
@@ -4915,6 +5087,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_mode.o: moc_mode.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mode.o moc_mode.cpp
+
+moc_serialcomm.o: moc_serialcomm.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_serialcomm.o moc_serialcomm.cpp
 
 moc_tcpclient.o: moc_tcpclient.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tcpclient.o moc_tcpclient.cpp

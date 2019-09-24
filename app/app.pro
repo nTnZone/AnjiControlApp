@@ -7,7 +7,7 @@
 
 QT       += core gui webenginewidgets webchannel network gamepad \
       multimedia \
-      multimediawidgets
+      multimediawidgets serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -34,6 +34,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         mode.cpp \
+        serialcomm.cpp \
         tcpclient.cpp \
         tcpserver.cpp \
         udpcomm.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
         mainwindow.h \
         mode.h \
         mtool.h \
+        serialcomm.h \
         tcpclient.h \
         tcpserver.h \
         udpcomm.h \
