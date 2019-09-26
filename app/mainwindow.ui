@@ -543,7 +543,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <property name="spacing">
-            <number>20</number>
+            <number>10</number>
            </property>
            <item>
             <widget class="QLineEdit" name="tp3"/>
