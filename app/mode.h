@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-enum NaviMode{ManualMode=200,AutoMode=201,LowSpeedMode=202,StableMode=203};
+enum NaviMode{ManualMode=200,AutoMode=201,LowSpeedMode=202,StableMode=203,ThrusterPower=204};
 
 class Mode : public QObject
 {

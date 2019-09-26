@@ -13,7 +13,7 @@ public:
     explicit SerialComm(QObject *parent = nullptr);
     void connectPort(int index);
     void sendData(QByteArray buf);
-
+    void Boat_GPS();
 signals:
 
 public slots:

@@ -123,7 +123,7 @@
 		}
 		else if(data1==201)
 		{
-			document.getElementById("boat-mode").innerHTML="自动模式";
+			document.getElementById("boat-mode").innerHTML="航点模式";
         
 		}
 		else if (data1==202) {
@@ -133,7 +133,10 @@
 		document.getElementById("boat-mode").innerHTML="稳定模式";
      
 		}
-		
+		else if ((data1==204)){
+		document.getElementById("boat-mode").innerHTML="推进器设置模式";
+     
+		}		
 	}
     function onClick(e) {
         var my_coordinate = [e.lnglat.Q , e.lnglat.P];

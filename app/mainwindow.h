@@ -135,6 +135,11 @@ private slots:
 
     void on_stopButton_clicked();
 
+    void on_thrusterpowerset_clicked();
+
+    void on_thrusterpower_clicked();
+
+
 signals:
 
 private:

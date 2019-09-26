@@ -10,25 +10,22 @@ SerialComm::SerialComm(QObject *parent) : QObject(parent)
         qDebug() << info.portName();
     }
 
-//    if(serial->isOpen())
-//    {
-//        serial->clear();
-//        serial->close();
-//    }
+    if(serial->isOpen())
+    {
+        serial->clear();
+        serial->close();
+    }
 
 
 }
 
 void SerialComm::connectPort(int index)
 {
-    if (serial->isOpen()) {
-        qDebug() << "port open";
-    }
     serial->setPortName(serNamelist[index]);
     serial->setBaudRate(QSerialPort::Baud9600,QSerialPort::AllDirections);
     serial->open(QIODevice::ReadWrite);
     if (serial->isOpen()) {
-        qDebug() << "port open";
+        qDebug() << "serialport open";
     }
     connect(serial,&QSerialPort::readyRead,this,&SerialComm::readData);
 }
@@ -36,6 +33,11 @@ void SerialComm::connectPort(int index)
 void SerialComm::sendData(QByteArray buf)
 {
     serial->write(buf);
+
+}
+
+void SerialComm::Boat_GPS()
+{
 
 }
 
@@ -48,7 +50,10 @@ void SerialComm::readData()
     }
     else
     {
-
+        if(data.left(4) == "BGPS")
+        {
+            Boat_GPS();
+        }
     }
 
 }

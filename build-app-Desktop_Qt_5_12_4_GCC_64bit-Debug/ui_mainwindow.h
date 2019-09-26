@@ -15,6 +15,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -23,6 +24,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -35,29 +37,13 @@ public:
     QWidget *tab_2;
     QWebEngineView *webView;
     QWidget *layoutWidget;
-    QFormLayout *formLayout;
-    QPushButton *autoButton;
-    QPushButton *manualButton;
-    QPushButton *disuButton;
-    QPushButton *stableButton;
-    QPushButton *showDataButton;
-    QPushButton *remark;
-    QPushButton *startButton;
-    QPushButton *manualButton_2;
-    QPushButton *stopButton;
-    QWidget *layoutWidget1;
-    QGridLayout *gridLayout;
-    QPushButton *leftButton;
-    QPushButton *rightButton;
-    QPushButton *upButton;
-    QPushButton *downButton;
-    QPushButton *switchButton;
-    QWidget *layoutWidget2;
     QFormLayout *formLayout_2;
-    QLabel *label_6;
-    QComboBox *fspeedBox;
     QLabel *label_7;
     QComboBox *rspeedBox;
+    QComboBox *fspeedBox;
+    QLabel *label_6;
+    QLabel *label_10;
+    QLineEdit *boatDir;
     QWidget *widget;
     QLabel *label;
     QLabel *label_2;
@@ -65,17 +51,51 @@ public:
     QLabel *label_4;
     QLabel *label_5;
     QLabel *labelUAV_xy;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QTextEdit *textEdit;
     QPushButton *test;
     QLineEdit *rongIp;
     QLineEdit *rongPort;
-    QLineEdit *boatDir;
     QLabel *label_8;
     QLabel *label_9;
     QPushButton *confirm_1;
-    QLabel *label_10;
+    QWidget *layoutWidget1;
+    QGridLayout *gridLayout;
+    QPushButton *leftButton;
+    QPushButton *rightButton;
+    QPushButton *upButton;
+    QPushButton *downButton;
+    QPushButton *switchButton;
+    QWidget *widget1;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *autoButton;
+    QPushButton *manualButton;
+    QHBoxLayout *horizontalLayout_4;
+    QPushButton *disuButton;
+    QPushButton *stableButton;
+    QHBoxLayout *horizontalLayout_5;
+    QPushButton *thrusterpower;
+    QPushButton *remark;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *startButton;
+    QPushButton *stopButton;
+    QHBoxLayout *horizontalLayout_7;
+    QPushButton *manualButton_2;
+    QPushButton *showDataButton;
+    QWidget *widget2;
+    QHBoxLayout *horizontalLayout_8;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QWidget *widget3;
+    QFormLayout *formLayout;
+    QLabel *label_11;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
+    QLineEdit *tp1;
+    QLineEdit *tp2;
+    QHBoxLayout *horizontalLayout_2;
+    QLineEdit *tp3;
+    QLineEdit *tp4;
     QWidget *tab;
     QWidget *videowidget_1;
     QMenuBar *menuBar;
@@ -100,62 +120,94 @@ public:
         webView->setProperty("url", QVariant(QUrl(QString::fromUtf8("about:blank"))));
         layoutWidget = new QWidget(tab_2);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 30, 224, 233));
-        formLayout = new QFormLayout(layoutWidget);
-        formLayout->setSpacing(6);
-        formLayout->setContentsMargins(11, 11, 11, 11);
-        formLayout->setObjectName(QString::fromUtf8("formLayout"));
-        formLayout->setHorizontalSpacing(30);
-        formLayout->setVerticalSpacing(20);
-        formLayout->setContentsMargins(0, 0, 0, 0);
-        autoButton = new QPushButton(layoutWidget);
-        autoButton->setObjectName(QString::fromUtf8("autoButton"));
+        layoutWidget->setGeometry(QRect(30, 260, 231, 117));
+        formLayout_2 = new QFormLayout(layoutWidget);
+        formLayout_2->setSpacing(6);
+        formLayout_2->setContentsMargins(11, 11, 11, 11);
+        formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
+        formLayout_2->setHorizontalSpacing(30);
+        formLayout_2->setVerticalSpacing(20);
+        formLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_7 = new QLabel(layoutWidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, autoButton);
+        formLayout_2->setWidget(1, QFormLayout::LabelRole, label_7);
 
-        manualButton = new QPushButton(layoutWidget);
-        manualButton->setObjectName(QString::fromUtf8("manualButton"));
+        rspeedBox = new QComboBox(layoutWidget);
+        rspeedBox->setObjectName(QString::fromUtf8("rspeedBox"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, manualButton);
+        formLayout_2->setWidget(1, QFormLayout::FieldRole, rspeedBox);
 
-        disuButton = new QPushButton(layoutWidget);
-        disuButton->setObjectName(QString::fromUtf8("disuButton"));
+        fspeedBox = new QComboBox(layoutWidget);
+        fspeedBox->setObjectName(QString::fromUtf8("fspeedBox"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, disuButton);
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, fspeedBox);
 
-        stableButton = new QPushButton(layoutWidget);
-        stableButton->setObjectName(QString::fromUtf8("stableButton"));
+        label_6 = new QLabel(layoutWidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, stableButton);
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_6);
 
-        showDataButton = new QPushButton(layoutWidget);
-        showDataButton->setObjectName(QString::fromUtf8("showDataButton"));
+        label_10 = new QLabel(layoutWidget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, showDataButton);
+        formLayout_2->setWidget(2, QFormLayout::LabelRole, label_10);
 
-        remark = new QPushButton(layoutWidget);
-        remark->setObjectName(QString::fromUtf8("remark"));
+        boatDir = new QLineEdit(layoutWidget);
+        boatDir->setObjectName(QString::fromUtf8("boatDir"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, remark);
+        formLayout_2->setWidget(2, QFormLayout::FieldRole, boatDir);
 
-        startButton = new QPushButton(layoutWidget);
-        startButton->setObjectName(QString::fromUtf8("startButton"));
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, startButton);
-
-        manualButton_2 = new QPushButton(layoutWidget);
-        manualButton_2->setObjectName(QString::fromUtf8("manualButton_2"));
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, manualButton_2);
-
-        stopButton = new QPushButton(layoutWidget);
-        stopButton->setObjectName(QString::fromUtf8("stopButton"));
-
-        formLayout->setWidget(4, QFormLayout::FieldRole, stopButton);
-
+        widget = new QWidget(tab_2);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(1160, 20, 481, 281));
+        widget->setStyleSheet(QString::fromUtf8("background-image: url(:/direct/bg2.png);"));
+        label = new QLabel(widget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(200, 20, 81, 21));
+        label_2 = new QLabel(widget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(50, 70, 81, 16));
+        label_3 = new QLabel(widget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(50, 110, 72, 15));
+        label_4 = new QLabel(widget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(50, 150, 91, 16));
+        label_5 = new QLabel(widget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(50, 190, 121, 16));
+        labelUAV_xy = new QLabel(widget);
+        labelUAV_xy->setObjectName(QString::fromUtf8("labelUAV_xy"));
+        labelUAV_xy->setGeometry(QRect(180, 70, 251, 21));
+        textEdit = new QTextEdit(tab_2);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setGeometry(QRect(1170, 410, 461, 241));
+        textEdit->setReadOnly(true);
+        textEdit->setAcceptRichText(true);
+        test = new QPushButton(tab_2);
+        test->setObjectName(QString::fromUtf8("test"));
+        test->setGeometry(QRect(30, 680, 93, 28));
+        rongIp = new QLineEdit(tab_2);
+        rongIp->setObjectName(QString::fromUtf8("rongIp"));
+        rongIp->setGeometry(QRect(670, 740, 113, 21));
+        rongPort = new QLineEdit(tab_2);
+        rongPort->setObjectName(QString::fromUtf8("rongPort"));
+        rongPort->setGeometry(QRect(670, 780, 113, 21));
+        label_8 = new QLabel(tab_2);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setGeometry(QRect(590, 740, 71, 20));
+        label_9 = new QLabel(tab_2);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setGeometry(QRect(590, 780, 71, 20));
+        confirm_1 = new QPushButton(tab_2);
+        confirm_1->setObjectName(QString::fromUtf8("confirm_1"));
+        confirm_1->setEnabled(true);
+        confirm_1->setGeometry(QRect(790, 780, 61, 28));
+        confirm_1->setCheckable(false);
         layoutWidget1 = new QWidget(tab_2);
         layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(40, 350, 156, 141));
+        layoutWidget1->setGeometry(QRect(70, 460, 156, 141));
         gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setSpacing(5);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -192,93 +244,164 @@ public:
 
         gridLayout->addWidget(switchButton, 1, 1, 1, 1);
 
-        layoutWidget2 = new QWidget(tab_2);
-        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(20, 260, 179, 74));
-        formLayout_2 = new QFormLayout(layoutWidget2);
-        formLayout_2->setSpacing(6);
-        formLayout_2->setContentsMargins(11, 11, 11, 11);
-        formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
-        formLayout_2->setHorizontalSpacing(30);
-        formLayout_2->setVerticalSpacing(20);
-        formLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(layoutWidget2);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
+        widget1 = new QWidget(tab_2);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(10, 40, 261, 211));
+        verticalLayout_2 = new QVBoxLayout(widget1);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(20);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        autoButton = new QPushButton(widget1);
+        autoButton->setObjectName(QString::fromUtf8("autoButton"));
 
-        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_6);
+        horizontalLayout_3->addWidget(autoButton);
 
-        fspeedBox = new QComboBox(layoutWidget2);
-        fspeedBox->setObjectName(QString::fromUtf8("fspeedBox"));
+        manualButton = new QPushButton(widget1);
+        manualButton->setObjectName(QString::fromUtf8("manualButton"));
 
-        formLayout_2->setWidget(0, QFormLayout::FieldRole, fspeedBox);
+        horizontalLayout_3->addWidget(manualButton);
 
-        label_7 = new QLabel(layoutWidget2);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
 
-        formLayout_2->setWidget(1, QFormLayout::LabelRole, label_7);
+        verticalLayout_2->addLayout(horizontalLayout_3);
 
-        rspeedBox = new QComboBox(layoutWidget2);
-        rspeedBox->setObjectName(QString::fromUtf8("rspeedBox"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(20);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        disuButton = new QPushButton(widget1);
+        disuButton->setObjectName(QString::fromUtf8("disuButton"));
 
-        formLayout_2->setWidget(1, QFormLayout::FieldRole, rspeedBox);
+        horizontalLayout_4->addWidget(disuButton);
 
-        widget = new QWidget(tab_2);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(1160, 20, 481, 281));
-        widget->setStyleSheet(QString::fromUtf8("background-image: url(:/direct/bg2.png);"));
-        label = new QLabel(widget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(200, 20, 81, 21));
-        label_2 = new QLabel(widget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(50, 70, 81, 16));
-        label_3 = new QLabel(widget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(50, 110, 72, 15));
-        label_4 = new QLabel(widget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(50, 150, 72, 15));
-        label_5 = new QLabel(widget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(50, 190, 121, 16));
-        labelUAV_xy = new QLabel(widget);
-        labelUAV_xy->setObjectName(QString::fromUtf8("labelUAV_xy"));
-        labelUAV_xy->setGeometry(QRect(180, 70, 251, 21));
-        pushButton = new QPushButton(tab_2);
+        stableButton = new QPushButton(widget1);
+        stableButton->setObjectName(QString::fromUtf8("stableButton"));
+
+        horizontalLayout_4->addWidget(stableButton);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(20);
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        thrusterpower = new QPushButton(widget1);
+        thrusterpower->setObjectName(QString::fromUtf8("thrusterpower"));
+
+        horizontalLayout_5->addWidget(thrusterpower);
+
+        remark = new QPushButton(widget1);
+        remark->setObjectName(QString::fromUtf8("remark"));
+
+        horizontalLayout_5->addWidget(remark);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_5);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(20);
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        horizontalLayout_6->setSizeConstraint(QLayout::SetDefaultConstraint);
+        startButton = new QPushButton(widget1);
+        startButton->setObjectName(QString::fromUtf8("startButton"));
+
+        horizontalLayout_6->addWidget(startButton);
+
+        stopButton = new QPushButton(widget1);
+        stopButton->setObjectName(QString::fromUtf8("stopButton"));
+
+        horizontalLayout_6->addWidget(stopButton);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_6);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(20);
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        manualButton_2 = new QPushButton(widget1);
+        manualButton_2->setObjectName(QString::fromUtf8("manualButton_2"));
+
+        horizontalLayout_7->addWidget(manualButton_2);
+
+        showDataButton = new QPushButton(widget1);
+        showDataButton->setObjectName(QString::fromUtf8("showDataButton"));
+
+        horizontalLayout_7->addWidget(showDataButton);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_7);
+
+        widget2 = new QWidget(tab_2);
+        widget2->setObjectName(QString::fromUtf8("widget2"));
+        widget2->setGeometry(QRect(30, 400, 231, 41));
+        horizontalLayout_8 = new QHBoxLayout(widget2);
+        horizontalLayout_8->setSpacing(20);
+        horizontalLayout_8->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        pushButton = new QPushButton(widget2);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(0, 520, 93, 28));
-        pushButton_2 = new QPushButton(tab_2);
+
+        horizontalLayout_8->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(widget2);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(130, 520, 93, 28));
-        textEdit = new QTextEdit(tab_2);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(1170, 410, 461, 241));
-        textEdit->setReadOnly(true);
-        textEdit->setAcceptRichText(true);
-        test = new QPushButton(tab_2);
-        test->setObjectName(QString::fromUtf8("test"));
-        test->setGeometry(QRect(170, 670, 93, 28));
-        rongIp = new QLineEdit(tab_2);
-        rongIp->setObjectName(QString::fromUtf8("rongIp"));
-        rongIp->setGeometry(QRect(100, 560, 113, 21));
-        rongPort = new QLineEdit(tab_2);
-        rongPort->setObjectName(QString::fromUtf8("rongPort"));
-        rongPort->setGeometry(QRect(100, 600, 113, 21));
-        boatDir = new QLineEdit(tab_2);
-        boatDir->setObjectName(QString::fromUtf8("boatDir"));
-        boatDir->setGeometry(QRect(100, 630, 113, 21));
-        label_8 = new QLabel(tab_2);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setGeometry(QRect(20, 560, 71, 20));
-        label_9 = new QLabel(tab_2);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(20, 600, 71, 20));
-        confirm_1 = new QPushButton(tab_2);
-        confirm_1->setObjectName(QString::fromUtf8("confirm_1"));
-        confirm_1->setGeometry(QRect(220, 600, 61, 28));
-        label_10 = new QLabel(tab_2);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setGeometry(QRect(30, 630, 61, 20));
+
+        horizontalLayout_8->addWidget(pushButton_2);
+
+        widget3 = new QWidget(tab_2);
+        widget3->setObjectName(QString::fromUtf8("widget3"));
+        widget3->setGeometry(QRect(1240, 330, 281, 64));
+        formLayout = new QFormLayout(widget3);
+        formLayout->setSpacing(6);
+        formLayout->setContentsMargins(11, 11, 11, 11);
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        formLayout->setContentsMargins(0, 0, 0, 0);
+        label_11 = new QLabel(widget3);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_11);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(10);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        tp1 = new QLineEdit(widget3);
+        tp1->setObjectName(QString::fromUtf8("tp1"));
+
+        horizontalLayout->addWidget(tp1);
+
+        tp2 = new QLineEdit(widget3);
+        tp2->setObjectName(QString::fromUtf8("tp2"));
+
+        horizontalLayout->addWidget(tp2);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(20);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        tp3 = new QLineEdit(widget3);
+        tp3->setObjectName(QString::fromUtf8("tp3"));
+
+        horizontalLayout_2->addWidget(tp3);
+
+        tp4 = new QLineEdit(widget3);
+        tp4->setObjectName(QString::fromUtf8("tp4"));
+
+        horizontalLayout_2->addWidget(tp4);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+
+        formLayout->setLayout(0, QFormLayout::FieldRole, verticalLayout);
+
         tabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
@@ -306,30 +429,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        autoButton->setText(QApplication::translate("MainWindow", "\350\207\252\345\212\250\350\210\252\350\241\214", nullptr));
-        manualButton->setText(QApplication::translate("MainWindow", "\346\211\213\345\212\250\350\210\252\350\241\214", nullptr));
-        disuButton->setText(QApplication::translate("MainWindow", "\344\275\216\351\200\237\346\250\241\345\274\217", nullptr));
-        stableButton->setText(QApplication::translate("MainWindow", "\347\250\263\345\256\232\346\250\241\345\274\217", nullptr));
-        showDataButton->setText(QApplication::translate("MainWindow", "\346\230\276\347\244\272\346\225\260\346\215\256", nullptr));
-        remark->setText(QApplication::translate("MainWindow", "\351\207\215\346\226\260\350\247\204\345\210\222", nullptr));
-        startButton->setText(QApplication::translate("MainWindow", "start", nullptr));
-        manualButton_2->setText(QApplication::translate("MainWindow", "\345\215\225\345\207\273\351\224\256\347\233\230\346\223\215\344\275\234", nullptr));
-        stopButton->setText(QApplication::translate("MainWindow", " stop", nullptr));
-        leftButton->setText(QString());
-        rightButton->setText(QString());
-        upButton->setText(QString());
-        downButton->setText(QString());
-        switchButton->setText(QString());
-        label_6->setText(QApplication::translate("MainWindow", "\345\211\215\350\241\214\351\200\237\345\272\246", nullptr));
         label_7->setText(QApplication::translate("MainWindow", "\350\275\254\345\220\221\351\200\237\345\272\246", nullptr));
+        label_6->setText(QApplication::translate("MainWindow", "\345\211\215\350\241\214\351\200\237\345\272\246", nullptr));
+        label_10->setText(QApplication::translate("MainWindow", "\350\210\271\351\246\226\345\220\221", nullptr));
         label->setText(QApplication::translate("MainWindow", "\345\217\202\346\225\260\346\230\276\347\244\272", nullptr));
         label_2->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\346\234\272\345\235\220\346\240\207", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "\345\243\260\345\221\220", nullptr));
         label_4->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\350\210\271\345\235\220\346\240\207", nullptr));
         label_5->setText(QApplication::translate("MainWindow", "ROV\345\235\220\346\240\207\357\274\210\344\270\215\351\234\200\350\246\201\357\274\211", nullptr));
         labelUAV_xy->setText(QApplication::translate("MainWindow", "x,y", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\346\234\272\350\265\267\351\231\215", nullptr));
-        pushButton_2->setText(QApplication::translate("MainWindow", "\344\274\270\347\274\251\346\236\266\346\224\266\346\224\276", nullptr));
         textEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -339,7 +447,24 @@ public:
         label_8->setText(QApplication::translate("MainWindow", "  \344\270\273\346\216\247ip", nullptr));
         label_9->setText(QApplication::translate("MainWindow", " \344\270\273\346\216\247\347\253\257\345\217\243", nullptr));
         confirm_1->setText(QApplication::translate("MainWindow", "\347\241\256\350\256\244", nullptr));
-        label_10->setText(QApplication::translate("MainWindow", "\350\210\271\351\246\226\345\220\221", nullptr));
+        leftButton->setText(QString());
+        rightButton->setText(QString());
+        upButton->setText(QString());
+        downButton->setText(QString());
+        switchButton->setText(QString());
+        autoButton->setText(QApplication::translate("MainWindow", "\350\210\252\347\202\271\346\250\241\345\274\217", nullptr));
+        manualButton->setText(QApplication::translate("MainWindow", "\346\211\213\345\212\250\346\250\241\345\274\217", nullptr));
+        disuButton->setText(QApplication::translate("MainWindow", "\344\275\216\351\200\237\346\250\241\345\274\217", nullptr));
+        stableButton->setText(QApplication::translate("MainWindow", "\347\250\263\345\256\232\346\250\241\345\274\217", nullptr));
+        thrusterpower->setText(QApplication::translate("MainWindow", "\346\216\250\350\277\233\345\231\250\350\256\276\347\275\256\346\250\241\345\274\217", nullptr));
+        remark->setText(QApplication::translate("MainWindow", "\351\207\215\346\226\260\350\247\204\345\210\222", nullptr));
+        startButton->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213", nullptr));
+        stopButton->setText(QApplication::translate("MainWindow", "\347\273\223\346\235\237", nullptr));
+        manualButton_2->setText(QApplication::translate("MainWindow", "\345\215\225\345\207\273\351\224\256\347\233\230\346\223\215\344\275\234", nullptr));
+        showDataButton->setText(QApplication::translate("MainWindow", "\346\230\276\347\244\272\346\225\260\346\215\256", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\346\234\272\350\265\267\351\231\215", nullptr));
+        pushButton_2->setText(QApplication::translate("MainWindow", "\344\274\270\347\274\251\346\236\266\346\224\266\346\224\276", nullptr));
+        label_11->setText(QApplication::translate("MainWindow", "\346\216\250\350\277\233\345\231\250\345\212\237\347\216\207", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\345\234\260\345\233\276", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\350\247\206\351\242\221", nullptr));
     } // retranslateUi

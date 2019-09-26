@@ -178,7 +178,8 @@ void MainWindow::on_manualButton_clicked()
         QByteArray *msg=new QByteArray("#MOD01");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
         //to-do send
-        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+        serial->sendData(*msg);
         emit mode->modeChange(ManualMode);
         emit infoset->modeChangeForMap(200);
     //    udpcomm->SendMsg(msg,QHostAddress("192.168.1.226"),3456);//测试udp
@@ -191,7 +192,8 @@ void MainWindow::on_autoButton_clicked()
     emit infoset->modeChangeForMap(201);
     QByteArray *msg=new QByteArray("#MOD03");
     msg->append(QByteArray::fromHex("0d0a"));//协议尾
-    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+//    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+    serial->sendData(*msg);
 //    if(isAutoMode){
 //        isAutoMode=false;
 //        QByteArray *msg=new QByteArray("#RPGSTOP");
@@ -255,7 +257,8 @@ void MainWindow::on_disuButton_clicked()
 //    }
     QByteArray *msg=new QByteArray("#MOD04");
     msg->append(QByteArray::fromHex("0d0a"));//协议尾
-    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+//    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+    serial->sendData(*msg);
     emit mode->modeChange(LowSpeedMode);
     emit infoset->modeChangeForMap(202);
 }
@@ -276,7 +279,8 @@ void MainWindow::on_stableButton_clicked()
 //    }
     QByteArray *msg=new QByteArray("#MOD02");
     msg->append(QByteArray::fromHex("0d0a"));//协议尾
-    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+//    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+    serial->sendData(*msg);
     emit mode->modeChange(StableMode);
     emit infoset->modeChangeForMap(203);
 }
@@ -337,10 +341,12 @@ void MainWindow::on_startButton_clicked()
                 char str[100];
                 sprintf(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
                 QByteArray msg(str);
-                udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
-                sleep(50);
+//                udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+                serial->sendData(msg);
+                sleep(500);
             }
-            QByteArray msg("#RPGSTART");msg.append(QByteArray::fromHex("0d0a"));
+            QByteArray msg1("#RPGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
+            serial->sendData(msg1);
             break;
 
         }
@@ -355,7 +361,10 @@ void MainWindow::on_startButton_clicked()
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
             sprintf(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
             QByteArray msg(str);
-            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+//            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+            serial->sendData(msg);
+            QByteArray msg1("#LPGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
+            serial->sendData(msg1);
             break;
         }
         case StableMode:
@@ -365,11 +374,24 @@ void MainWindow::on_startButton_clicked()
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
             sprintf(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
             QByteArray msg(str);
-            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+//            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+            serial->sendData(msg);
+            QByteArray msg1("#PGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
+            serial->sendData(msg1);
             break;
+        }
+        case ThrusterPower:
+        {
+            char str[100];
+            sprintf(str, "#PG%04d%04d%04d%04d\r\n",ui->tp1->text().toInt(),ui->tp2->text().toInt(),ui->tp3->text().toInt(),ui->tp4->text().toInt());
+            QByteArray msg(str);
+            serial->sendData(msg);
+            QByteArray msg1("#PGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
+            serial->sendData(msg1);
         }
     }
 }
+
 void MainWindow::sleep(int msec)
 {
     QTime dieTime = QTime::currentTime().addMSecs(msec);
@@ -431,9 +453,8 @@ void MainWindow::on_stopButton_clicked()
         {
         QByteArray *msg=new QByteArray("#RPGSTOP");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
-
-
+//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+        serial->sendData(*msg);
         break;
 
     }
@@ -446,17 +467,42 @@ void MainWindow::on_stopButton_clicked()
     {
         QByteArray *msg=new QByteArray("#LPGSTOP");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
-
+//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+        serial->sendData(*msg);
         break;
     }
     case StableMode:
     {
         QByteArray *msg=new QByteArray("#SPGSTOP");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
-        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+        serial->sendData(*msg);
+        break;
+    }
+    case ThrusterPower:
+    {
+        QByteArray *msg=new QByteArray("#SPGSTOP");
+        msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+        serial->sendData(*msg);
         break;
     }
     }
 
 }
+
+void MainWindow::on_thrusterpowerset_clicked()
+{
+
+}
+
+void MainWindow::on_thrusterpower_clicked()
+{
+    QByteArray *msg=new QByteArray("#MOD05");
+    msg->append(QByteArray::fromHex("0d0a"));//协议尾
+//    udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+    serial->sendData(*msg);
+    emit mode->modeChange(ThrusterPower);
+    emit infoset->modeChangeForMap(204);
+}
+
