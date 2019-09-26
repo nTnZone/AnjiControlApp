@@ -43,29 +43,34 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)//, map_view(new QWebEngineView(this))
 {
     ui->setupUi(this);
-    QStringList rspeedList={"1","2","3"};
-    QStringList fspeedList={"1","2","3","4","5"};
-    ui->rspeedBox->addItems(rspeedList);
-    ui->fspeedBox->addItems(fspeedList);
+
 //实例化
     mode=new Mode(this);
     key=new KeyOperator(this);
     gpo = new GamePadOperator (this);
-    udpcomm = new UdpComm (this);
     webchannel =  new QWebChannel(this);
-    server = new TcpServer (this);
-    mfplayer = new FilmPlayer(this);
+    serial = new SerialComm ();
+//    udpcomm = new UdpComm (this);
+//    server = new TcpServer (this);
+//    mfplayer = new FilmPlayer(this);
 
 //设置udpGPS
     //udpcomm->bind(QHostAddress("192.168.1.213"),1111);//绑定自己的IP和端口
     //udp
+
 //serial port
-    serial = new SerialComm ();
     serial->connectPort(0);
 
 //设置视频传输
-    server->listen(4567);
-    server->setprefix(QByteArray("f1"));
+//    server->listen(4567);
+//    server->setprefix(QByteArray("f1"));
+
+//设置下拉菜单
+    QStringList rspeedList={"1","2","3"};
+    QStringList fspeedList={"1","2","3","4","5"};
+    ui->rspeedBox->addItems(rspeedList);
+    ui->fspeedBox->addItems(fspeedList);
+
 //设置按钮
     QIcon *icon=new QIcon("down.png");
     ui->downButton->setIcon(*icon);
@@ -83,58 +88,52 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->switchButton->setIcon(*starticon);
     ui->switchButton->setIconSize(QSize(50,50));
     //ui->widget->setStyleSheet("background-image: url(:/direct/bg1.png)");
-    m_player = new QMediaPlayer(this);
-    m_videoWidget = new VideoWidget(this);
-    m_videoWidget2 = new VideoWidget(this);
-    m_player->setVideoOutput(m_videoWidget);
 
-    QBoxLayout *displayLayout = new QHBoxLayout;
-    displayLayout->addWidget(m_videoWidget);
-    displayLayout->addWidget(m_videoWidget2);
-    QBoxLayout *layout = new QVBoxLayout;
-    layout->addLayout(displayLayout);
-    ui->videowidget_1->setLayout(layout);
+//    m_player = new QMediaPlayer(this);
+//    m_videoWidget = new VideoWidget(this);
+//    m_videoWidget2 = new VideoWidget(this);
+//    m_player->setVideoOutput(m_videoWidget);
+
+//    QBoxLayout *displayLayout = new QHBoxLayout;
+//    displayLayout->addWidget(m_videoWidget);
+//    displayLayout->addWidget(m_videoWidget2);
+//    QBoxLayout *layout = new QVBoxLayout;
+//    layout->addLayout(displayLayout);
+//    ui->videowidget_1->setLayout(layout);
 
     infoset = new InfoSets(this);
-    //设置webchannel
+
+//设置webchannel
     webchannel->registerObject("pointxy", pointxy);//注册对象
     webchannel->registerObject("infoset", infoset);
     //webchannel->registerObject("mode", mode);
     ui->webView->page()->setWebChannel(webchannel);
+//加载地图
     QFile htmlf(QDir::currentPath() + "//gaode.html");
     if (!htmlf.exists())
     {
         qDebug("not exist");
     }
-    qDebug() << QString("file:///"+htmlf.fileName());//the path of gaode.html
-//    ui->webView->load(QUrl(htmlf.fileName()));//加载地图
-    ui->webView->load(QUrl(QString("file:///"+htmlf.fileName())));//加载地图
-//    ui->webView->load(QUrl("/home/angle/AnjiControlApp/build-app-Desktop_Qt_5_12_4_GCC_64bit-Debug/gaode.html"));//加载地图
-//    ui->webView->load(QUrl("http://www.amap.com"));//加载地图
-    qDebug()<<QDir::currentPath();
+    ui->webView->load(QUrl(QString("file:///"+htmlf.fileName())));
     ui->webView->show();
-
-//    web111 = new QWebEngineView();
-//    web111->page()->load(QUrl("http://www.google.com"));
-//    web111->page()->load(QUrl(QDir::currentPath() + "//gaode.html"));
-//    web111->show();
-    //m_player->setMedia(QUrl::fromLocalFile("taeyeon.mp4"));
-    //m_player->play();
+//    qDebug() << QString("file:///"+htmlf.fileName());//the path of gaode.html
 
 //连接信号
     connect(gpo->gamepad,&QGamepad::buttonUpChanged,this,&MainWindow::on_test_clicked);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
     connect(infoset,&InfoSets::uavGps,this,&MainWindow::uav_gps_show);
-//    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
 
+//    mfplayer->setWindowName("F1");
+//    connect(server,&TcpServer::TransCompleted,mfplayer,&FilmPlayer::nextFile);
+
+    outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
+
+//弃用
+    //    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
     //不注册是不会交给eventfilter处理的ui->textEdit->installEventFilter(key);
-    ui->manualButton_2->installEventFilter(key);
-
-
-
+//    ui->manualButton_2->installEventFilter(key);
 //    qDebug()<<ui->textEdit->metaObject()->className()<<"!!!";
     //qInstallMessageHandler(outputMessage);
-    outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
 //    qDebug()<<ui->manualButton->objectName();
 //    AddTextToEditText(QString::fromLocal8Bit("hapo"));
 
@@ -143,9 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    mfplayer->setWindowName("F1");
 
-    connect(server,&TcpServer::TransCompleted,mfplayer,&FilmPlayer::nextFile);
 }
 
 MainWindow::~MainWindow()

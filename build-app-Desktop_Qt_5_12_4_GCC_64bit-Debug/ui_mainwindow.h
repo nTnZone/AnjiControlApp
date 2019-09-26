@@ -384,7 +384,7 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(20);
+        horizontalLayout_2->setSpacing(10);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         tp3 = new QLineEdit(widget3);
         tp3->setObjectName(QString::fromUtf8("tp3"));
