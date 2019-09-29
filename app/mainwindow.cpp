@@ -122,6 +122,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(gpo->gamepad,&QGamepad::buttonUpChanged,this,&MainWindow::on_test_clicked);
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
     connect(infoset,&InfoSets::uavGps,this,&MainWindow::uav_gps_show);
+    connect(serial,&SerialComm::Roger,infoset,&InfoSets::sendGps);
+    connect(serial,&SerialComm::dataAccept,this,&MainWindow::DisplaySerialData);
 
 //    mfplayer->setWindowName("F1");
 //    connect(server,&TcpServer::TransCompleted,mfplayer,&FilmPlayer::nextFile);
@@ -137,10 +139,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    qDebug()<<ui->manualButton->objectName();
 //    AddTextToEditText(QString::fromLocal8Bit("hapo"));
 
-
-
-
-
+//    emit pointxy->BoatGPSChanged(QString::number(116.35158741563555, 10, accuracy),QString::number(39.9148875039067, 10, accuracy));
+//    emit pointxy->BoatGPSChanged(QString::number(39.9148875039067, 10, accuracy),QString::number(116.35158741563555, 10, accuracy));
+//    emit pointxy->BoatGPSChanged(116,39);
+//    emit pointxy->BoatGPSChanged(116.35158741563555,39.9148875039067);
+//    emit pointxy->mapCenterChanged("11","9");
+//    ui->webView->page()->runJavaScript("addBoatMarker(39.9148875039067,116.35158741563555)");
 
 
 }
@@ -296,7 +300,7 @@ void MainWindow::on_rspeedBox_currentTextChanged(const QString &rspeed)
 
 void MainWindow::on_remark_clicked()
 {
-    ui->webView->page()->runJavaScript("clearAll()");//调用JS函数清除所有标记
+    ui->webView->page()->runJavaScript("clearTarget()");//调用JS函数清除所有标记
     pointxy->map_latitude.clear();
     pointxy->map_longtitude.clear();
 
@@ -397,10 +401,12 @@ void MainWindow::sleep(int msec)
 }
 void MainWindow::on_test_clicked()
 {
-    ui->textEdit->moveCursor(QTextCursor::End);
-    QString str = QString::fromLocal8Bit("123a工");
-    ui->textEdit->append(str);
-
+//    ui->textEdit->moveCursor(QTextCursor::End);
+//    QString str = QString::fromLocal8Bit("123a工");
+//    ui->textEdit->append(str);
+    emit pointxy->BoatGPSChanged(116,39);
+    emit pointxy->BoatGPSChanged(116.35158741563555,39.9148875039067);
+    emit pointxy->AddObstacle(116.35158741563555,39.9148875039067);
 //    //航点模式
 
 
@@ -488,10 +494,6 @@ void MainWindow::on_stopButton_clicked()
 
 }
 
-void MainWindow::on_thrusterpowerset_clicked()
-{
-
-}
 
 void MainWindow::on_thrusterpower_clicked()
 {
@@ -503,3 +505,17 @@ void MainWindow::on_thrusterpower_clicked()
     emit infoset->modeChangeForMap(204);
 }
 
+void MainWindow::DisplaySerialData(QByteArray data)
+{
+    ui->textEdit->moveCursor(QTextCursor::End);
+    QString str = QString(data);
+    ui->textEdit->append(str);
+}
+
+
+void MainWindow::on_SerialSend_clicked()
+{
+//    QString dataStr = ui->SerialSendBuf->toPlainText();
+//    QByteArray dataByte(dataStr);
+    serial->sendData(ui->SerialSendBuf->toPlainText().toLatin1().append(QByteArray::fromHex("0d0a")));
+}

@@ -15,7 +15,8 @@ public:
     void sendData(QByteArray buf);
     void Boat_GPS();
 signals:
-
+    void Roger();
+    void dataAccept(QByteArray data);
 public slots:
     void readData();
 public:

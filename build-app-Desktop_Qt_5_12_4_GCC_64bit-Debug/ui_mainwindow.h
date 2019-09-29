@@ -65,7 +65,7 @@ public:
     QPushButton *upButton;
     QPushButton *downButton;
     QPushButton *switchButton;
-    QWidget *widget1;
+    QWidget *layoutWidget2;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *autoButton;
@@ -82,11 +82,11 @@ public:
     QHBoxLayout *horizontalLayout_7;
     QPushButton *manualButton_2;
     QPushButton *showDataButton;
-    QWidget *widget2;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_8;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QWidget *widget3;
+    QWidget *layoutWidget4;
     QFormLayout *formLayout;
     QLabel *label_11;
     QVBoxLayout *verticalLayout;
@@ -96,6 +96,8 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QLineEdit *tp3;
     QLineEdit *tp4;
+    QTextEdit *SerialSendBuf;
+    QPushButton *SerialSend;
     QWidget *tab;
     QWidget *videowidget_1;
     QMenuBar *menuBar;
@@ -116,7 +118,7 @@ public:
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         webView = new QWebEngineView(tab_2);
         webView->setObjectName(QString::fromUtf8("webView"));
-        webView->setGeometry(QRect(290, 0, 851, 681));
+        webView->setGeometry(QRect(300, 0, 841, 721));
         webView->setProperty("url", QVariant(QUrl(QString::fromUtf8("about:blank"))));
         layoutWidget = new QWidget(tab_2);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
@@ -182,12 +184,12 @@ public:
         labelUAV_xy->setGeometry(QRect(180, 70, 251, 21));
         textEdit = new QTextEdit(tab_2);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(1170, 410, 461, 241));
+        textEdit->setGeometry(QRect(1160, 330, 461, 241));
         textEdit->setReadOnly(true);
         textEdit->setAcceptRichText(true);
         test = new QPushButton(tab_2);
         test->setObjectName(QString::fromUtf8("test"));
-        test->setGeometry(QRect(30, 680, 93, 28));
+        test->setGeometry(QRect(30, 780, 93, 28));
         rongIp = new QLineEdit(tab_2);
         rongIp->setObjectName(QString::fromUtf8("rongIp"));
         rongIp->setGeometry(QRect(670, 740, 113, 21));
@@ -244,10 +246,10 @@ public:
 
         gridLayout->addWidget(switchButton, 1, 1, 1, 1);
 
-        widget1 = new QWidget(tab_2);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(10, 40, 261, 211));
-        verticalLayout_2 = new QVBoxLayout(widget1);
+        layoutWidget2 = new QWidget(tab_2);
+        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(10, 40, 261, 211));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget2);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
@@ -255,12 +257,12 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(20);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        autoButton = new QPushButton(widget1);
+        autoButton = new QPushButton(layoutWidget2);
         autoButton->setObjectName(QString::fromUtf8("autoButton"));
 
         horizontalLayout_3->addWidget(autoButton);
 
-        manualButton = new QPushButton(widget1);
+        manualButton = new QPushButton(layoutWidget2);
         manualButton->setObjectName(QString::fromUtf8("manualButton"));
 
         horizontalLayout_3->addWidget(manualButton);
@@ -271,12 +273,12 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(20);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        disuButton = new QPushButton(widget1);
+        disuButton = new QPushButton(layoutWidget2);
         disuButton->setObjectName(QString::fromUtf8("disuButton"));
 
         horizontalLayout_4->addWidget(disuButton);
 
-        stableButton = new QPushButton(widget1);
+        stableButton = new QPushButton(layoutWidget2);
         stableButton->setObjectName(QString::fromUtf8("stableButton"));
 
         horizontalLayout_4->addWidget(stableButton);
@@ -287,12 +289,12 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(20);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        thrusterpower = new QPushButton(widget1);
+        thrusterpower = new QPushButton(layoutWidget2);
         thrusterpower->setObjectName(QString::fromUtf8("thrusterpower"));
 
         horizontalLayout_5->addWidget(thrusterpower);
 
-        remark = new QPushButton(widget1);
+        remark = new QPushButton(layoutWidget2);
         remark->setObjectName(QString::fromUtf8("remark"));
 
         horizontalLayout_5->addWidget(remark);
@@ -304,12 +306,12 @@ public:
         horizontalLayout_6->setSpacing(20);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         horizontalLayout_6->setSizeConstraint(QLayout::SetDefaultConstraint);
-        startButton = new QPushButton(widget1);
+        startButton = new QPushButton(layoutWidget2);
         startButton->setObjectName(QString::fromUtf8("startButton"));
 
         horizontalLayout_6->addWidget(startButton);
 
-        stopButton = new QPushButton(widget1);
+        stopButton = new QPushButton(layoutWidget2);
         stopButton->setObjectName(QString::fromUtf8("stopButton"));
 
         horizontalLayout_6->addWidget(stopButton);
@@ -320,12 +322,12 @@ public:
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(20);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        manualButton_2 = new QPushButton(widget1);
+        manualButton_2 = new QPushButton(layoutWidget2);
         manualButton_2->setObjectName(QString::fromUtf8("manualButton_2"));
 
         horizontalLayout_7->addWidget(manualButton_2);
 
-        showDataButton = new QPushButton(widget1);
+        showDataButton = new QPushButton(layoutWidget2);
         showDataButton->setObjectName(QString::fromUtf8("showDataButton"));
 
         horizontalLayout_7->addWidget(showDataButton);
@@ -333,33 +335,33 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_7);
 
-        widget2 = new QWidget(tab_2);
-        widget2->setObjectName(QString::fromUtf8("widget2"));
-        widget2->setGeometry(QRect(30, 400, 231, 41));
-        horizontalLayout_8 = new QHBoxLayout(widget2);
+        layoutWidget3 = new QWidget(tab_2);
+        layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(30, 400, 231, 41));
+        horizontalLayout_8 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_8->setSpacing(20);
         horizontalLayout_8->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(widget2);
+        pushButton = new QPushButton(layoutWidget3);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         horizontalLayout_8->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(widget2);
+        pushButton_2 = new QPushButton(layoutWidget3);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         horizontalLayout_8->addWidget(pushButton_2);
 
-        widget3 = new QWidget(tab_2);
-        widget3->setObjectName(QString::fromUtf8("widget3"));
-        widget3->setGeometry(QRect(1240, 330, 281, 64));
-        formLayout = new QFormLayout(widget3);
+        layoutWidget4 = new QWidget(tab_2);
+        layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
+        layoutWidget4->setGeometry(QRect(10, 620, 281, 64));
+        formLayout = new QFormLayout(layoutWidget4);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
         formLayout->setContentsMargins(0, 0, 0, 0);
-        label_11 = new QLabel(widget3);
+        label_11 = new QLabel(layoutWidget4);
         label_11->setObjectName(QString::fromUtf8("label_11"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_11);
@@ -370,12 +372,12 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(10);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        tp1 = new QLineEdit(widget3);
+        tp1 = new QLineEdit(layoutWidget4);
         tp1->setObjectName(QString::fromUtf8("tp1"));
 
         horizontalLayout->addWidget(tp1);
 
-        tp2 = new QLineEdit(widget3);
+        tp2 = new QLineEdit(layoutWidget4);
         tp2->setObjectName(QString::fromUtf8("tp2"));
 
         horizontalLayout->addWidget(tp2);
@@ -386,12 +388,12 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(10);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        tp3 = new QLineEdit(widget3);
+        tp3 = new QLineEdit(layoutWidget4);
         tp3->setObjectName(QString::fromUtf8("tp3"));
 
         horizontalLayout_2->addWidget(tp3);
 
-        tp4 = new QLineEdit(widget3);
+        tp4 = new QLineEdit(layoutWidget4);
         tp4->setObjectName(QString::fromUtf8("tp4"));
 
         horizontalLayout_2->addWidget(tp4);
@@ -402,6 +404,12 @@ public:
 
         formLayout->setLayout(0, QFormLayout::FieldRole, verticalLayout);
 
+        SerialSendBuf = new QTextEdit(tab_2);
+        SerialSendBuf->setObjectName(QString::fromUtf8("SerialSendBuf"));
+        SerialSendBuf->setGeometry(QRect(1160, 590, 331, 70));
+        SerialSend = new QPushButton(tab_2);
+        SerialSend->setObjectName(QString::fromUtf8("SerialSend"));
+        SerialSend->setGeometry(QRect(1520, 610, 89, 25));
         tabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
@@ -465,6 +473,7 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\346\234\272\350\265\267\351\231\215", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "\344\274\270\347\274\251\346\236\266\346\224\266\346\224\276", nullptr));
         label_11->setText(QApplication::translate("MainWindow", "\346\216\250\350\277\233\345\231\250\345\212\237\347\216\207", nullptr));
+        SerialSend->setText(QApplication::translate("MainWindow", "\345\217\221\351\200\201", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\345\234\260\345\233\276", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\350\247\206\351\242\221", nullptr));
     } // retranslateUi

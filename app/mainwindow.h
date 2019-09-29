@@ -86,6 +86,8 @@ public:
 
 signals:
     void mapCenterChanged(QString longi,QString lati);
+    void BoatGPSChanged(double longi,double lati);
+    void AddObstacle(double longi,double lati);
 public slots:
     //接收网页发来的
     void saveMapPoint(QString longti, QString lati);
@@ -135,10 +137,12 @@ private slots:
 
     void on_stopButton_clicked();
 
-    void on_thrusterpowerset_clicked();
 
     void on_thrusterpower_clicked();
 
+    void DisplaySerialData(QByteArray data);
+
+    void on_SerialSend_clicked();
 
 signals:
 

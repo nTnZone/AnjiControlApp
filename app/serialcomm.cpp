@@ -46,14 +46,17 @@ void SerialComm::readData()
     if(serial->canReadLine())
     {
         data = serial->readLine();
-        qDebug() << data;
-    }
-    else
-    {
+        emit dataAccept(data);
         if(data.left(4) == "BGPS")
         {
             Boat_GPS();
         }
     }
+    else
+    {
+
+    }
+//    emit Roger();
+
 
 }

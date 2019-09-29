@@ -11,11 +11,11 @@ public:
     double gps_x;
     double gps_y;
     double speed;
-    UdpComm *udp_gps;
+//    UdpComm *udp_gps;
 public:
     ~InfoSets()
     {
-        delete udp_gps;
+//        delete udp_gps;
     }
 signals:
     void uavGps(double gps_x,double gps_y);

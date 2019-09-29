@@ -47,14 +47,22 @@
     //   zoomEnable: false, //地图是否可缩放，默认值为true
     //   rotateEnable: false, // 地图是否可旋转，3D视图默认为true，2D视图默认false
     // }
-	   
-    var path=[];//存储目标点的数组
+	
+    var Target_markerList=[];//存储目标点标记的数组   
+    var path=[];//存储目标路径的数组 
+    var Boat_markerList=[];//存储自身点标记的数组 
+    var Boat_path=[];//存储自身路径的数组 
+    var Obstacle_markerList=[];//存储目障碍点标记的数组 
+
+
+
+
     var marker,map = new AMap.Map('container', {
         keyboardEnable: false, //地图是否可通过键盘控制，默认为true
         resizeEnable: true, //是否监控地图容器尺寸变化
         zoom:13 //初始化地图层级
     });//地图
-    var polyl = new AMap.Polyline({
+    var Targetpoly = new AMap.Polyline({
             // path: path,
             isOutline: true,
             outlineColor: '#ffeeff',
@@ -64,9 +72,23 @@
             lineJoin: 'round',
             lineCap: 'round',
             strokeWeight: 8,
-			showDir:true,
-        });//折线
-    // 构造官方卫星图层
+	    showDir:true,
+        });//目标折线
+ 
+    var Boatpoly = new AMap.Polyline({
+            // path: path,
+            isOutline: true,
+            outlineColor: '#ffeeff',
+            borderWeight: 1,
+            strokeColor: "#0000ff",
+            strokeStyle: "solid",
+            lineJoin: 'round',
+            lineCap: 'round',
+            strokeWeight: 8,
+	    showDir:true,
+        });//自身折线
+
+   // 构造官方卫星图层
     var satelliteLayer = new AMap.TileLayer.Satellite();
     // 加入卫星图层
     map.add(satelliteLayer);
@@ -74,17 +96,69 @@
     map.on('click', onClick);
     //点击事件
 
-    //添加 marker
-    function addMarker(lng,lat) {
+    //添加目标 marker
+    function addTargetMarker(lng,lat) {
         marker = new AMap.Marker({
             position: [lng, lat],
         });
+	Target_markerList.push(marker);
         marker.setMap(map);
     }
-    //清除所有标记
-    function clearAll() {
-        map.clearMap();//清空地图标记
+
+    //添加障碍 marker
+    function addObstacleMarker(lng,lat) {
+        marker = new AMap.Marker({
+            position: [lng, lat],
+	    //icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-1.png",
+        });
+	Obstacle_markerList.push(marker);
+        marker.setMap(map);
+    }
+
+    //添加自身 marker
+    function addBoatMarker(lng,lat) {
+//        marker = new AMap.Marker({
+//            position: [lng, lat],
+// 	    icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
+//        });
+//	Boat_markerList.push(marker);
+//        marker.setMap(map);
+	Boat_path.push([lng,lat]);
+        Boatpoly.setPath(Boat_path);
+        Boatpoly.setMap(map);	
+    }
+
+    //清除障碍标记
+    function clearObstacle() {
+	map.remove(Obstacle_markerList);//清空障碍点标记
+	Obstacle_markerList = [];//清空障碍点标记信息
+	
+    }
+    //清除自身标记
+    function clearBoat() {
+	map.remove(Boat_markerList);//清空目标点标记
+	map.remove(Boatpoly);//清空目标线标记
+	Boat_path = [];//清空线标记路径信息
+	Boat_markerList = [];//清空目标点标记信息
+	
+    }
+
+    //清除目标标记
+    function clearTarget(){
+	map.remove(Target_markerList);//清空目标点标记
+	map.remove(Targetpoly);//清空目标线标记
+	path = [];//清空线标记路径信息
+	Target_markerList = [];//清空目标点标记信息
+    }
+
+    //清除标记
+    function clearAll(){
+        map.clearMap();//清空地图标记	
         path = [];//清空路径信息
+	Boat_path=[];
+	Target_markerList=[];
+	Obstacle_markerList=[];
+	Boat_markerList=[];
     }
     //新建QWebChannel对象实例，使之能与c++函数通信
     new QWebChannel(qt.webChannelTransport,
@@ -92,9 +166,11 @@
 		var pointxy = channel.objects.pointxy;
 		var infoset = channel.objects.infoset;
 		var mode = channel.objects.mode;
-        window.foo = pointxy; 
+        	window.foo = pointxy; 
 		//相当于监听这个信号，一有对应的信号收到，调用函数处理
 		pointxy.mapCenterChanged.connect(setmapcenter);
+		pointxy.BoatGPSChanged.connect(addBoatMarker);
+		pointxy.AddObstacle.connect(addObstacleMarker);
 		infoset.boatGps.connect(setboatgps);
 		infoset.boatSpeed.connect(setboatspeed);
 		infoset.modeChangeForMap.connect(setboatmode);
@@ -130,20 +206,18 @@
 			document.getElementById("boat-mode").innerHTML="低速模式";
 		}
 		else if ((data1==203)){
-		document.getElementById("boat-mode").innerHTML="稳定模式";
-     
+			document.getElementById("boat-mode").innerHTML="稳定模式";    
 		}
 		else if ((data1==204)){
-		document.getElementById("boat-mode").innerHTML="推进器设置模式";
-     
+			document.getElementById("boat-mode").innerHTML="推进器设置模式";   
 		}		
 	}
     function onClick(e) {
         var my_coordinate = [e.lnglat.Q , e.lnglat.P];
         path.push(my_coordinate);
-        polyl.setPath(path);
-        polyl.setMap(map);
-        addMarker(e.lnglat.Q,e.lnglat.P);
+        Targetpoly.setPath(path);
+        Targetpoly.setMap(map);
+        addTargetMarker(e.lnglat.Q,e.lnglat.P);
         // JS调用QT
         window.foo.saveMapPoint(e.lnglat.Q,e.lnglat.P);
     };
