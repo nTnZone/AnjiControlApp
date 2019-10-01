@@ -11,8 +11,8 @@ class GamePadOperator : public QObject
 public:
     explicit GamePadOperator(QObject *parent = nullptr);
     virtual ~GamePadOperator() {
-        delete gamepad;
-        delete udp;
+//        delete gamepad;
+//        delete udp;
     }
 
 private:
@@ -25,6 +25,10 @@ private:
     int UpDownflag=0;
     int Leftflag=0;
     int level=0;
+
+signals:
+    void serialsend(QByteArray data);
+    void speedchanged(int a);
 public    slots:
     void UpButtonClicked(bool value);
     void DownButtonClicked(bool value);
@@ -34,6 +38,6 @@ public    slots:
     void LevelDownButtonClicked(bool value);
 public:
     QGamepad *gamepad;
-    UdpComm *udp;
+//    UdpComm *udp;
 };
 #endif // GAMEPADOPERATOR_H

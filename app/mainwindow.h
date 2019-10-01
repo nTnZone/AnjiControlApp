@@ -109,7 +109,6 @@ private slots:
 
     void on_autoButton_clicked();
 
-    void on_rspeedBox_currentTextChanged(const QString &arg1);
 
     void on_remark_clicked();
 
@@ -143,6 +142,14 @@ private slots:
     void DisplaySerialData(QByteArray data);
 
     void on_SerialSend_clicked();
+
+    void GampPadSerialSend(QByteArray data);
+
+    QByteArray SynLonLat(double lon,double lat);
+
+    QByteArray SynLonLatDir(double lon,double lat,double dir);
+
+    void changeSpeedIndex(int a);
 
 signals:
 

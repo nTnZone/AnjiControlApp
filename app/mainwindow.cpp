@@ -66,9 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    server->setprefix(QByteArray("f1"));
 
 //设置下拉菜单
-    QStringList rspeedList={"1","2","3"};
-    QStringList fspeedList={"1","2","3","4","5"};
-    ui->rspeedBox->addItems(rspeedList);
+    QStringList fspeedList={"0","1","2","3","4","5"};
     ui->fspeedBox->addItems(fspeedList);
 
 //设置按钮
@@ -119,12 +117,13 @@ MainWindow::MainWindow(QWidget *parent) :
 //    qDebug() << QString("file:///"+htmlf.fileName());//the path of gaode.html
 
 //连接信号
-    connect(gpo->gamepad,&QGamepad::buttonUpChanged,this,&MainWindow::on_test_clicked);
+
     connect(mode,&Mode::modeChange,mode,&Mode::setMode);
     connect(infoset,&InfoSets::uavGps,this,&MainWindow::uav_gps_show);
     connect(serial,&SerialComm::Roger,infoset,&InfoSets::sendGps);
     connect(serial,&SerialComm::dataAccept,this,&MainWindow::DisplaySerialData);
-
+    connect(gpo,&GamePadOperator::serialsend,this,&MainWindow::GampPadSerialSend);
+    connect(gpo,&GamePadOperator::speedchanged,this,&MainWindow::changeSpeedIndex);
 //    mfplayer->setWindowName("F1");
 //    connect(server,&TcpServer::TransCompleted,mfplayer,&FilmPlayer::nextFile);
 
@@ -292,11 +291,7 @@ void MainWindow::on_fspeedBox_currentTextChanged(const QString &fspeed)
 }
 
 
-void MainWindow::on_rspeedBox_currentTextChanged(const QString &rspeed)
-{
 
-    this->boatspeed->setRspeed(rspeed.toInt());//ui->rspeedBox->currentText().toInt()
-}
 
 void MainWindow::on_remark_clicked()
 {
@@ -325,9 +320,7 @@ void MainWindow::on_rightButton_clicked()
 
 void MainWindow::on_upButton_clicked()
 {
-    QByteArray *msg=new QByteArray("#RMT04");
-    msg->append(QByteArray::fromHex("0d0a"));//协议尾
-    //emit mode->modeChange(StableMode);
+
 }
 
 void MainWindow::on_startButton_clicked()
@@ -340,9 +333,10 @@ void MainWindow::on_startButton_clicked()
             //航点模式
             for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
                 char str[100];
-                sprintf(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
-                QByteArray msg(str);
-//                udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+//                sprintf(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
+//                QByteArray msg(str);
+                QByteArray msg("#RPG");
+                msg.append(SynLonLat(pointxy->map_longtitude.at(i),pointxy->map_latitude.at(i)));
                 serial->sendData(msg);
                 sleep(500);
             }
@@ -360,9 +354,10 @@ void MainWindow::on_startButton_clicked()
             //低速运动模式
             char str[100];
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
-            sprintf(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
-            QByteArray msg(str);
-//            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+//            sprintf(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+//            QByteArray msg(str);
+            QByteArray msg("#LPG");
+            msg.append(SynLonLatDir(pointxy->map_longtitude.at(0),pointxy->map_latitude.at(0),BowDirection));
             serial->sendData(msg);
             QByteArray msg1("#LPGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
             serial->sendData(msg1);
@@ -373,22 +368,21 @@ void MainWindow::on_startButton_clicked()
         //定点模式
             char str[100];
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
-            sprintf(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
-            QByteArray msg(str);
-//            udpcomm->SendMsg(str,QHostAddress(rongIp),rongPort);
+//            sprintf(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
+//            QByteArray msg(str);
+            QByteArray msg("#SPG");
+            msg.append(SynLonLatDir(pointxy->map_longtitude.at(0),pointxy->map_latitude.at(0),BowDirection));
             serial->sendData(msg);
-            QByteArray msg1("#PGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
+            QByteArray msg1("#SPGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
             serial->sendData(msg1);
             break;
         }
         case ThrusterPower:
         {
             char str[100];
-            sprintf(str, "#PG%04d%04d%04d%04d\r\n",ui->tp1->text().toInt(),ui->tp2->text().toInt(),ui->tp3->text().toInt(),ui->tp4->text().toInt());
+            sprintf(str, "#PWM%04d%04d%04d%04d\r\n",ui->tp1->text().toInt(),ui->tp2->text().toInt(),ui->tp3->text().toInt(),ui->tp4->text().toInt());
             QByteArray msg(str);
             serial->sendData(msg);
-            QByteArray msg1("#PGSTART");msg1.append(QByteArray::fromHex("0d0a"));//start
-            serial->sendData(msg1);
         }
     }
 }
@@ -470,7 +464,7 @@ void MainWindow::on_stopButton_clicked()
     {
         QByteArray *msg=new QByteArray("#LPGSTOP");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
-//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+
         serial->sendData(*msg);
         break;
     }
@@ -478,16 +472,13 @@ void MainWindow::on_stopButton_clicked()
     {
         QByteArray *msg=new QByteArray("#SPGSTOP");
         msg->append(QByteArray::fromHex("0d0a"));//协议尾
-//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
+
         serial->sendData(*msg);
         break;
     }
     case ThrusterPower:
     {
-        QByteArray *msg=new QByteArray("#SPGSTOP");
-        msg->append(QByteArray::fromHex("0d0a"));//协议尾
-//        udpcomm->SendMsg(*msg,QHostAddress(rongIp),rongPort);
-        serial->sendData(*msg);
+
         break;
     }
     }
@@ -518,4 +509,120 @@ void MainWindow::on_SerialSend_clicked()
 //    QString dataStr = ui->SerialSendBuf->toPlainText();
 //    QByteArray dataByte(dataStr);
     serial->sendData(ui->SerialSendBuf->toPlainText().toLatin1().append(QByteArray::fromHex("0d0a")));
+}
+
+void MainWindow::GampPadSerialSend(QByteArray data)
+{
+    serial->sendData(data);
+    qDebug() << data;
+}
+
+QByteArray MainWindow::SynLonLat(double lon,double lat)
+{
+    char str[100];
+
+    char sgn = 0;
+
+    if(lon>0)
+    {
+
+    }
+    else
+    {
+        lon = -lon;
+        sgn |= 0x80;
+    }
+    if(lat>0)
+    {
+
+    }
+    else
+    {
+        lat = -lat;
+        sgn |= 0x40;
+    }
+
+    unsigned char lon_int = (unsigned char)lon;
+    unsigned int lon_dec = (unsigned int)((lon - lon_int)*1e7);
+    unsigned char lat_int = (unsigned char)lat;
+    unsigned int lat_dec = (unsigned int)((lat - lat_int)*1e7);
+
+    str[0] = sgn;
+    *(int*)(&str[1]) = lon_int;
+    *(int*)(&str[2]) = lon_dec;
+    *(int*)(&str[6]) = lat_int;
+    *(int*)(&str[7]) = lat_dec;
+    QByteArray msg(str,11);
+    msg.append(QByteArray::fromHex("0d0a"));
+
+    qDebug() << lon_int << lon_dec;
+    qDebug() << lat_int << lat_dec;
+    qDebug() << msg.toHex();
+
+    return msg;
+}
+
+QByteArray MainWindow::SynLonLatDir(double lon, double lat,double dir)
+{
+    char str[100];
+
+    char sgn = 0;
+
+    if(lon>0)
+    {
+
+    }
+    else
+    {
+        lon = -lon;
+        sgn |= 0x80;
+    }
+    if(lat>0)
+    {
+
+    }
+    else
+    {
+        lat = -lat;
+        sgn |= 0x40;
+    }
+
+    if(dir>0)
+    {
+
+    }
+    else
+    {
+        dir = -dir;
+        sgn |= 0x20;
+    }
+
+    unsigned char lon_int = (unsigned char)lon;
+    unsigned int lon_dec = (unsigned int)((lon - lon_int)*1e7);
+    unsigned char lat_int = (unsigned char)lat;
+    unsigned int lat_dec = (unsigned int)((lat - lat_int)*1e7);
+    unsigned char dir_int = (unsigned char)dir;
+    unsigned int dir_dec = (unsigned int)((dir - dir_int)*1e7);
+
+    str[0] = sgn;
+    *(int*)(&str[1]) = lon_int;
+    *(int*)(&str[2]) = lon_dec;
+    *(int*)(&str[6]) = lat_int;
+    *(int*)(&str[7]) = lat_dec;
+    *(int*)(&str[11]) = dir_int;
+    *(int*)(&str[12]) = dir_dec;
+    QByteArray msg(str,16);
+    msg.append(QByteArray::fromHex("0d0a"));
+
+    qDebug() << lon_int << lon_dec;
+    qDebug() << lat_int << lat_dec;
+    qDebug() << dir_int << dir_dec;
+    qDebug() << msg.toHex();
+
+    return msg;
+}
+
+void MainWindow::changeSpeedIndex(int a)
+{
+    ui->fspeedBox->setCurrentIndex(a);
 }

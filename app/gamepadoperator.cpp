@@ -2,7 +2,8 @@
 
 GamePadOperator::GamePadOperator(QObject *parent): QObject(parent)
 {
-    gamepad = new QGamepad (0,this);
+    gamepad = new QGamepad (QGamepadManager::instance()->connectedGamepads().at(0),this);
+
     connect(gamepad,&QGamepad::buttonUpChanged,this,&GamePadOperator::UpButtonClicked);
     connect(gamepad,&QGamepad::buttonDownChanged,this,&GamePadOperator::DownButtonClicked);
     connect(gamepad,&QGamepad::buttonXChanged,this,&GamePadOperator::LeftButtonClicked);
@@ -18,7 +19,8 @@ void GamePadOperator::UpButtonClicked(bool value)
     char str[30];
 
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
-    qDebug(str);
+//    qDebug(str);
+    emit serialsend(str);
 
     //this->udp->SendMsg(QByteArray(str));
 }
@@ -32,7 +34,8 @@ void GamePadOperator::DownButtonClicked(bool value)
     }
     char str[30];
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
-    qDebug(str);
+//    qDebug("%s", str);
+    emit serialsend(str);
 }
 
 void GamePadOperator::LeftButtonClicked(bool value)
@@ -41,7 +44,8 @@ void GamePadOperator::LeftButtonClicked(bool value)
     char str[30];
 
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
-    qDebug(str);
+//    qDebug(str);
+    emit serialsend(str);
 }
 
 void GamePadOperator::RightButtonClicked(bool value)
@@ -53,7 +57,8 @@ void GamePadOperator::RightButtonClicked(bool value)
     }
     char str[30];
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
-    qDebug(str);
+//    qDebug(str);
+    emit serialsend(str);
 }
 
 void GamePadOperator::LevelUpButtonClicked(bool value)
@@ -64,7 +69,9 @@ void GamePadOperator::LevelUpButtonClicked(bool value)
         level=5;
     char str[30];
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
-    qDebug(str);
+//    qDebug(str);
+    emit serialsend(str);
+    emit speedchanged(level);
 }
 
 void GamePadOperator::LevelDownButtonClicked(bool value)
@@ -75,6 +82,8 @@ void GamePadOperator::LevelDownButtonClicked(bool value)
         level=0;
     char str[30];
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
-    qDebug(str);
+//    qDebug(str);
+    emit serialsend(str);
+    emit speedchanged(level);
 }
 

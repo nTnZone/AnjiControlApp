@@ -38,10 +38,8 @@ public:
     QWebEngineView *webView;
     QWidget *layoutWidget;
     QFormLayout *formLayout_2;
-    QLabel *label_7;
-    QComboBox *rspeedBox;
-    QComboBox *fspeedBox;
     QLabel *label_6;
+    QComboBox *fspeedBox;
     QLabel *label_10;
     QLineEdit *boatDir;
     QWidget *widget;
@@ -130,35 +128,25 @@ public:
         formLayout_2->setHorizontalSpacing(30);
         formLayout_2->setVerticalSpacing(20);
         formLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_7 = new QLabel(layoutWidget);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_6 = new QLabel(layoutWidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
 
-        formLayout_2->setWidget(1, QFormLayout::LabelRole, label_7);
-
-        rspeedBox = new QComboBox(layoutWidget);
-        rspeedBox->setObjectName(QString::fromUtf8("rspeedBox"));
-
-        formLayout_2->setWidget(1, QFormLayout::FieldRole, rspeedBox);
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_6);
 
         fspeedBox = new QComboBox(layoutWidget);
         fspeedBox->setObjectName(QString::fromUtf8("fspeedBox"));
 
         formLayout_2->setWidget(0, QFormLayout::FieldRole, fspeedBox);
 
-        label_6 = new QLabel(layoutWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-
-        formLayout_2->setWidget(0, QFormLayout::LabelRole, label_6);
-
         label_10 = new QLabel(layoutWidget);
         label_10->setObjectName(QString::fromUtf8("label_10"));
 
-        formLayout_2->setWidget(2, QFormLayout::LabelRole, label_10);
+        formLayout_2->setWidget(1, QFormLayout::LabelRole, label_10);
 
         boatDir = new QLineEdit(layoutWidget);
         boatDir->setObjectName(QString::fromUtf8("boatDir"));
 
-        formLayout_2->setWidget(2, QFormLayout::FieldRole, boatDir);
+        formLayout_2->setWidget(1, QFormLayout::FieldRole, boatDir);
 
         widget = new QWidget(tab_2);
         widget->setObjectName(QString::fromUtf8("widget"));
@@ -429,6 +417,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(0);
+        fspeedBox->setCurrentIndex(-1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -437,7 +426,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        label_7->setText(QApplication::translate("MainWindow", "\350\275\254\345\220\221\351\200\237\345\272\246", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "\345\211\215\350\241\214\351\200\237\345\272\246", nullptr));
         label_10->setText(QApplication::translate("MainWindow", "\350\210\271\351\246\226\345\220\221", nullptr));
         label->setText(QApplication::translate("MainWindow", "\345\217\202\346\225\260\346\230\276\347\244\272", nullptr));
