@@ -255,8 +255,8 @@ void PointXY::AddObstacle(double _t1, double _t2)
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[31];
-    char stringdata0[469];
+    QByteArrayData data[33];
+    char stringdata0[502];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -295,7 +295,9 @@ QT_MOC_LITERAL(26, 429, 3), // "lat"
 QT_MOC_LITERAL(27, 433, 12), // "SynLonLatDir"
 QT_MOC_LITERAL(28, 446, 3), // "dir"
 QT_MOC_LITERAL(29, 450, 16), // "changeSpeedIndex"
-QT_MOC_LITERAL(30, 467, 1) // "a"
+QT_MOC_LITERAL(30, 467, 1), // "a"
+QT_MOC_LITERAL(31, 469, 24), // "on_auvautoButton_toggled"
+QT_MOC_LITERAL(32, 494, 7) // "checked"
 
     },
     "MainWindow\0on_showDataButton_clicked\0"
@@ -309,7 +311,8 @@ QT_MOC_LITERAL(30, 467, 1) // "a"
     "on_thrusterpower_clicked\0DisplaySerialData\0"
     "data\0on_SerialSend_clicked\0GampPadSerialSend\0"
     "SynLonLat\0lon\0lat\0SynLonLatDir\0dir\0"
-    "changeSpeedIndex\0a"
+    "changeSpeedIndex\0a\0on_auvautoButton_toggled\0"
+    "checked"
 };
 #undef QT_MOC_LITERAL
 
@@ -319,7 +322,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      22,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -327,27 +330,28 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  119,    2, 0x08 /* Private */,
-       3,    0,  120,    2, 0x08 /* Private */,
-       4,    0,  121,    2, 0x08 /* Private */,
-       5,    1,  122,    2, 0x08 /* Private */,
-       7,    0,  125,    2, 0x08 /* Private */,
-       8,    0,  126,    2, 0x08 /* Private */,
-       9,    0,  127,    2, 0x08 /* Private */,
-      10,    0,  128,    2, 0x08 /* Private */,
-      11,    0,  129,    2, 0x08 /* Private */,
-      12,    0,  130,    2, 0x08 /* Private */,
-      13,    0,  131,    2, 0x08 /* Private */,
-      14,    2,  132,    2, 0x08 /* Private */,
-      17,    0,  137,    2, 0x08 /* Private */,
-      18,    0,  138,    2, 0x08 /* Private */,
-      19,    0,  139,    2, 0x08 /* Private */,
-      20,    1,  140,    2, 0x08 /* Private */,
-      22,    0,  143,    2, 0x08 /* Private */,
-      23,    1,  144,    2, 0x08 /* Private */,
-      24,    2,  147,    2, 0x08 /* Private */,
-      27,    3,  152,    2, 0x08 /* Private */,
-      29,    1,  159,    2, 0x08 /* Private */,
+       1,    0,  124,    2, 0x08 /* Private */,
+       3,    0,  125,    2, 0x08 /* Private */,
+       4,    0,  126,    2, 0x08 /* Private */,
+       5,    1,  127,    2, 0x08 /* Private */,
+       7,    0,  130,    2, 0x08 /* Private */,
+       8,    0,  131,    2, 0x08 /* Private */,
+       9,    0,  132,    2, 0x08 /* Private */,
+      10,    0,  133,    2, 0x08 /* Private */,
+      11,    0,  134,    2, 0x08 /* Private */,
+      12,    0,  135,    2, 0x08 /* Private */,
+      13,    0,  136,    2, 0x08 /* Private */,
+      14,    2,  137,    2, 0x08 /* Private */,
+      17,    0,  142,    2, 0x08 /* Private */,
+      18,    0,  143,    2, 0x08 /* Private */,
+      19,    0,  144,    2, 0x08 /* Private */,
+      20,    1,  145,    2, 0x08 /* Private */,
+      22,    0,  148,    2, 0x08 /* Private */,
+      23,    1,  149,    2, 0x08 /* Private */,
+      24,    2,  152,    2, 0x08 /* Private */,
+      27,    3,  157,    2, 0x08 /* Private */,
+      29,    1,  164,    2, 0x08 /* Private */,
+      31,    1,  167,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -371,6 +375,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::QByteArray, QMetaType::Double, QMetaType::Double,   25,   26,
     QMetaType::QByteArray, QMetaType::Double, QMetaType::Double, QMetaType::Double,   25,   26,   28,
     QMetaType::Void, QMetaType::Int,   30,
+    QMetaType::Void, QMetaType::Bool,   32,
 
        0        // eod
 };
@@ -404,6 +409,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 19: { QByteArray _r = _t->SynLonLatDir((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< QByteArray*>(_a[0]) = std::move(_r); }  break;
         case 20: _t->changeSpeedIndex((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 21: _t->on_auvautoButton_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -438,13 +444,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 22;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 21)
+        if (_id < 22)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 21;
+        _id -= 22;
     }
     return _id;
 }

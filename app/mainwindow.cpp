@@ -325,6 +325,11 @@ void MainWindow::on_upButton_clicked()
 
 void MainWindow::on_startButton_clicked()
 {
+    if(pointxy->map_latitude.size() == 0)
+    {
+        QMessageBox::information(NULL,"Note","No point on map",QMessageBox::Yes);
+    }
+    else
     switch (mode->getModeFlag())
     {
         case AutoMode:
@@ -625,4 +630,17 @@ QByteArray MainWindow::SynLonLatDir(double lon, double lat,double dir)
 void MainWindow::changeSpeedIndex(int a)
 {
     ui->fspeedBox->setCurrentIndex(a);
+}
+
+
+void MainWindow::on_auvautoButton_toggled(bool checked)
+{
+    if(checked)
+    {
+        serial->sendData("MANUALOFF");
+    }
+    else
+    {
+        serial->sendData(("MANUALON"));
+    }
 }

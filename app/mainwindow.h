@@ -151,6 +151,8 @@ private slots:
 
     void changeSpeedIndex(int a);
 
+    void on_auvautoButton_toggled(bool checked);
+
 signals:
 
 private:

@@ -456,9 +456,15 @@ p, li { white-space: pre-wrap; }
           <number>20</number>
          </property>
          <item>
-          <widget class="QPushButton" name="manualButton_2">
+          <widget class="QPushButton" name="auvautoButton">
            <property name="text">
-            <string>单击键盘操作</string>
+            <string>无人船自主开关</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
