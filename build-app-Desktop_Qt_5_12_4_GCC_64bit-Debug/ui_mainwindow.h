@@ -44,11 +44,14 @@ public:
     QLineEdit *boatDir;
     QWidget *widget;
     QLabel *label;
+    QWidget *widget1;
+    QFormLayout *formLayout_3;
     QLabel *label_2;
-    QLabel *label_3;
-    QLabel *label_4;
-    QLabel *label_5;
     QLabel *labelUAV_xy;
+    QLabel *label_4;
+    QLabel *boat_v;
+    QLabel *label_5;
+    QLabel *boat_dir;
     QTextEdit *textEdit;
     QPushButton *test;
     QLineEdit *rongIp;
@@ -155,21 +158,46 @@ public:
         label = new QLabel(widget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(200, 20, 81, 21));
-        label_2 = new QLabel(widget);
+        widget1 = new QWidget(widget);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(50, 70, 361, 101));
+        formLayout_3 = new QFormLayout(widget1);
+        formLayout_3->setSpacing(6);
+        formLayout_3->setContentsMargins(11, 11, 11, 11);
+        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
+        formLayout_3->setHorizontalSpacing(20);
+        formLayout_3->setVerticalSpacing(15);
+        formLayout_3->setContentsMargins(0, 0, 0, 0);
+        label_2 = new QLabel(widget1);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(50, 70, 81, 16));
-        label_3 = new QLabel(widget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(50, 110, 72, 15));
-        label_4 = new QLabel(widget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(50, 150, 91, 16));
-        label_5 = new QLabel(widget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(50, 190, 121, 16));
-        labelUAV_xy = new QLabel(widget);
+
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_2);
+
+        labelUAV_xy = new QLabel(widget1);
         labelUAV_xy->setObjectName(QString::fromUtf8("labelUAV_xy"));
-        labelUAV_xy->setGeometry(QRect(180, 70, 251, 21));
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, labelUAV_xy);
+
+        label_4 = new QLabel(widget1);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        formLayout_3->setWidget(1, QFormLayout::LabelRole, label_4);
+
+        boat_v = new QLabel(widget1);
+        boat_v->setObjectName(QString::fromUtf8("boat_v"));
+
+        formLayout_3->setWidget(1, QFormLayout::FieldRole, boat_v);
+
+        label_5 = new QLabel(widget1);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        formLayout_3->setWidget(2, QFormLayout::LabelRole, label_5);
+
+        boat_dir = new QLabel(widget1);
+        boat_dir->setObjectName(QString::fromUtf8("boat_dir"));
+
+        formLayout_3->setWidget(2, QFormLayout::FieldRole, boat_dir);
+
         textEdit = new QTextEdit(tab_2);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
         textEdit->setGeometry(QRect(1160, 330, 461, 241));
@@ -432,10 +460,11 @@ public:
         label_10->setText(QApplication::translate("MainWindow", "\350\210\271\351\246\226\345\220\221", nullptr));
         label->setText(QApplication::translate("MainWindow", "\345\217\202\346\225\260\346\230\276\347\244\272", nullptr));
         label_2->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\346\234\272\345\235\220\346\240\207", nullptr));
-        label_3->setText(QApplication::translate("MainWindow", "\345\243\260\345\221\220", nullptr));
-        label_4->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\350\210\271\345\235\220\346\240\207", nullptr));
-        label_5->setText(QApplication::translate("MainWindow", "ROV\345\235\220\346\240\207\357\274\210\344\270\215\351\234\200\350\246\201\357\274\211", nullptr));
-        labelUAV_xy->setText(QApplication::translate("MainWindow", "x,y", nullptr));
+        labelUAV_xy->setText(QString());
+        label_4->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\350\210\271\351\200\237\345\272\246", nullptr));
+        boat_v->setText(QString());
+        label_5->setText(QApplication::translate("MainWindow", "\346\227\240\344\272\272\350\210\271\346\226\271\345\220\221", nullptr));
+        boat_dir->setText(QString());
         textEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

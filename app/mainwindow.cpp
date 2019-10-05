@@ -122,6 +122,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(infoset,&InfoSets::uavGps,this,&MainWindow::uav_gps_show);
     connect(serial,&SerialComm::Roger,infoset,&InfoSets::sendGps);
     connect(serial,&SerialComm::dataAccept,this,&MainWindow::DisplaySerialData);
+    connect(serial,&SerialComm::dataAccept,this,&MainWindow::Handle_serialData);
     connect(gpo,&GamePadOperator::serialsend,this,&MainWindow::GampPadSerialSend);
     connect(gpo,&GamePadOperator::speedchanged,this,&MainWindow::changeSpeedIndex);
 //    mfplayer->setWindowName("F1");
@@ -337,7 +338,7 @@ void MainWindow::on_startButton_clicked()
 
             //航点模式
             for (unsigned int i = 0;i < pointxy->map_latitude.size();i++) {
-                char str[100];
+//                char str[100];
 //                sprintf(str, "#RPG%014.9lf;%013.9lf\r\n", pointxy->map_longtitude.at(i), pointxy->map_latitude.at(i));
 //                QByteArray msg(str);
                 QByteArray msg("#RPG");
@@ -357,7 +358,7 @@ void MainWindow::on_startButton_clicked()
         case LowSpeedMode:
         {
             //低速运动模式
-            char str[100];
+//            char str[100];
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
 //            sprintf(str, "#LPG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
 //            QByteArray msg(str);
@@ -371,7 +372,7 @@ void MainWindow::on_startButton_clicked()
         case StableMode:
         {
         //定点模式
-            char str[100];
+//            char str[100];
             double BowDirection = ui->boatDir->text().toDouble();//从linedit获取船首向
 //            sprintf(str, "#PG%014.9lf;%013.9lf%010.5lf\r\n", pointxy->map_longtitude.at(0), pointxy->map_latitude.at(0),BowDirection);
 //            QByteArray msg(str);
@@ -508,6 +509,15 @@ void MainWindow::DisplaySerialData(QByteArray data)
     ui->textEdit->append(str);
 }
 
+void MainWindow::Handle_serialData(QByteArray data)
+{
+    if(data.left(8) == "#AUVINFO")
+    {
+        data.remove(0,8);
+        Decode_AUVinfo(data.data());
+    }
+}
+
 
 void MainWindow::on_SerialSend_clicked()
 {
@@ -625,6 +635,54 @@ QByteArray MainWindow::SynLonLatDir(double lon, double lat,double dir)
     qDebug() << msg.toHex();
 
     return msg;
+}
+
+void MainWindow::Decode_AUVinfo(char *data)
+{
+    unsigned char lon_int;
+    int lon_dec;
+    unsigned char lat_int;
+    int lat_dec;
+    unsigned char v_int;
+    unsigned char v_dec;
+    unsigned char dir_int;
+    int dir_dec;
+    double lon,lat,v,dir;
+    lon_int = *(int*)(&data[1]);
+    lon_dec = *(int*)(&data[2]);
+    lat_int = *(int*)(&data[6]);
+    lat_dec = *(int*)(&data[7]);
+    v_int = *(int*)(&data[11]);
+    v_dec = *(int*)(&data[12]);
+    dir_int = *(int*)(&data[13]);
+    dir_dec = *(int*)(&data[14]);
+
+    lon = lon_int + lon_dec/10000000.0;
+    lat = lat_int + lat_dec/10000000.0;
+    v = v_int + v_dec/100.0;
+    dir = dir_int + dir_dec/10000000.0;
+
+    if(data[0] & 0x80)
+    {
+        lon = -lon;
+    }
+    if(data[0] & 0x40)
+    {
+        lat = -lat;
+    }
+    if(data[0] & 0x20)
+    {
+        v = -v;
+    }
+    if(data[0] & 0x10)
+    {
+        dir = -dir;
+    }
+    emit infoset->boatGps(lon,lat);
+    ui->boat_dir->setNum(dir);
+    ui->boat_v->setNum(v);
+
+
 }
 
 void MainWindow::changeSpeedIndex(int a)

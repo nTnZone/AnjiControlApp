@@ -141,6 +141,8 @@ private slots:
 
     void DisplaySerialData(QByteArray data);
 
+    void Handle_serialData(QByteArray data);
+
     void on_SerialSend_clicked();
 
     void GampPadSerialSend(QByteArray data);
@@ -149,9 +151,13 @@ private slots:
 
     QByteArray SynLonLatDir(double lon,double lat,double dir);
 
+    void Decode_AUVinfo(char *data);
+
     void changeSpeedIndex(int a);
 
     void on_auvautoButton_toggled(bool checked);
+
+
 
 signals:
 

@@ -118,70 +118,65 @@
         <string>参数显示</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>50</x>
          <y>70</y>
-         <width>81</width>
-         <height>16</height>
+         <width>361</width>
+         <height>101</height>
         </rect>
        </property>
-       <property name="text">
-        <string>无人机坐标</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_3">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>110</y>
-         <width>72</width>
-         <height>15</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>声呐</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_4">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>150</y>
-         <width>91</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>无人船坐标</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_5">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>190</y>
-         <width>121</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ROV坐标（不需要）</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="labelUAV_xy">
-       <property name="geometry">
-        <rect>
-         <x>180</x>
-         <y>70</y>
-         <width>251</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>x,y</string>
-       </property>
+       <layout class="QFormLayout" name="formLayout_3">
+        <property name="horizontalSpacing">
+         <number>20</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>15</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>无人机坐标</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelUAV_xy">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>无人船速度</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="boat_v">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>无人船方向</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="boat_dir">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QTextEdit" name="textEdit">
