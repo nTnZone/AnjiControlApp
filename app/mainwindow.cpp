@@ -128,7 +128,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    mfplayer->setWindowName("F1");
 //    connect(server,&TcpServer::TransCompleted,mfplayer,&FilmPlayer::nextFile);
 
-    outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
+//    outputMessage(QtDebugMsg,"This is a debug message",UAVlog);
 
 //弃用
     //    connect(key,&KeyOperator::directChanged,udpcomm,&UdpComm::sendDirection);
