@@ -16,7 +16,7 @@ void FilmPlayer::nextFile(char *prefix,int fileindex)
 {
     qDebug() << this->frameindex;
     frameindex = 0;
-    char str[50];
+    char str[50]={0};
     sprintf(str,"G:\\QT\\video\\%s%d.avi",prefix,fileindex);
     cap.release();
     cap.open(str);

@@ -118,7 +118,7 @@
         <string>参数显示</string>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>50</x>
@@ -452,6 +452,9 @@ p, li { white-space: pre-wrap; }
          </property>
          <item>
           <widget class="QPushButton" name="auvautoButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>无人船自主开关</string>
            </property>

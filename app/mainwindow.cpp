@@ -385,7 +385,7 @@ void MainWindow::on_startButton_clicked()
         }
         case ThrusterPower:
         {
-            char str[100];
+            char str[100]={0};
             sprintf(str, "#PWM%04d%04d%04d%04d\r\n",ui->tp1->text().toInt(),ui->tp2->text().toInt(),ui->tp3->text().toInt(),ui->tp4->text().toInt());
             QByteArray msg(str);
             serial->sendData(msg);
@@ -534,7 +534,7 @@ void MainWindow::GampPadSerialSend(QByteArray data)
 
 QByteArray MainWindow::SynLonLat(double lon,double lat)
 {
-    char str[100];
+    char str[100]={0};
 
     char sgn = 0;
 
@@ -579,7 +579,7 @@ QByteArray MainWindow::SynLonLat(double lon,double lat)
 
 QByteArray MainWindow::SynLonLatDir(double lon, double lat,double dir)
 {
-    char str[100];
+    char str[100]={0};
 
     char sgn = 0;
 
@@ -679,6 +679,7 @@ void MainWindow::Decode_AUVinfo(char *data)
         dir = -dir;
     }
     emit infoset->boatGps(lon,lat);
+    emit pointxy->BoatGPSChanged(lon,lat);
     ui->boat_dir->setNum(dir);
     ui->boat_v->setNum(v);
 

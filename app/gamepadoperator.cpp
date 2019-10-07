@@ -16,7 +16,7 @@ void GamePadOperator::UpButtonClicked(bool value)
 {
 
     this->UpDownflag=(int)value;
-    char str[30];
+    char str[30]={0};
 
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
 //    qDebug(str);
@@ -32,7 +32,7 @@ void GamePadOperator::DownButtonClicked(bool value)
     else {
         this->UpDownflag=0;
     }
-    char str[30];
+    char str[30]={0};
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
 //    qDebug("%s", str);
     emit serialsend(str);
@@ -41,7 +41,7 @@ void GamePadOperator::DownButtonClicked(bool value)
 void GamePadOperator::LeftButtonClicked(bool value)
 {
     this->XBflag=(int)value;
-    char str[30];
+    char str[30]={0};
 
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
 //    qDebug(str);
@@ -55,7 +55,7 @@ void GamePadOperator::RightButtonClicked(bool value)
     else {
         this->XBflag=0;
     }
-    char str[30];
+    char str[30]={0};
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
 //    qDebug(str);
     emit serialsend(str);
@@ -67,7 +67,7 @@ void GamePadOperator::LevelUpButtonClicked(bool value)
         level++;
     if(level>5)
         level=5;
-    char str[30];
+    char str[30]={0};
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
 //    qDebug(str);
     emit serialsend(str);
@@ -80,7 +80,7 @@ void GamePadOperator::LevelDownButtonClicked(bool value)
         level--;
     if(level<0)
         level=0;
-    char str[30];
+    char str[30]={0};
     sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
 //    qDebug(str);
     emit serialsend(str);
