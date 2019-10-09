@@ -87,3 +87,12 @@ void GamePadOperator::LevelDownButtonClicked(bool value)
     emit speedchanged(level);
 }
 
+void GamePadOperator::fspededchanged(int i)
+{
+    this->level = i;
+    char str[30]={0};
+    sprintf(str, "#RMT%d%d%d%02d\r\n",UpDownflag,XBflag,0,level);
+    emit serialsend(str);
+    emit speedchanged(level);
+}
+

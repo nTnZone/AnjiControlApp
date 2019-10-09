@@ -36,6 +36,7 @@ public    slots:
     void RightButtonClicked(bool value);
     void LevelUpButtonClicked(bool value);
     void LevelDownButtonClicked(bool value);
+    void fspededchanged(int i);
 public:
     QGamepad *gamepad;
 //    UdpComm *udp;

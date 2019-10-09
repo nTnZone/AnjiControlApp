@@ -9,6 +9,7 @@ UdpComm::UdpComm(QObject *parent) : QObject(parent)
 void UdpComm::SendMsg(QByteArray msg, QHostAddress addr, quint16 port)
 {
     mSocket->writeDatagram(msg,addr,port);
+
 }
 
 void UdpComm::RecvMsg()

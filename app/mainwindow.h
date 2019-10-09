@@ -158,9 +158,8 @@ private slots:
     void on_auvautoButton_toggled(bool checked);
 
 
-
 signals:
-
+    void IndexChanged(int i);
 private:
     Ui::MainWindow *ui;
     int modeFlag=0;

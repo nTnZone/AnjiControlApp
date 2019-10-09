@@ -33,6 +33,7 @@ void SerialComm::connectPort(int index)
 void SerialComm::sendData(QByteArray buf)
 {
     serial->write(buf);
+    qDebug() << buf.toHex();
 
 }
 
@@ -47,10 +48,6 @@ void SerialComm::readData()
     {
         data = serial->readLine();
         emit dataAccept(data);
-        if(data.left(4) == "BGPS")
-        {
-            Boat_GPS();
-        }
     }
     else
     {

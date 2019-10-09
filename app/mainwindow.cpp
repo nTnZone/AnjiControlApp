@@ -125,6 +125,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(serial,&SerialComm::dataAccept,this,&MainWindow::Handle_serialData);
     connect(gpo,&GamePadOperator::serialsend,this,&MainWindow::GampPadSerialSend);
     connect(gpo,&GamePadOperator::speedchanged,this,&MainWindow::changeSpeedIndex);
+    connect(this,&MainWindow::IndexChanged,gpo,&GamePadOperator::fspededchanged);
 //    mfplayer->setWindowName("F1");
 //    connect(server,&TcpServer::TransCompleted,mfplayer,&FilmPlayer::nextFile);
 
@@ -289,6 +290,7 @@ void MainWindow::on_stableButton_clicked()
 void MainWindow::on_fspeedBox_currentTextChanged(const QString &fspeed)
 {
     this->boatspeed->setFspeed(fspeed.toInt());
+    emit IndexChanged(fspeed.toInt());
 }
 
 
@@ -326,7 +328,7 @@ void MainWindow::on_upButton_clicked()
 
 void MainWindow::on_startButton_clicked()
 {
-    if(pointxy->map_latitude.size() == 0)
+    if(pointxy->map_latitude.size() == 0 && mode->getModeFlag() != ThrusterPower)
     {
         QMessageBox::information(NULL,"Note","No point on map",QMessageBox::Yes);
     }
@@ -505,8 +507,9 @@ void MainWindow::on_thrusterpower_clicked()
 void MainWindow::DisplaySerialData(QByteArray data)
 {
     ui->textEdit->moveCursor(QTextCursor::End);
-    QString str = QString(data);
-    ui->textEdit->append(str);
+//    QString str = QString(data);
+//    data.append("sss");
+    ui->textEdit->append(data.toHex());
 }
 
 void MainWindow::Handle_serialData(QByteArray data)
@@ -529,7 +532,6 @@ void MainWindow::on_SerialSend_clicked()
 void MainWindow::GampPadSerialSend(QByteArray data)
 {
     serial->sendData(data);
-    qDebug() << data;
 }
 
 QByteArray MainWindow::SynLonLat(double lon,double lat)
@@ -570,9 +572,9 @@ QByteArray MainWindow::SynLonLat(double lon,double lat)
     QByteArray msg(str,11);
     msg.append(QByteArray::fromHex("0d0a"));
 
-    qDebug() << lon_int << lon_dec;
-    qDebug() << lat_int << lat_dec;
-    qDebug() << msg.toHex();
+//    qDebug() << lon_int << lon_dec;
+//    qDebug() << lat_int << lat_dec;
+//    qDebug() << msg.toHex();
 
     return msg;
 }
@@ -629,10 +631,10 @@ QByteArray MainWindow::SynLonLatDir(double lon, double lat,double dir)
     QByteArray msg(str,16);
     msg.append(QByteArray::fromHex("0d0a"));
 
-    qDebug() << lon_int << lon_dec;
-    qDebug() << lat_int << lat_dec;
-    qDebug() << dir_int << dir_dec;
-    qDebug() << msg.toHex();
+//    qDebug() << lon_int << lon_dec;
+//    qDebug() << lat_int << lat_dec;
+//    qDebug() << dir_int << dir_dec;
+//    qDebug() << msg.toHex();
 
     return msg;
 }
